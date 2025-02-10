@@ -6,6 +6,7 @@ export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+  highlight?: boolean;
 };
 
 export function ThemedText({
@@ -13,9 +14,10 @@ export function ThemedText({
   lightColor,
   darkColor,
   type = 'default',
+  highlight = false,
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, highlight ? 'primary' : 'text');
 
   return (
     <Text
@@ -44,9 +46,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   title: {
-    fontSize: 32,
+    fontSize: 58,
     fontWeight: 'bold',
-    lineHeight: 32,
+    lineHeight: 58,
   },
   subtitle: {
     fontSize: 20,

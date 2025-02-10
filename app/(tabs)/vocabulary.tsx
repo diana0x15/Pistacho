@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-export default function TabTwoScreen() {
+export default function VocabularyScreen() {
 
   return (
       <ThemedView style={styles.container}>
@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
   container: {
    flex: 1,
    padding: 32,
-   paddingTop: 180,
+   paddingTop: 100,
   },
 });
