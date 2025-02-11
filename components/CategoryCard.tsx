@@ -1,11 +1,13 @@
+import { ReactNode } from 'react';
+import { Link } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
 import { LinearGradient } from 'expo-linear-gradient';
-import {ProgressBar} from '@/components/ProgressBar';
-import React from 'react';
 
-export type ThemeCardProps = {
-  image: React.ReactNode,
+import { ThemedText } from '@/components/ThemedText';
+import { ProgressBar } from '@/components/ProgressBar';
+
+export type CategoryCardProps = {
+  image: ReactNode,
   title: string,
   gradientStart: string,
   gradientEnd: string,
@@ -14,9 +16,10 @@ export type ThemeCardProps = {
   totalGames: number,
 };
 
-export function ThemeCard(props: ThemeCardProps) {
+export function CategoryCard(props: CategoryCardProps) {
 
   return (
+    <Link push href="../category">
       <LinearGradient
         colors={[props.gradientStart, props.gradientEnd]}
         start={{ x: 0, y: 0 }}
@@ -29,6 +32,7 @@ export function ThemeCard(props: ThemeCardProps) {
               <ProgressBar progress={props.completedGames/props.totalGames} color={props.color} />
             </View>
         </LinearGradient>
+    </Link>
   );
 }
 

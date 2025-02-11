@@ -7,16 +7,19 @@ import { DimensionValue } from 'react-native';
 export type ProgressBarProps = {
   progress: number,
   color: string,
+  style?: "default" | "elevated",
 };
 
-export function ProgressBar({progress, color} : ProgressBarProps) {
+export function ProgressBar({progress, color, style="default"} : ProgressBarProps) {
+
+  const barColor = style === "default" ? "#fff" : "#E7E2E2";
 
   return (
     <View style={styles.container}> 
-      <View style={styles.bar}>
+      <View style={[{backgroundColor: barColor}, styles.bar]}>
         <View style={[{ width: `${progress*100}%`, backgroundColor: color }, styles.progress]} />
       </View>
-      <View style={styles.dot} />
+      <View style={[{backgroundColor: barColor}, styles.dot]} />
     </View>
       
   );
@@ -33,7 +36,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     width: 160,
     height: 10,
-    backgroundColor: 'white',
     borderRadius: 100,
   },
   progress: {
@@ -45,6 +47,5 @@ const styles = StyleSheet.create({
     height: 20,
     marginLeft: -8,
     borderRadius: 100,
-    backgroundColor: 'white',
   }
 });

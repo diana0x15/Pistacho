@@ -1,11 +1,11 @@
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
+
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import Pistacho from '@/assets/images/pistacho.svg';
-import { ThemeList } from '@/components/ThemeList';
-import { ScrollView, View } from 'react-native';
+import { CategoryList } from '@/components/CategoryList';
 import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
 import { ThemedButton } from '@/components/ThemedButton';
+import Pistacho from '@/assets/images/pistacho.svg';
 
 export default function HomeScreen() {
 
@@ -18,20 +18,20 @@ export default function HomeScreen() {
         <ScrollView
           scrollIndicatorInsets={{ bottom }}
           contentContainerStyle={{ paddingTop: PADDING_TOP, paddingBottom: PADDING_BOTTOM }}>
-        <ThemedView style={styles.header}>
-          <ThemedView style={styles.title}>
+        <View style={styles.header}>
+          <View style={styles.title}>
             <ThemedText type="title">¡Hola,</ThemedText>
             <ThemedText type="title" highlight={true}>Diana!</ThemedText>
             <View style={styles.buttonContainer}>
               <ThemedButton mode='primary' onPress={() => {console.log('hi')}}>Juego aleatorio</ThemedButton>
             </View>
-          </ThemedView>
+          </View>
           <Pistacho width="180" height="180" style={styles.pistacho}/>
-        </ThemedView>
-        <ThemedView style={styles.listContainer}>
+        </View>
+        <View style={styles.listContainer}>
           <ThemedText type="subtitle">Mi progreso:</ThemedText>
-          <ThemeList />
-        </ThemedView>
+          <CategoryList />
+        </View>
         </ScrollView>
       </ThemedView>
   );
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   },
   pistacho:  {
     transform: [{rotate: '-20deg'}],
-    flex: 1,
     marginRight: -90,
   },
   buttonContainer: {

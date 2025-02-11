@@ -14,6 +14,7 @@ const MAPPING = {
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
   'text.book.closed.fill' : 'book',
+  'checkmark' : 'check'
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],

@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import { PaperProvider } from 'react-native-paper';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { transparent } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,16 +29,14 @@ export default function RootLayout() {
     return null;
   }
 
-
   return (
-    <PaperProvider >
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </PaperProvider>
-    
+      <PaperProvider >
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack screenOptions={{headerBackButtonDisplayMode: 'minimal', headerTransparent: true, title: ''}}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(category)" />
+          </Stack>
+        </ThemeProvider>
+      </PaperProvider>
   );
 }

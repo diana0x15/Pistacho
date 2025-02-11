@@ -1,16 +1,15 @@
-import { useEffect, ReactNode } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemeCard, ThemeCardProps} from './ThemeCard';
+import { StyleSheet, View } from 'react-native';
+
+import { CategoryCard } from './CategoryCard';
 import CanvasStand from '@/assets/images/canvas-stand.svg';
 import Bathroom from '@/assets/images/bathroom.svg';
 import Kitchen from '@/assets/images/kitchen.svg';
 
-export function ThemeList() {
+export function CategoryList() {
 
   return (
     <View style={styles.container}>
-    <ThemeCard
+    <CategoryCard
       image={<Bathroom width={100} height={100}/>}
       title="Lavabo"
       gradientStart='#F1F7FC'
@@ -20,7 +19,7 @@ export function ThemeList() {
       totalGames={11}
     />
 
-    <ThemeCard
+    <CategoryCard
       image={<Kitchen width={100} height={100} />}
       title="Cocina"
       gradientStart='#F4FBF0'
@@ -30,7 +29,7 @@ export function ThemeList() {
       totalGames={18}
     />
 
-    <ThemeCard
+    <CategoryCard
       image={<CanvasStand width={100} height={100} />}
       title="Arte"
       gradientStart='#FDFBFE'
@@ -39,7 +38,7 @@ export function ThemeList() {
       completedGames={3}
       totalGames={6}
     />
-    <ThemeCard
+    <CategoryCard
       image={<Bathroom width={100} height={100}/>}
       title="Lavabo"
       gradientStart='#F1F7FC'
@@ -49,7 +48,7 @@ export function ThemeList() {
       totalGames={11}
     />
 
-    <ThemeCard
+    <CategoryCard
       image={<Kitchen width={100} height={100} />}
       title="Cocina"
       gradientStart='#F4FBF0'
@@ -59,7 +58,7 @@ export function ThemeList() {
       totalGames={18}
     />
 
-    <ThemeCard
+    <CategoryCard
       image={<CanvasStand width={100} height={100} />}
       title="Arte"
       gradientStart='#FDFBFE'
