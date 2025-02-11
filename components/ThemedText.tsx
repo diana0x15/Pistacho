@@ -5,7 +5,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link' | 'cardTitle';
   highlight?: boolean;
 };
 
@@ -20,6 +20,7 @@ export function ThemedText({
   const color = useThemeColor({ light: lightColor, dark: darkColor }, highlight ? 'primary' : 'text');
 
   return (
+    <Text style={styles.baseText}>
     <Text
       style={[
         { color },
@@ -28,14 +29,19 @@ export function ThemedText({
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
         type === 'subtitle' ? styles.subtitle : undefined,
         type === 'link' ? styles.link : undefined,
+        type === 'cardTitle' ? styles.cardTitle : undefined,
         style,
       ]}
       {...rest}
     />
+    </Text>
   );
 }
 
 const styles = StyleSheet.create({
+  baseText: {
+    fontFamily: 'Hanken Grotesk',
+  },
   default: {
     fontSize: 16,
     lineHeight: 24,
@@ -46,17 +52,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   title: {
-    fontSize: 58,
+    fontSize: 62,
     fontWeight: 'bold',
-    lineHeight: 58,
+    lineHeight: 62,
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 'bold',
   },
   link: {
     lineHeight: 30,
     fontSize: 16,
     color: '#0a7ea4',
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
