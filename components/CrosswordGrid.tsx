@@ -87,9 +87,14 @@ function createMapGrid(words: Word[]) {
 
 const CrosswordGrid = () => {
   const words: Word[] = [
-    { word: "HELLO", row: 3, col: 0, direction: Direction.HORIZONTAL },
-    { word: "WORLD", row: 0, col: 2, direction: Direction.VERTICAL },
-    { word: "COLD", row: 1, col: 1, direction: Direction.HORIZONTAL },
+    { word: "ESTACIÓN", row: 1, col: 0, direction: Direction.HORIZONTAL },
+    { word: "COSTEROOOOOO", row: 3, col: 3, direction: Direction.HORIZONTAL },
+    { word: "JAMON", row: 7, col: 2, direction: Direction.HORIZONTAL },
+    { word: "CABECEAR", row: 10, col: 0, direction: Direction.HORIZONTAL },
+    { word: "SENTARSE", row: 0, col: 0, direction: Direction.VERTICAL },
+    { word: "ALCANZAR", row: 1, col: 3, direction: Direction.VERTICAL },
+    { word: "NADAR", row: 7, col: 6, direction: Direction.VERTICAL },
+    { word: "PODER", row: 2, col: 9, direction: Direction.VERTICAL },
   ];
 
   const [solutionGrid, setSolutionGrid] = useState(createGrid(words, false));
@@ -191,7 +196,7 @@ const CrosswordGrid = () => {
     }
   }
 
-  const Cell = ({
+  const ValidCell = ({
     row,
     col,
     value,
@@ -201,28 +206,29 @@ const CrosswordGrid = () => {
     value: string;
   }) => {
     return (
-      <TouchableOpacity
-        style={[
-          styles.cell,
-          styles.validCell,
-          isHighlighted(row, col) ? styles.highlightedCell : undefined,
-          isSelected(row, col) ? styles.selectedCell : undefined,
-        ]}
-        onPress={() => {
-          selectCell(row, col);
-        }}
-      >
-        <Text style={styles.cellContent}>{value}</Text>
-      </TouchableOpacity>
+      <View style={styles.cell}>
+        <TouchableOpacity
+          style={[
+            styles.validCell,
+            isHighlighted(row, col) ? styles.highlightedCell : undefined,
+            isSelected(row, col) ? styles.selectedCell : undefined,
+          ]}
+          onPress={() => {
+            selectCell(row, col);
+          }}
+        >
+          <Text style={styles.cellContent}>{value}</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   const NegativeCell = () => {
-    return <View style={[styles.cell, styles.negativeCell]} />;
+    return <View style={[styles.cell]} />;
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <TextInput
         ref={textInput}
         autoFocus={true}
@@ -239,7 +245,12 @@ const CrosswordGrid = () => {
         <View key={rowIndex} style={styles.row}>
           {row.map((cell, colIndex) =>
             cell !== null ? (
-              <Cell key={colIndex} row={rowIndex} col={colIndex} value={cell} />
+              <ValidCell
+                key={colIndex}
+                row={rowIndex}
+                col={colIndex}
+                value={cell}
+              />
             ) : (
               <NegativeCell key={colIndex} />
             )
@@ -251,10 +262,6 @@ const CrosswordGrid = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    alignItems: "center",
-  },
   textInput: {
     position: "absolute",
     top: -10,
@@ -267,18 +274,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   cell: {
-    width: 34,
-    height: 34,
-    margin: 3,
+    width: 36,
+    height: 36,
+    display: "flex",
+    backgroundColor: "#fff",
   },
   validCell: {
+    flex: 1,
+    margin: 2,
     backgroundColor: "#E9E6E6",
     borderRadius: 4,
     alignItems: "center",
     justifyContent: "center",
-  },
-  negativeCell: {
-    visibility: "none",
   },
   selectedCell: {
     backgroundColor: "#F7CD84",

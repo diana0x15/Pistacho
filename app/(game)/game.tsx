@@ -3,6 +3,7 @@ import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
 import { ProgressBar } from "@/components/ProgressBar";
 import CrosswordGrid from "@/components/CrosswordGrid";
+import PanWrapper from "@/components/PanWrapper";
 
 export default function Category() {
   const PADDING_TOP = 80;
@@ -17,7 +18,9 @@ export default function Category() {
           <ProgressBar color={"#75A7D3"} progress={0.2} style="elevated" />
         </View>
         <View style={styles.gameContainer}>
-          <CrosswordGrid />
+          <PanWrapper>
+            <CrosswordGrid />
+          </PanWrapper>
         </View>
         <View style={styles.clueContainer}></View>
       </KeyboardAvoidingView>
@@ -30,10 +33,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   keyboardAvoidingView: {
-    flex: 1,
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    flex: 1,
   },
   progressContainer: {
     width: "100%",
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   gameContainer: {
     marginTop: 10,
-    width: "100%",
+    flex: 1,
   },
   clueContainer: {
     width: "100%",
