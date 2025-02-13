@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import React from 'react';
 
-export default function CategoryLayout() {
+export default function GameLayout() {
 
   return (
     <Stack

@@ -23,10 +23,10 @@ export default function Category() {
         <ProgressBar color="#75A7D3" progress={0.5} style="elevated" />
       </View>
       <View style={styles.entriesList}>
-      <GameEntry title="Juego 1" wordCount={5} progress={1} index={0} />
-      <GameEntry title="Juego 1" wordCount={5} progress={0.5} index={1} />
-      <GameEntry title="Juego 1" wordCount={5} progress={0} index={2} />
-      <GameEntry title="Juego 1" wordCount={5} progress={1} index={3} />
+        <GameEntry title="Juego 1" wordCount={5} progress={1} index={0} />
+        <GameEntry title="Juego 1" wordCount={5} progress={0.5} index={1} />
+        <GameEntry title="Juego 1" wordCount={5} progress={0} index={2} />
+        <GameEntry title="Juego 1" wordCount={5} progress={1} index={3} />
       </View>
     </ScrollView>
   </ThemedView>)

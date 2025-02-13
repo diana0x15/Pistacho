@@ -14,9 +14,11 @@ export type GameEntryProps = {
 
 const Checkmark = () => {
   return (
-  <View style={[styles.progressCircle, {backgroundColor: '#75A7D3'}]}>
-    <IconSymbol size={28} name="checkmark" color={'#fff'} />
-  </View>)
+    <Link push href="../game">
+      <View style={[styles.progressCircle, {backgroundColor: '#75A7D3'}]}>
+        <IconSymbol size={28} name="checkmark" color={'#fff'} />
+      </View>
+  </Link>)
 }
 
 const Progress = ({ progress }: { progress: number }) => {

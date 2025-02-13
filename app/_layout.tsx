@@ -35,6 +35,7 @@ export default function RootLayout() {
           <Stack screenOptions={{headerBackButtonDisplayMode: 'minimal', headerTransparent: true, title: ''}}>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="(category)" />
+            <Stack.Screen name="(game)" />
           </Stack>
         </ThemeProvider>
       </PaperProvider>
