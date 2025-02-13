@@ -1,70 +1,81 @@
-import { Link } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Link } from "expo-router";
+import { StyleSheet, View, Text } from "react-native";
 
-import { ThemedText } from '@/components/ThemedText';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import CircularProgress from './CircularProgress';
+import { IconSymbol } from "@/components/ui/IconSymbol";
 
 export type GameEntryProps = {
-  title: string,
-  wordCount: number, 
-  progress: number,
-  index: number,
+  index: number;
+  viewSize: number;
+  isCompleted: boolean;
+  isLocked: boolean;
 };
 
-const Checkmark = () => {
+export function GameEntry(props: GameEntryProps) {
+  const LockIcon = () => {
+    if (!props.isLocked) {
+      return null;
+    }
+    return (
+      <View style={{ position: "absolute" }}>
+        <IconSymbol size={40} name="lock" color={"#BDBDBD"} />
+      </View>
+    );
+  };
+  const CheckIcon = () => {
+    if (!props.isCompleted) {
+      return null;
+    }
+    return (
+      <View style={{ position: "absolute" }}>
+        <IconSymbol size={60} name="checkmark" color={"#fff"} />
+      </View>
+    );
+  };
+  const GameIndex = () => {
+    if (props.isLocked) {
+      return null;
+    }
+    return (
+      <View style={{ position: "absolute" }}>
+        <Text style={styles.gameIndex}>{props.index}</Text>
+      </View>
+    );
+  };
+
   return (
     <Link push href="../game">
-      <View style={[styles.progressCircle, {backgroundColor: '#75A7D3'}]}>
-        <IconSymbol size={28} name="checkmark" color={'#fff'} />
+      <View
+        style={[
+          styles.container,
+          props.isCompleted ? styles.completed : undefined,
+          props.isLocked ? styles.locked : undefined,
+          { width: props.viewSize, height: props.viewSize },
+        ]}
+      >
+        <GameIndex />
+        <CheckIcon />
+        <LockIcon />
       </View>
-  </Link>)
-}
-
-const Progress = ({ progress }: { progress: number }) => {
-  
-  return (
-    <View style={styles.progressCircle}>
-      <CircularProgress color='#75A7D3' bgColor='transparent' progress={progress*100} />
-      <View style={{position: 'absolute'}}>
-        <ThemedText >{progress*100}%</ThemedText>
-      </View>
-    </View>
-  );
-}
-
-export function GameEntry(props: GameEntryProps) {
-  const flexDirection = props.index % 2 ? 'row' : 'row-reverse';
-  const position = props.index % 2 ? 50 : -50;
-
-  return (
-      <View style={[styles.container, {flexDirection: flexDirection, marginLeft: position}]}>
-          {props.progress === 1 ? <Checkmark /> : <Progress progress={props.progress}/>}
-          <View>
-            <ThemedText>some content</ThemedText>
-          </View>
-      </View>
+    </Link>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: 120,
-    display: 'flex',
-    borderRadius: 100,
-    backgroundColor: '#F3F9FB',
-    padding: 15,
-    alignItems: 'center',
-    gap: 30,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    backgroundColor: "#F3F9FB",
   },
-  progressCircle: {
-    display: 'flex',
-    height: 100,
-    width: 100,
-    borderRadius: 100,
-    backgroundColor: '#F3F2F2',
-    alignItems: 'center',
-    justifyContent: 'center',
+  completed: {
+    opacity: 0.5,
+  },
+  locked: {
+    backgroundColor: "#EFEFEF",
+  },
+  gameIndex: {
+    fontSize: 30,
+    color: "#75A7D3",
   },
 });

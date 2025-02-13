@@ -1,59 +1,200 @@
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, Dimensions } from "react-native";
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { ProgressBar } from '@/components/ProgressBar';
-import BathroomReduced from '@/assets/images/bathroom-reduced.svg';
-import { GameEntry } from '@/components/GameEntry';
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { ProgressBar } from "@/components/ProgressBar";
+import { GameEntry } from "@/components/GameEntry";
+import BathroomReduced from "@/assets/images/bathroom-reduced.svg";
 
 export default function Category() {
-
   const PADDING_TOP = 80;
 
-  return ( <ThemedView style={styles.container}>
-    <ScrollView contentContainerStyle={{ paddingTop: PADDING_TOP}}>
-      <View style={styles.header}>
-        <BathroomReduced height={170} width={150}/>
-        <View style={styles.title}>
-          <ThemedText type="title">Lavabo</ThemedText>
+  const screenWidth = Dimensions.get("window").width;
+  const squareSize = screenWidth / 3 - 50;
+
+  return (
+    <ThemedView style={styles.container}>
+      <ScrollView contentContainerStyle={{ paddingTop: PADDING_TOP }}>
+        <View style={styles.header}>
+          <BathroomReduced height={170} width={150} />
+          <View style={styles.title}>
+            <ThemedText type="title">Lavabo</ThemedText>
+          </View>
         </View>
-      </View>
-      <View style={styles.progressContainer}>
-        <ThemedText>7/11 crucigramas</ThemedText>
-        <ProgressBar color="#75A7D3" progress={0.5} style="elevated" />
-      </View>
-      <View style={styles.entriesList}>
-        <GameEntry title="Juego 1" wordCount={5} progress={1} index={0} />
-        <GameEntry title="Juego 1" wordCount={5} progress={0.5} index={1} />
-        <GameEntry title="Juego 1" wordCount={5} progress={0} index={2} />
-        <GameEntry title="Juego 1" wordCount={5} progress={1} index={3} />
-      </View>
-    </ScrollView>
-  </ThemedView>)
+        <View style={styles.progressContainer}>
+          <ThemedText>3/22 crucigramas</ThemedText>
+          <ProgressBar color="#75A7D3" progress={3 / 22} style="elevated" />
+        </View>
+        <View style={styles.grid}>
+          <GameEntry
+            isCompleted={true}
+            isLocked={false}
+            index={1}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={true}
+            isLocked={false}
+            index={2}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={true}
+            isLocked={false}
+            index={3}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={true}
+            isLocked={false}
+            index={4}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={false}
+            index={5}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={false}
+            index={6}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={false}
+            index={7}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={false}
+            index={8}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={false}
+            index={9}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={10}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={11}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={12}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={13}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={14}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={15}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={16}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={17}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={18}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={19}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={20}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={21}
+            viewSize={squareSize}
+          />
+          <GameEntry
+            isCompleted={false}
+            isLocked={true}
+            index={22}
+            viewSize={squareSize}
+          />
+        </View>
+      </ScrollView>
+    </ThemedView>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
+    flex: 1,
+    paddingBlock: 10,
+  },
+  grid: {
+    marginTop: 40,
+    paddingInline: 40,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    rowGap: 32,
   },
   header: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
   title: {
-    display: 'flex',
+    display: "flex",
     marginTop: 20, // Needed to align with the bathroom image.
   },
   progressContainer: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
     gap: 10,
   },
   entriesList: {
     marginTop: 40,
     gap: 20,
-  }
+  },
 });
