@@ -232,6 +232,7 @@ const CrosswordGrid = () => {
         }}
         autoCorrect={false}
         autoCapitalize={"characters"}
+        keyboardAppearance="light"
       />
 
       {userGrid.map((row, rowIndex) => (

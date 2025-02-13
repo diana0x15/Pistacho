@@ -1,10 +1,7 @@
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
 
-import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ProgressBar } from "@/components/ProgressBar";
-import BathroomReduced from "@/assets/images/bathroom-reduced.svg";
-import { GameEntry } from "@/components/GameEntry";
 import CrosswordGrid from "@/components/CrosswordGrid";
 
 export default function Category() {
