@@ -1,12 +1,17 @@
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
+import { useState } from "react";
 
 import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
 import { ProgressBar } from "@/components/ProgressBar";
-import CrosswordGrid from "@/components/CrosswordGrid";
+import CrosswordGrid, { CrosswordGridProps } from "@/components/CrosswordGrid";
 import PanWrapper from "@/components/PanWrapper";
+import { Game, Word, HORIZONTAL, VERTICAL } from "@/constants/Game";
 
 export default function Category() {
   const PADDING_TOP = 80;
+  const startWordIndex = 0;
+  const [clue, setClue] = useState(Game.words[startWordIndex].clue);
 
   return (
     <ThemedView style={[styles.background, { paddingTop: PADDING_TOP }]}>
@@ -19,10 +24,17 @@ export default function Category() {
         </View>
         <View style={styles.gameContainer}>
           <PanWrapper>
-            <CrosswordGrid />
+            <CrosswordGrid
+              startIndex={startWordIndex}
+              updateClue={(newClue: string) => {
+                setClue(newClue);
+              }}
+            />
           </PanWrapper>
         </View>
-        <View style={styles.clueContainer}></View>
+        <View style={styles.clueContainer}>
+          <ThemedText>{clue}</ThemedText>
+        </View>
       </KeyboardAvoidingView>
     </ThemedView>
   );
