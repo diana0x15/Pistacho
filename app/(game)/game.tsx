@@ -6,7 +6,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ProgressBar } from "@/components/ProgressBar";
 import CrosswordGrid, { CrosswordGridProps } from "@/components/CrosswordGrid";
 import PanWrapper from "@/components/PanWrapper";
-import { Game, Word, HORIZONTAL, VERTICAL } from "@/constants/Game";
+import { Game } from "@/constants/Game";
 
 export default function Category() {
   const PADDING_TOP = 80;
@@ -33,7 +33,7 @@ export default function Category() {
           </PanWrapper>
         </View>
         <View style={styles.clueContainer}>
-          <ThemedText>{clue}</ThemedText>
+          <ThemedText type={"subtitle"}>{clue}</ThemedText>
         </View>
       </KeyboardAvoidingView>
     </ThemedView>
@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
   clueContainer: {
     width: "100%",
     height: 80,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#D7DECC",
     marginTop: "auto",
   },

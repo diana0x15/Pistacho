@@ -44,7 +44,7 @@ export const Game = {
       direction: Direction.VERTICAL,
     },
     {
-      word: "jABÓN",
+      word: "JABÓN",
       clue: "Espumoso y esencial para la higiene.",
       row: 6,
       col: 9,

@@ -1,78 +1,14 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from "react-native";
-import { Game, Word, HORIZONTAL, VERTICAL } from "@/constants/Game";
-
-/**
- * Compute the size of the smallest square grid that fits the game.
- */
-function computeGridSize(words: Word[]) {
-  let maxRow = 0;
-  let maxCol = 0;
-  words.forEach(({ word, row, col, direction }) => {
-    if (direction === HORIZONTAL) {
-      maxCol = Math.max(maxCol, col + word.length - 1);
-    } else {
-      maxRow = Math.max(maxRow, row + word.length - 1);
-    }
-  });
-
-  return Math.max(maxRow + 1, maxCol + 1);
-}
-
-/**
- * Creates a crossword grid for the given words, where negative cells are null.
- * If empty===true, the grid's cells are will be empty strings.
- */
-function createGrid(words: Word[], empty: boolean) {
-  const gridSize = computeGridSize(words);
-  const grid = Array.from({ length: gridSize }, () =>
-    Array(gridSize).fill(null)
-  );
-
-  words.forEach(({ word, row, col, direction }) => {
-    for (let i = 0; i < word.length; i++) {
-      if (direction === HORIZONTAL) {
-        grid[row][col + i] = empty ? "" : word[i];
-      } else {
-        grid[row + i][col] = empty ? "" : word[i];
-      }
-    }
-  });
-  return grid;
-}
-
-/**
- * A grid that keeps track of the corresponding word(s) for each cell,
- * in the following format: gridMap[i][j] = {horiz: word1, vert: word2}.
- * Cells belonging to a single word: gridMap[i][j] = {horiz: word, vert: null}
- */
-function createMapGrid(words: Word[]) {
-  const gridSize = computeGridSize(words);
-  const grid = Array.from({ length: gridSize }, () =>
-    Array(gridSize).fill(null)
-  );
-
-  words.forEach((wordEntry) => {
-    const { word, row, col, direction } = wordEntry;
-    for (let i = 0; i < word.length; i++) {
-      if (direction === HORIZONTAL) {
-        const vert = grid[row][col + i]?.vert;
-        grid[row][col + i] = { horiz: wordEntry, vert: vert };
-      } else {
-        const horiz = grid[row + i][col]?.horiz;
-        grid[row + i][col] = { horiz: horiz, vert: wordEntry };
-      }
-    }
-  });
-  return grid;
-}
+import { Game, Word, HORIZONTAL, VERTICAL, Direction } from "@/constants/Game";
 
 export type CrosswordGridProps = {
   startIndex: number;
@@ -82,52 +18,65 @@ export type CrosswordGridProps = {
 const CrosswordGrid = (props: CrosswordGridProps) => {
   const words = Game.words;
 
-  const [solutionGrid, setSolutionGrid] = useState(createGrid(words, false));
+  /***************************** HOOKS *******************************/
+  /**
+   * A square grid representing the crossword's solution, where each valid cell
+   * is a character. Cells that are not part of the crossword are null.
+   */
+  const solutionGrid = useMemo(() => {
+    return createGrid(words, false);
+  }, []);
+
+  /**
+   * A square grid representing a map between cells and the word that touch the
+   * cell, in the format: mapGrid[i][j] = {horiz: word1|null, vert: word2|null}.
+   * Cells that are not part of the crossword are null.
+   */
+  const mapGrid = useMemo(() => {
+    return createMapGrid(words);
+  }, []);
+
+  /**
+   * The square grid representing the user's game, where each valid cell is
+   * initially ''. Cells that are not part of the crossword are null.
+   */
   const [userGrid, setUserGrid] = useState(createGrid(words, true));
-  const [mapGrid, setMapGrid] = useState(createMapGrid(words));
+
+  // Currently selected cell and direction (horizontal or vertical).
   const [selectedCell, setSelectedCell] = useState({
     row: words[props.startIndex].row,
     col: words[props.startIndex].col,
+    dir: words[props.startIndex].direction,
   });
-  const [currentDirection, setCurrentDirection] = useState(
-    words[props.startIndex].direction
-  );
+
+  // Invisible text input, used to trigger the keyboard by focusing on it.
   const textInput = useRef<TextInput>(null);
 
-  function isSelected(row: number, col: number) {
-    return selectedCell.row === row && selectedCell.col === col;
-  }
-
-  function isHighlighted(row: number, col: number) {
-    const currentWord =
-      currentDirection === HORIZONTAL
-        ? mapGrid[row][col].horiz
-        : mapGrid[row][col].vert;
-    const highlightedWord =
-      currentDirection === HORIZONTAL
-        ? mapGrid[selectedCell.row][selectedCell.col].horiz
-        : mapGrid[selectedCell.row][selectedCell.col].vert;
-
-    return currentWord === highlightedWord;
-  }
-
+  /************************** USER ACTIONS ***************************/
+  /**
+   * Update the user grid with the input value, if valid. On each input,
+   * check if the game is complete.
+   */
   function onInput(value: string) {
     if (!value.match(/[A-ZÑÁÉÍÓÚÜ]/i) && value !== "Backspace") {
       return;
     }
 
-    setUserGrid((prevGrid) => {
-      const newGrid = prevGrid.map((r, rowIndex) =>
-        r.map((cell, colIndex) =>
-          rowIndex === selectedCell.row && colIndex === selectedCell.col
-            ? value === "Backspace"
-              ? ""
-              : value
-            : cell
-        )
-      );
-      return newGrid;
-    });
+    const newGrid = userGrid.map((r, rowIndex) =>
+      r.map((cell, colIndex) =>
+        rowIndex === selectedCell.row && colIndex === selectedCell.col
+          ? value === "Backspace"
+            ? ""
+            : value
+          : cell
+      )
+    );
+    setUserGrid(newGrid);
+
+    if (isGameCompleteAndCorrect(newGrid)) {
+      Alert.alert("Well done :)");
+      return;
+    }
 
     if (value === "Backspace") {
       moveToPrevCell();
@@ -137,78 +86,133 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
   }
 
   /**
-   * Selects the cell at the given row and col. Also updates the current
-   * direction to match the direction of the word at the selected cell. If it's
-   * an intersection cell, keep the current direction.
+   * Selects the cell at the given row, col and direction. If direction is
+   * not provided, use the direction of the word at the given cell. If the
+   * selected cell is an intersection, keep the same direction as before.
    */
-  function selectCell(row: number, col: number) {
-    // Focus on the textInput to show to keyboard.
+  function selectCell(row: number, col: number, dir?: Direction) {
+    let newRow = row;
+    let newCol = col;
+    let newDir = dir ?? selectedCell.dir;
+    const isIntersection = mapGrid[row][col].horiz && mapGrid[row][col].vert;
+    const isAlreadySelected =
+      selectedCell.row === row && selectedCell.col === col;
+
+    // Focus on the text input to show to keyboard.
     textInput.current?.focus();
 
-    let newDirection = currentDirection;
-
-    // If already selected, change direction if possible
-    if (selectedCell.row === row && selectedCell.col === col) {
-      if (mapGrid[row][col].horiz && mapGrid[row][col].vert) {
-        console.log("changing direction");
-        if (currentDirection === HORIZONTAL) {
-          newDirection = VERTICAL;
+    // If direction was not provided, compute the new direction.
+    if (!dir) {
+      // If this cell was already selected and it's an intersection, change the
+      // direction.
+      if (isAlreadySelected && isIntersection) {
+        if (selectedCell.dir === HORIZONTAL) {
+          newDir = VERTICAL;
         } else {
-          newDirection = HORIZONTAL;
+          newDir = HORIZONTAL;
+        }
+      } else {
+        // If it's an intersection, keep the same direction. Otherwise, update
+        // the direction to match the word at the new cell.
+        if (!isIntersection) {
+          if (mapGrid[row][col].horiz) {
+            newDir = HORIZONTAL;
+          } else {
+            newDir = VERTICAL;
+          }
         }
       }
-    } else {
-      // If it's an intersection, keep the same direction. Otherwise, change
-      // direction to match the selected word.
-      if (!mapGrid[row][col].horiz) {
-        newDirection = VERTICAL;
-      }
-
-      if (!mapGrid[row][col].vert) {
-        newDirection = HORIZONTAL;
-      }
-
-      setSelectedCell({ row, col });
     }
 
-    if (newDirection === HORIZONTAL) {
-      props.updateClue(mapGrid[row][col].horiz?.clue);
-    } else {
-      props.updateClue(mapGrid[row][col].vert?.clue);
-    }
-    setCurrentDirection(newDirection);
+    // Update the "selected cell" state.
+    setSelectedCell({ row: newRow, col: newCol, dir: newDir });
+
+    // Update the clue upstream to match the new selected word.
+    props.updateClue(getWordAt(newRow, newCol, newDir)?.clue);
   }
 
+  /*************************** GAME LOGIC ****************************/
   function moveToNextCell() {
-    const canGoRight =
-      selectedCell.col < userGrid.length - 1 &&
-      userGrid[selectedCell.row][selectedCell.col + 1] != null;
-    const canGoDown =
-      selectedCell.row < userGrid.length - 1 &&
-      userGrid[selectedCell.row + 1][selectedCell.col] != null;
+    const direction = selectedCell.dir;
+    const nextRow =
+      direction === HORIZONTAL ? selectedCell.row : selectedCell.row + 1;
+    const nextCol =
+      direction === HORIZONTAL ? selectedCell.col + 1 : selectedCell.col;
 
-    if (currentDirection === HORIZONTAL && canGoRight) {
-      setSelectedCell({ row: selectedCell.row, col: selectedCell.col + 1 });
-    }
-    if (currentDirection === VERTICAL && canGoDown) {
-      setSelectedCell({ row: selectedCell.row + 1, col: selectedCell.col });
+    if (
+      nextRow >= userGrid.length ||
+      nextCol >= userGrid.length ||
+      userGrid[nextRow][nextCol] === null
+    ) {
+      moveToNextWord();
+    } else {
+      selectCell(nextRow, nextCol);
     }
   }
 
   function moveToPrevCell() {
-    const canGoLeft =
-      selectedCell.col > 0 &&
-      userGrid[selectedCell.row][selectedCell.col - 1] != null;
-    const canGoUp =
-      selectedCell.row > 0 &&
-      userGrid[selectedCell.row - 1][selectedCell.col] != null;
+    const direction = selectedCell.dir;
+    const prevRow =
+      direction === HORIZONTAL ? selectedCell.row : selectedCell.row - 1;
+    const prevCol =
+      direction === HORIZONTAL ? selectedCell.col - 1 : selectedCell.col;
 
-    if (currentDirection === HORIZONTAL && canGoLeft) {
-      setSelectedCell({ row: selectedCell.row, col: selectedCell.col - 1 });
+    if (prevRow < 0 || prevCol < 0 || userGrid[prevRow][prevCol] === null) {
+      moveToPrevWord();
+    } else {
+      selectCell(prevRow, prevCol);
     }
-    if (currentDirection === VERTICAL && canGoUp) {
-      setSelectedCell({ row: selectedCell.row - 1, col: selectedCell.col });
+  }
+
+  function moveToNextWord() {
+    const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
+    let indexOfNextWord = Game.words.indexOf(selectedWord) + 1;
+    if (indexOfNextWord >= Game.words.length) {
+      indexOfNextWord = 0;
     }
+    const nextWord = Game.words[indexOfNextWord];
+
+    selectCell(nextWord.row, nextWord.col, nextWord.direction);
+  }
+
+  function moveToPrevWord() {
+    const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
+    let indexOfNextWord = Game.words.indexOf(selectedWord) - 1;
+    if (indexOfNextWord < 0) {
+      indexOfNextWord = Game.words.length - 1;
+    }
+    const nextWord = Game.words[indexOfNextWord];
+
+    selectCell(nextWord.row, nextWord.col, nextWord.direction);
+  }
+
+  function getWordAt(row: number, col: number, dir?: Direction) {
+    const requestedDir = dir ?? selectedCell.dir;
+    return requestedDir === HORIZONTAL
+      ? mapGrid[row][col]?.horiz
+      : mapGrid[row][col]?.vert;
+  }
+
+  function isGameCompleteAndCorrect(grid: string[][]) {
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid.length; ++j) {
+        if (grid[i][j] !== solutionGrid[i][j]) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  /************************** UI COMPONENTS ***************************/
+  function isCellSelected(row: number, col: number) {
+    return selectedCell.row === row && selectedCell.col === col;
+  }
+
+  function isCellHighlighted(row: number, col: number) {
+    const currentWord = getWordAt(row, col);
+    const highlightedWord = getWordAt(selectedCell.row, selectedCell.col);
+    return currentWord === highlightedWord;
   }
 
   const ValidCell = ({
@@ -225,8 +229,8 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
         <TouchableOpacity
           style={[
             styles.validCell,
-            isHighlighted(row, col) ? styles.highlightedCell : undefined,
-            isSelected(row, col) ? styles.selectedCell : undefined,
+            isCellHighlighted(row, col) ? styles.highlightedCell : undefined,
+            isCellSelected(row, col) ? styles.selectedCell : undefined,
           ]}
           onPress={() => {
             selectCell(row, col);
@@ -238,7 +242,7 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
     );
   };
 
-  const NegativeCell = () => {
+  const InvalidCell = () => {
     return <View style={[styles.cell]} />;
   };
 
@@ -267,7 +271,7 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
                 value={cell}
               />
             ) : (
-              <NegativeCell key={colIndex} />
+              <InvalidCell key={colIndex} />
             )
           )}
         </View>
@@ -312,5 +316,69 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+/**
+ * Compute the size of the smallest square grid that fits the game.
+ */
+function computeGridSize(words: Word[]) {
+  let maxRow = 0;
+  let maxCol = 0;
+  words.forEach(({ word, row, col, direction }) => {
+    if (direction === HORIZONTAL) {
+      maxCol = Math.max(maxCol, col + word.length - 1);
+    } else {
+      maxRow = Math.max(maxRow, row + word.length - 1);
+    }
+  });
+
+  return Math.max(maxRow + 1, maxCol + 1);
+}
+
+/**
+ * Creates a crossword grid for the given words, where invalid cells are null.
+ * If empty===true, the grid's cells will be ''.
+ */
+function createGrid(words: Word[], empty: boolean) {
+  const gridSize = computeGridSize(words);
+  const grid = Array.from({ length: gridSize }, () =>
+    Array(gridSize).fill(null)
+  );
+
+  words.forEach(({ word, row, col, direction }) => {
+    for (let i = 0; i < word.length; i++) {
+      if (direction === HORIZONTAL) {
+        grid[row][col + i] = empty ? "" : word[i];
+      } else {
+        grid[row + i][col] = empty ? "" : word[i];
+      }
+    }
+  });
+  return grid;
+}
+
+/**
+ * A grid that keeps track of the corresponding word(s) for each cell,
+ * in the following format: gridMap[i][j] = {horiz: word1, vert: word2}.
+ */
+function createMapGrid(words: Word[]) {
+  const gridSize = computeGridSize(words);
+  const grid = Array.from({ length: gridSize }, () =>
+    Array(gridSize).fill(null)
+  );
+
+  words.forEach((wordEntry) => {
+    const { word, row, col, direction } = wordEntry;
+    for (let i = 0; i < word.length; i++) {
+      if (direction === HORIZONTAL) {
+        const vert = grid[row][col + i]?.vert;
+        grid[row][col + i] = { horiz: wordEntry, vert: vert };
+      } else {
+        const horiz = grid[row + i][col]?.horiz;
+        grid[row + i][col] = { horiz: horiz, vert: wordEntry };
+      }
+    }
+  });
+  return grid;
+}
 
 export default CrosswordGrid;
