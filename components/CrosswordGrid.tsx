@@ -13,6 +13,7 @@ import { Game, Word, HORIZONTAL, VERTICAL, Direction } from "@/constants/Game";
 export type CrosswordGridProps = {
   startIndex: number;
   updateClue: (clue: string) => void;
+  completeGame: () => void;
 };
 
 const CrosswordGrid = (props: CrosswordGridProps) => {
@@ -74,8 +75,7 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
     setUserGrid(newGrid);
 
     if (isGameCompleteAndCorrect(newGrid)) {
-      Alert.alert("Well done :)");
-      return;
+      props.completeGame();
     }
 
     if (value === "Backspace") {

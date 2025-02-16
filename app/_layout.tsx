@@ -5,15 +5,15 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useNavigation } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { PaperProvider } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { transparent } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
+import { IconSymbol } from "@/components/ui/IconSymbol";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -21,6 +21,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   //const colorScheme = useColorScheme();
   const colorScheme = "light";
+  const navigation = useNavigation();
   const [isFontReady] = useFonts({
     HankenGrotesk: require("../assets/fonts/HankenGrotesk-VariableFont_wght.ttf"),
   });
@@ -43,6 +44,11 @@ export default function RootLayout() {
             headerBackButtonDisplayMode: "minimal",
             headerTransparent: true,
             title: "",
+            headerLeft: () => (
+              <TouchableOpacity onPress={navigation.goBack}>
+                <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
+              </TouchableOpacity>
+            ),
           }}
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

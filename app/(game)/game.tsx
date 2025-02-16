@@ -7,11 +7,17 @@ import { ProgressBar } from "@/components/ProgressBar";
 import CrosswordGrid, { CrosswordGridProps } from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import { Game } from "@/constants/Game";
+import GameCompleted from "@/components/GameCompleted";
 
-export default function Category() {
+export default function GameScreen() {
   const PADDING_TOP = 80;
   const startWordIndex = 0;
   const [clue, setClue] = useState(Game.words[startWordIndex].clue);
+  const [gameComplete, setGameComplete] = useState(false);
+
+  if (gameComplete) {
+    return <GameCompleted />;
+  }
 
   return (
     <ThemedView style={[styles.background, { paddingTop: PADDING_TOP }]}>
@@ -29,6 +35,7 @@ export default function Category() {
               updateClue={(newClue: string) => {
                 setClue(newClue);
               }}
+              completeGame={() => setGameComplete(true)}
             />
           </GestureWrapper>
         </View>

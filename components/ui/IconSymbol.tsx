@@ -16,6 +16,7 @@ const MAPPING = {
   "text.book.closed.fill": "book",
   checkmark: "check",
   lock: "lock",
+  xmark: "close",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],
