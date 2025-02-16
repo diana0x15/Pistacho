@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, View, Dimensions } from "react-native";
+import { StyleSheet, Text, ScrollView, View, Dimensions } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
@@ -7,6 +7,7 @@ import { useBottomTabOverflow } from "@/components/ui/TabBarBackground";
 import { ThemedButton } from "@/components/ThemedButton";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import getAdjustedTextSize from "@/utils/Text";
 
 const { width, height } = Dimensions.get("window");
 
@@ -17,13 +18,24 @@ export default function HomeScreen() {
   const PADDING_BOTTOM = bottom + 30;
 
   const Header = () => {
+    const [name] = "Diana".split(" ", 1);
+
+    // Dynamically adjust font size based on the length of the name
+    let textSize = getAdjustedTextSize(name, 64);
+    const fontStyle = {
+      fontSize: textSize,
+      lineHeight: textSize,
+    };
+
     return (
       <View style={[styles.header, { height: HEADER_HEIGHT }]}>
         <View style={styles.headerLeftSide}>
           <View style={styles.title}>
-            <ThemedText type="title">¡Hola,</ThemedText>
-            <ThemedText type="title" highlight={true}>
-              Diana!
+            <ThemedText type="title" style={fontStyle}>
+              ¡Hola,
+            </ThemedText>
+            <ThemedText type="title" style={fontStyle} highlight={true}>
+              {name}
             </ThemedText>
           </View>
           <View style={styles.buttonContainer}>
