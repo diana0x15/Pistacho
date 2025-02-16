@@ -5,7 +5,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { ProgressBar } from "@/components/ProgressBar";
 import CrosswordGrid, { CrosswordGridProps } from "@/components/CrosswordGrid";
-import PanWrapper from "@/components/PanWrapper";
+import GestureWrapper from "@/components/GestureWrapper";
 import { Game } from "@/constants/Game";
 
 export default function Category() {
@@ -23,14 +23,14 @@ export default function Category() {
           <ProgressBar color={"#75A7D3"} progress={0.2} style="elevated" />
         </View>
         <View style={styles.gameContainer}>
-          <PanWrapper>
+          <GestureWrapper>
             <CrosswordGrid
               startIndex={startWordIndex}
               updateClue={(newClue: string) => {
                 setClue(newClue);
               }}
             />
-          </PanWrapper>
+          </GestureWrapper>
         </View>
         <View style={styles.clueContainer}>
           <ThemedText type={"subtitle"}>{clue}</ThemedText>

@@ -10,11 +10,11 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 
-interface PanWrapperProps {
+interface GestureWrapperProps {
   children: React.ReactNode;
 }
 
-const PanWrapper: React.FC<PanWrapperProps> = ({ children }) => {
+const GestureWrapper: React.FC<GestureWrapperProps> = ({ children }) => {
   // Panning values:
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PanWrapper;
+export default GestureWrapper;

@@ -4,7 +4,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ProgressBar } from "@/components/ProgressBar";
 import { GameEntry } from "@/components/GameEntry";
-import BathroomReduced from "@/assets/images/bathroom-reduced.svg";
+import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
 
 export default function Category() {
   const PADDING_TOP = 80;
