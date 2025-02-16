@@ -1,4 +1,4 @@
-const primary = "#A0BA71";
+const primary = "#8BAB52";
 const tintColorLight = "#518238";
 const tintColorDark = "#fff";
 

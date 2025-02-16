@@ -1,11 +1,17 @@
-import { Text, type TextProps, StyleSheet } from 'react-native';
+import { Text, type TextProps, StyleSheet } from "react-native";
 
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link' | 'cardTitle';
+  type?:
+    | "default"
+    | "title"
+    | "defaultSemiBold"
+    | "subtitle"
+    | "link"
+    | "cardTitle";
   highlight?: boolean;
 };
 
@@ -13,34 +19,37 @@ export function ThemedText({
   style,
   lightColor,
   darkColor,
-  type = 'default',
+  type = "default",
   highlight = false,
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, highlight ? 'primary' : 'text');
+  const color = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    highlight ? "primary" : "text"
+  );
 
   return (
     <Text style={styles.baseText}>
-    <Text
-      style={[
-        { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
-        type === 'cardTitle' ? styles.cardTitle : undefined,
-        style,
-      ]}
-      {...rest}
-    />
+      <Text
+        style={[
+          { color },
+          type === "default" ? styles.default : undefined,
+          type === "title" ? styles.title : undefined,
+          type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
+          type === "subtitle" ? styles.subtitle : undefined,
+          type === "link" ? styles.link : undefined,
+          type === "cardTitle" ? styles.cardTitle : undefined,
+          style,
+        ]}
+        {...rest}
+      />
     </Text>
   );
 }
 
 const styles = StyleSheet.create({
   baseText: {
-    fontFamily: 'Hanken Grotesk',
+    fontFamily: "Hanken Grotesk",
   },
   default: {
     fontSize: 16,
@@ -49,12 +58,12 @@ const styles = StyleSheet.create({
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   title: {
-    fontSize: 62,
-    fontWeight: 'bold',
-    lineHeight: 62,
+    fontSize: 68,
+    fontWeight: "bold",
+    lineHeight: 68,
   },
   subtitle: {
     fontSize: 20,
@@ -62,10 +71,10 @@ const styles = StyleSheet.create({
   link: {
     lineHeight: 30,
     fontSize: 16,
-    color: '#0a7ea4',
+    color: "#0a7ea4",
   },
   cardTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
