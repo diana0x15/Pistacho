@@ -27,7 +27,7 @@ export function GameEntry(props: GameEntryProps) {
     }
     return (
       <View style={{ position: "absolute" }}>
-        <IconSymbol size={60} name="checkmark" color={"#fff"} />
+        <IconSymbol size={40} name="checkmark" color={"#fff"} />
       </View>
     );
   };
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F3F9FB",
   },
   completed: {
-    opacity: 0.5,
+    backgroundColor: "#75A7D3",
   },
   locked: {
     backgroundColor: "#EFEFEF",
