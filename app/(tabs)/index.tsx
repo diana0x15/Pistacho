@@ -35,7 +35,7 @@ export default function HomeScreen() {
               ¡Hola,
             </ThemedText>
             <ThemedText type="title" style={fontStyle} highlight={true}>
-              {name}
+              {name}!
             </ThemedText>
           </View>
           <View style={styles.buttonContainer}>

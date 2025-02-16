@@ -25,9 +25,6 @@ export default function GameScreen() {
         style={[styles.keyboardAvoidingView]}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <View style={styles.progressContainer}>
-          <ProgressBar color={"#75A7D3"} progress={0.2} style="elevated" />
-        </View>
         <View style={styles.gameContainer}>
           <GestureWrapper>
             <CrosswordGrid
@@ -54,12 +51,6 @@ const styles = StyleSheet.create({
   keyboardAvoidingView: {
     display: "flex",
     flex: 1,
-  },
-  progressContainer: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    marginBlock: 30,
   },
   gameContainer: {
     marginTop: 10,
