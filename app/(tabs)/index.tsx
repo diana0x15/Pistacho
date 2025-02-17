@@ -13,8 +13,8 @@ const { width, height } = Dimensions.get("window");
 
 export default function HomeScreen() {
   const bottom = useBottomTabOverflow();
-  const HEADER_HEIGHT = height * 0.6;
-  const PISTACHO_SIZE = HEADER_HEIGHT * 0.5;
+  const HEADER_HEIGHT = height * 0.5;
+  const PISTACHO_SIZE = HEADER_HEIGHT * 0.6;
   const PADDING_BOTTOM = bottom + 30;
 
   const Header = () => {
