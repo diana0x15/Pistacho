@@ -22,7 +22,7 @@ export default function WordEntry({
   ) : undefined;
 
   return (
-    <ThemedView style={styles.conatiner}>
+    <View style={styles.conatiner}>
       <View style={styles.leftSide}>
         <ThemedText type={"cardTitle"} style={styles.title}>
           toalla
@@ -32,7 +32,7 @@ export default function WordEntry({
         </ThemedText>
       </View>
       <View style={styles.rightSide}>{action}</View>
-    </ThemedView>
+    </View>
   );
 }
 

@@ -1,15 +1,24 @@
-import { View, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { View, StyleSheet, Dimensions, ScrollView, Image } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import WordEntry from "@/components/WordEntry";
+import Shells from "@/assets/images/pistacho/shells.png";
+
+const { width, height } = Dimensions.get("window");
 
 export default function VocabularyScreen() {
   const PADDING_TOP = 80;
 
   return (
     <ThemedView style={styles.container}>
+      <Image
+        style={[styles.shells, { width: width, left: width / 3 }]}
+        resizeMode={"contain"}
+        width={50}
+        source={require("../../assets/images/pistacho/shells.png")}
+      />
       <ScrollView contentContainerStyle={{ paddingTop: PADDING_TOP }}>
         <View style={styles.header}>
           <ThemedText type="title" style={{ fontSize: 52, lineHeight: 52 }}>
@@ -67,5 +76,11 @@ const styles = StyleSheet.create({
   switchContainer: {
     width: "80%",
     paddingBlock: 10,
+  },
+  shells: {
+    position: "absolute",
+    bottom: -20,
+    opacity: 0.3,
+    transform: [{ rotate: "-20deg" }],
   },
 });
