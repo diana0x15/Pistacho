@@ -6,7 +6,7 @@ import ThemedText from "@/components/ThemedText";
 import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
-import WordList from "@/components/WordList";
+import ReviewWords from "@/components/ReviewWords";
 import { Game } from "@/constants/Game";
 
 enum CurrentView {
@@ -34,7 +34,7 @@ export default function GameScreen() {
   }
 
   if (currentView === CurrentView.WORDS) {
-    return <WordList showWordList={showWordList} />;
+    return <ReviewWords />;
   }
 
   return (
