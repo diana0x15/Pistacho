@@ -1,22 +1,40 @@
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
 import { useState } from "react";
 
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import { ProgressBar } from "@/components/ProgressBar";
-import CrosswordGrid, { CrosswordGridProps } from "@/components/CrosswordGrid";
+import ThemedView from "@/components/ThemedView";
+import ThemedText from "@/components/ThemedText";
+import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
-import { Game } from "@/constants/Game";
 import GameCompleted from "@/components/GameCompleted";
+import WordList from "@/components/WordList";
+import { Game } from "@/constants/Game";
+
+enum CurrentView {
+  GAME = "game",
+  GAME_COMPLETE = "game_complete",
+  WORDS = "words",
+}
 
 export default function GameScreen() {
   const PADDING_TOP = 80;
   const startWordIndex = 0;
   const [clue, setClue] = useState(Game.words[startWordIndex].clue);
-  const [gameComplete, setGameComplete] = useState(false);
+  const [currentView, setCurrentView] = useState(CurrentView.GAME);
 
-  if (gameComplete) {
-    return <GameCompleted />;
+  const showWordList = () => {
+    setCurrentView(CurrentView.WORDS);
+  };
+
+  const showGameCompleted = () => {
+    setCurrentView(CurrentView.GAME_COMPLETE);
+  };
+
+  if (currentView === CurrentView.GAME_COMPLETE) {
+    return <GameCompleted showWordList={showWordList} />;
+  }
+
+  if (currentView === CurrentView.WORDS) {
+    return <WordList showWordList={showWordList} />;
   }
 
   return (
@@ -32,7 +50,7 @@ export default function GameScreen() {
               updateClue={(newClue: string) => {
                 setClue(newClue);
               }}
-              completeGame={() => setGameComplete(true)}
+              completeGame={showGameCompleted}
             />
           </GestureWrapper>
         </View>

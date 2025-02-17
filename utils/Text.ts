@@ -1,4 +1,4 @@
-export default function getAdjustedTextSize(text: string, baseSize: number) {
+export function getAdjustedTextSize(text: string, baseSize: number) {
   let adjustment = 0;
   if (text.length > 5) {
     adjustment = 4;

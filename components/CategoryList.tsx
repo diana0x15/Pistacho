@@ -1,11 +1,11 @@
 import { StyleSheet, View } from "react-native";
 
-import { CategoryCard } from "./CategoryCard";
+import CategoryCard from "./CategoryCard";
 import CanvasStand from "@/assets/images/illustrations/canvas-stand.svg";
 import Bathroom from "@/assets/images/illustrations/bathroom.svg";
 import Kitchen from "@/assets/images/illustrations/kitchen.svg";
 
-export function CategoryList() {
+export default function CategoryList() {
   return (
     <View style={styles.container}>
       <CategoryCard

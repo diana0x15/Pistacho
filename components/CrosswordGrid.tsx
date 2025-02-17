@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  Alert,
 } from "react-native";
 import { Game, Word, HORIZONTAL, VERTICAL, Direction } from "@/constants/Game";
 

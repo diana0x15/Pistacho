@@ -15,7 +15,7 @@ export type ThemedTextProps = TextProps & {
   highlight?: boolean;
 };
 
-export function ThemedText({
+export default function ThemedText({
   style,
   lightColor,
   darkColor,

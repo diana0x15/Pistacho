@@ -1,13 +1,13 @@
 import { StyleSheet, Text, ScrollView, View, Dimensions } from "react-native";
 
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { CategoryList } from "@/components/CategoryList";
-import { useBottomTabOverflow } from "@/components/ui/TabBarBackground";
-import { ThemedButton } from "@/components/ThemedButton";
-import Pistacho from "@/assets/images/pistacho/pistacho.svg";
+import ThemedText from "@/components/ThemedText";
+import ThemedView from "@/components/ThemedView";
+import CategoryList from "@/components/CategoryList";
+import ThemedButton from "@/components/ThemedButton";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import getAdjustedTextSize from "@/utils/Text";
+import { useBottomTabOverflow } from "@/components/ui/TabBarBackground";
+import Pistacho from "@/assets/images/pistacho/pistacho.svg";
+import { getAdjustedTextSize } from "@/utils/Text";
 
 const { width, height } = Dimensions.get("window");
 

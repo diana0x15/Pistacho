@@ -1,9 +1,9 @@
 import { StyleSheet, ScrollView, View, Dimensions } from "react-native";
 
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { ProgressBar } from "@/components/ProgressBar";
-import { GameEntry } from "@/components/GameEntry";
+import ThemedText from "@/components/ThemedText";
+import ThemedView from "@/components/ThemedView";
+import ProgressBar from "@/components/ProgressBar";
+import GameEntry from "@/components/GameEntry";
 import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
 
 export default function Category() {

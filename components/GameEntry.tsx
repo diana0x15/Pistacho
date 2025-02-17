@@ -10,7 +10,7 @@ export type GameEntryProps = {
   isLocked: boolean;
 };
 
-export function GameEntry(props: GameEntryProps) {
+export default function GameEntry(props: GameEntryProps) {
   const LockIcon = () => {
     if (!props.isLocked) {
       return null;

@@ -1,45 +1,54 @@
 import React from "react";
-import {StyleSheet, GestureResponderEvent } from "react-native";
-import { Button } from 'react-native-paper';
+import { StyleSheet, GestureResponderEvent } from "react-native";
+import { Button } from "react-native-paper";
 
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 type ThemedButtonProps = {
   children: React.ReactNode;
-  mode?: 'primary' | 'secondary';
+  mode?: "primary" | "secondary";
   lightColor?: string;
   darkColor?: string;
   onPress: (event: GestureResponderEvent) => void;
 };
 
-export function ThemedButton({ 
+export default function ThemedButton({
   children,
-  mode = 'primary',
+  mode = "primary",
   lightColor,
-  darkColor, 
-  onPress
-   }: ThemedButtonProps) {
+  darkColor,
+  onPress,
+}: ThemedButtonProps) {
+  const color = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "primary"
+  );
+  const onColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "onPrimary"
+  );
 
-    const color = useThemeColor({ light: lightColor, dark: darkColor }, 'primary');
-    const onColor = useThemeColor({ light: lightColor, dark: darkColor }, 'onPrimary');
-
-    const buttonMode = mode === 'primary' ? 'contained' : 'outlined';
-    const backgroundColor = mode === 'primary' ? color : undefined;
-    const outlineColor = mode === 'secondary' ? color: undefined;
-    const textColor = mode === 'primary' ? onColor : color;
+  const buttonMode = mode === "primary" ? "contained" : "outlined";
+  const backgroundColor = mode === "primary" ? color : undefined;
+  const outlineColor = mode === "secondary" ? color : undefined;
+  const textColor = mode === "primary" ? onColor : color;
 
   return (
-    <Button mode={buttonMode}
-            buttonColor={backgroundColor}
-            style={[{borderColor: outlineColor}, styles.buttonStyle]}
-            labelStyle={[{color: textColor}, styles.labelStyle]} 
-            onPress={onPress}>{children}</Button>
+    <Button
+      mode={buttonMode}
+      buttonColor={backgroundColor}
+      style={[{ borderColor: outlineColor }, styles.buttonStyle]}
+      labelStyle={[{ color: textColor }, styles.labelStyle]}
+      onPress={onPress}
+    >
+      {children}
+    </Button>
   );
-};
+}
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    height: 52, 
+    height: 52,
     borderRadius: 100,
   },
   labelStyle: {

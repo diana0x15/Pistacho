@@ -13,7 +13,7 @@ export type Word = {
   direction: Direction;
 };
 
-export const Game = {
+const Game = {
   words: [
     {
       word: "TOALLA",
@@ -59,3 +59,5 @@ export const Game = {
     },
   ],
 };
+
+export { Game };

@@ -1,13 +1,20 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { useNavigation } from "expo-router";
 
-import { ThemedText } from "./ThemedText";
-import { ThemedView } from "./ThemedView";
-import { ThemedButton } from "./ThemedButton";
+import ThemedText from "./ThemedText";
+import ThemedView from "./ThemedView";
+import ThemedButton from "./ThemedButton";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 
 const { width, height } = Dimensions.get("window");
 
-export default function GameCompleted() {
+interface Callbacks {
+  showWordList: () => void;
+}
+
+export default function GameCompleted(callbacks: Callbacks) {
+  const navigation = useNavigation();
+
   const circleSize = width * 0.8;
 
   return (
@@ -35,10 +42,16 @@ export default function GameCompleted() {
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <ThemedButton mode={"secondary"} onPress={() => {}}>
+        <ThemedButton mode={"secondary"} onPress={callbacks.showWordList}>
           Revisa las palabras
         </ThemedButton>
-        <ThemedButton onPress={() => {}}>Siguente</ThemedButton>
+        <ThemedButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          Siguente
+        </ThemedButton>
       </View>
     </ThemedView>
   );
