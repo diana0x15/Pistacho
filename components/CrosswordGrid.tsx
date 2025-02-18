@@ -183,7 +183,13 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
     }
     const nextWord = game.words[indexOfNextWord];
 
-    selectCell(nextWord.row, nextWord.col, nextWord.direction);
+    // Go the the end of the word.
+    const length = nextWord.word.length;
+    if (nextWord.direction === HORIZONTAL) {
+      selectCell(nextWord.row, nextWord.col + length - 1, nextWord.direction);
+    } else {
+      selectCell(nextWord.row + length - 1, nextWord.col, nextWord.direction);
+    }
   }
 
   function getWordAt(row: number, col: number, dir?: string) {
