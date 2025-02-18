@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
   },
   pistacho: {
     transform: [{ rotate: "-20deg" }],
+    marginLeft: -14,
   },
   listContainer: {
     paddingInline: 20,

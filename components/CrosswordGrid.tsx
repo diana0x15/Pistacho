@@ -7,17 +7,17 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { Word, HORIZONTAL, VERTICAL } from "@/constants/Game";
-import game from "@/data/games.json";
+import { Word, HORIZONTAL, VERTICAL, Game } from "@/constants/Game";
 
 export type CrosswordGridProps = {
+  game: Game;
   startIndex: number;
   updateClue: (clue: string) => void;
   completeGame: () => void;
 };
 
 const CrosswordGrid = (props: CrosswordGridProps) => {
-  const words = game.words;
+  const words = props.game.words;
 
   /***************************** HOOKS *******************************/
   /**
@@ -166,22 +166,22 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
 
   function moveToNextWord() {
     const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    let indexOfNextWord = game.words.indexOf(selectedWord) + 1;
-    if (indexOfNextWord >= game.words.length) {
+    let indexOfNextWord = props.game.words.indexOf(selectedWord) + 1;
+    if (indexOfNextWord >= props.game.words.length) {
       indexOfNextWord = 0;
     }
-    const nextWord = game.words[indexOfNextWord];
+    const nextWord = props.game.words[indexOfNextWord];
 
     selectCell(nextWord.row, nextWord.col, nextWord.direction);
   }
 
   function moveToPrevWord() {
     const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    let indexOfNextWord = game.words.indexOf(selectedWord) - 1;
+    let indexOfNextWord = props.game.words.indexOf(selectedWord) - 1;
     if (indexOfNextWord < 0) {
-      indexOfNextWord = game.words.length - 1;
+      indexOfNextWord = props.game.words.length - 1;
     }
-    const nextWord = game.words[indexOfNextWord];
+    const nextWord = props.game.words[indexOfNextWord];
 
     // Go the the end of the word.
     const length = nextWord.word.length;

@@ -9,7 +9,7 @@ import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
-import gameData from "@/data/games.json";
+import comida from "@/data/comida.json";
 
 enum CurrentView {
   GAME = "game",
@@ -19,7 +19,9 @@ enum CurrentView {
 
 export default function GameScreen() {
   const startWordIndex = 0;
-  const [clue, setClue] = useState(gameData.words[startWordIndex].clue);
+  const testGame = comida.games[0];
+
+  const [clue, setClue] = useState(testGame.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
 
   const keyboard = useAnimatedKeyboard();
@@ -48,6 +50,7 @@ export default function GameScreen() {
       <View style={styles.container}>
         <GestureWrapper>
           <CrosswordGrid
+            game={testGame}
             startIndex={startWordIndex}
             updateClue={(newClue: string) => {
               setClue(newClue);

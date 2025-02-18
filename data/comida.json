@@ -1,0 +1,79 @@
+{
+  "games": [
+    {
+      "id": "1",
+      "words": [
+        {
+          "word": "LIMÓN",
+          "clue": "Es una fruta muy ácida. 🍋",
+          "direction": "horizontal",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "word": "AGUA",
+          "clue": "Líquido que bebemos todos los días. 💧",
+          "direction": "horizontal",
+          "row": 1,
+          "col": 4
+        },
+        {
+          "word": "ZANAHORIA",
+          "clue": "Verdura crujiente de color naranja que come el conejo. 🥕",
+          "direction": "horizontal",
+          "row": 6,
+          "col": 1
+        },
+        {
+          "word": "LECHUGA",
+          "clue": "Verde y crujiente, se usa en ensaladas. 🥬",
+          "direction": "horizontal",
+          "row": 9,
+          "col": 0
+        },
+        {
+          "word": "LECHE",
+          "clue": "Bebida blanca que viene de la vaca. 🥛",
+          "direction": "vertical",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "word": "MANZANA",
+          "clue": "Fruta redonda que puede ser roja, verde o amarilla. 🍏🍎",
+          "direction": "vertical",
+          "row": 0,
+          "col": 2
+        },
+        {
+          "word": "NARANJA",
+          "clue": "Fruta redonda y anaranjada con mucho zumo. 🍊",
+          "direction": "vertical",
+          "row": 0,
+          "col": 4
+        },
+        {
+          "word": "CEBOLLA",
+          "clue": "Verdura que hace llorar cuando la cortas. 🧅",
+          "direction": "vertical",
+          "row": 3,
+          "col": 6
+        },
+        {
+          "word": "PAN",
+          "clue": "Comida hecha con harina y que se hornea. 🥖",
+          "direction": "vertical",
+          "row": 0,
+          "col": 7
+        },
+        {
+          "word": "CHOCOLATE",
+          "clue": "Dulce hecho con cacao, a veces con leche o frutos secos. 🍫",
+          "direction": "vertical",
+          "row": 0,
+          "col": 9
+        }
+      ]
+    }
+  ]
+}
