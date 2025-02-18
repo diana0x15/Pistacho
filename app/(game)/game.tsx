@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   clueContainer: {
     position: "absolute",
     width: "100%",
-    height: 60,
+    height: 80,
     bottom: 0,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#D7DECC",
-    paddingInline: 20,
+    paddingInline: 12,
     paddingBlock: 10,
   },
 });
