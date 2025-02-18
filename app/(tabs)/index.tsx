@@ -5,17 +5,20 @@ import ThemedView from "@/components/ThemedView";
 import CategoryList from "@/components/CategoryList";
 import ThemedButton from "@/components/ThemedButton";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { useBottomTabOverflow } from "@/components/ui/TabBarBackground";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import { getAdjustedTextSize } from "@/utils/Text";
-
-const { width, height } = Dimensions.get("window");
+import {
+  getBottomInset,
+  getBottomTabHeight,
+  getTopInset,
+  getVisibleHeight,
+} from "@/constants/Dimensions";
 
 export default function HomeScreen() {
-  const bottom = useBottomTabOverflow();
-  const HEADER_HEIGHT = height * 0.5;
+  const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
+  const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
+  const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
   const PISTACHO_SIZE = HEADER_HEIGHT * 0.6;
-  const PADDING_BOTTOM = bottom + 30;
 
   const Header = () => {
     const [name] = "Diana".split(" ", 1);
@@ -62,7 +65,7 @@ export default function HomeScreen() {
 
   const Content = () => {
     return (
-      <View style={styles.listContainer}>
+      <View style={[styles.listContainer, { paddingBottom: PADDING_BOTTOM }]}>
         <ThemedText type="subtitle">Mi progreso:</ThemedText>
         <CategoryList />
       </View>
@@ -87,7 +90,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <ThemedView style={[styles.container, { paddingBottom: PADDING_BOTTOM }]}>
+    <ThemedView style={styles.container}>
       <RegularScroll />
     </ThemedView>
   );
@@ -129,7 +132,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingInline: 20,
-    paddingBlock: 30,
+    paddingTop: 30,
     gap: 10,
   },
 });

@@ -1,5 +1,7 @@
-import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useState } from "react";
+import { useAnimatedKeyboard, useAnimatedStyle } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 
 import ThemedView from "@/components/ThemedView";
 import ThemedText from "@/components/ThemedText";
@@ -7,7 +9,7 @@ import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
-import { Game } from "@/constants/Game";
+import gameData from "@/data/games.json";
 
 enum CurrentView {
   GAME = "game",
@@ -16,10 +18,14 @@ enum CurrentView {
 }
 
 export default function GameScreen() {
-  const PADDING_TOP = 80;
   const startWordIndex = 0;
-  const [clue, setClue] = useState(Game.words[startWordIndex].clue);
+  const [clue, setClue] = useState(gameData.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
+
+  const keyboard = useAnimatedKeyboard();
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{ translateY: -keyboard.height.value }],
+  }));
 
   const showWordList = () => {
     setCurrentView(CurrentView.WORDS);
@@ -38,49 +44,41 @@ export default function GameScreen() {
   }
 
   return (
-    <ThemedView style={[styles.background, { paddingTop: PADDING_TOP }]}>
-      <KeyboardAvoidingView
-        style={[styles.keyboardAvoidingView]}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <View style={styles.gameContainer}>
-          <GestureWrapper>
-            <CrosswordGrid
-              startIndex={startWordIndex}
-              updateClue={(newClue: string) => {
-                setClue(newClue);
-              }}
-              completeGame={showGameCompleted}
-            />
-          </GestureWrapper>
-        </View>
+    <ThemedView style={styles.container}>
+      <View style={styles.container}>
+        <GestureWrapper>
+          <CrosswordGrid
+            startIndex={startWordIndex}
+            updateClue={(newClue: string) => {
+              setClue(newClue);
+            }}
+            completeGame={showGameCompleted}
+          />
+        </GestureWrapper>
+      </View>
+      <Animated.View style={animatedStyles}>
         <View style={styles.clueContainer}>
           <ThemedText type={"subtitle"}>{clue}</ThemedText>
         </View>
-      </KeyboardAvoidingView>
+      </Animated.View>
     </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-  keyboardAvoidingView: {
-    display: "flex",
-    flex: 1,
-  },
-  gameContainer: {
-    marginTop: 10,
+  container: {
     flex: 1,
   },
   clueContainer: {
+    position: "absolute",
     width: "100%",
-    height: 80,
+    height: 60,
+    bottom: 0,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#D7DECC",
-    marginTop: "auto",
+    paddingInline: 20,
+    paddingBlock: 10,
   },
 });

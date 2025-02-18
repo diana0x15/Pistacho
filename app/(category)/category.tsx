@@ -1,20 +1,18 @@
-import { StyleSheet, ScrollView, View, Dimensions } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
 import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
+import { getWindowWidth } from "@/constants/Dimensions";
 
 export default function Category() {
-  const PADDING_TOP = 80;
-
-  const screenWidth = Dimensions.get("window").width;
-  const squareSize = screenWidth / 3 - 50;
+  const squareSize = getWindowWidth() / 3 - 50;
 
   return (
-    <ThemedView style={styles.container}>
-      <ScrollView contentContainerStyle={{ paddingTop: PADDING_TOP }}>
+    <ThemedView style={[styles.container]}>
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.header}>
           <BathroomReduced height={170} width={150} />
           <View style={styles.title}>
@@ -167,7 +165,9 @@ export default function Category() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBlock: 10,
+  },
+  scrollView: {
+    paddingBottom: 20,
   },
   grid: {
     marginTop: 40,

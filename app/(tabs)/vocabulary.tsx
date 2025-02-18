@@ -4,29 +4,40 @@ import SegmentedControl from "@react-native-segmented-control/segmented-control"
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import WordEntry from "@/components/WordEntry";
-import Shells from "@/assets/images/pistacho/shells.png";
-
-const { width, height } = Dimensions.get("window");
+import {
+  getBottomInset,
+  getTopInset,
+  getWindowHeight,
+} from "@/constants/Dimensions";
 
 export default function VocabularyScreen() {
-  const PADDING_TOP = 80;
+  const HEIGHT = getWindowHeight();
+  const PADDING_TOP = getTopInset() + 20;
+  const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { paddingTop: PADDING_TOP }]}>
       <Image
-        style={[styles.shells, { width: width, left: width / 3 }]}
+        style={[
+          styles.shells,
+          {
+            height: HEIGHT / 3,
+            bottom: PADDING_BOTTOM - 30,
+          },
+        ]}
         resizeMode={"contain"}
-        width={50}
         source={require("../../assets/images/pistacho/shells.png")}
       />
-      <ScrollView contentContainerStyle={{ paddingTop: PADDING_TOP }}>
+      <ScrollView>
         <View style={styles.header}>
           <ThemedText type="title" style={{ fontSize: 52, lineHeight: 52 }}>
             Bolsita de Pistachos
           </ThemedText>
         </View>
 
-        <View style={styles.wordsContainer}>
+        <View
+          style={[styles.wordsContainer, { paddingBottom: PADDING_BOTTOM }]}
+        >
           <View style={styles.switchContainer}>
             <SegmentedControl
               values={["Pistas", "Traducciones"]}
@@ -71,7 +82,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingInline: 40,
     gap: 18,
-    paddingBottom: 40,
   },
   switchContainer: {
     width: "80%",
@@ -79,7 +89,7 @@ const styles = StyleSheet.create({
   },
   shells: {
     position: "absolute",
-    bottom: -20,
+    left: 30,
     opacity: 0.3,
     transform: [{ rotate: "-20deg" }],
   },

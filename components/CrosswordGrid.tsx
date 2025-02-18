@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { Game, Word, HORIZONTAL, VERTICAL, Direction } from "@/constants/Game";
+import { Word, HORIZONTAL, VERTICAL } from "@/constants/Game";
+import game from "@/data/games.json";
 
 export type CrosswordGridProps = {
   startIndex: number;
@@ -16,7 +17,7 @@ export type CrosswordGridProps = {
 };
 
 const CrosswordGrid = (props: CrosswordGridProps) => {
-  const words = Game.words;
+  const words = game.words;
 
   /***************************** HOOKS *******************************/
   /**
@@ -89,7 +90,7 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
    * not provided, use the direction of the word at the given cell. If the
    * selected cell is an intersection, keep the same direction as before.
    */
-  function selectCell(row: number, col: number, dir?: Direction) {
+  function selectCell(row: number, col: number, dir?: string) {
     let newRow = row;
     let newCol = col;
     let newDir = dir ?? selectedCell.dir;
@@ -165,27 +166,27 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
 
   function moveToNextWord() {
     const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    let indexOfNextWord = Game.words.indexOf(selectedWord) + 1;
-    if (indexOfNextWord >= Game.words.length) {
+    let indexOfNextWord = game.words.indexOf(selectedWord) + 1;
+    if (indexOfNextWord >= game.words.length) {
       indexOfNextWord = 0;
     }
-    const nextWord = Game.words[indexOfNextWord];
+    const nextWord = game.words[indexOfNextWord];
 
     selectCell(nextWord.row, nextWord.col, nextWord.direction);
   }
 
   function moveToPrevWord() {
     const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    let indexOfNextWord = Game.words.indexOf(selectedWord) - 1;
+    let indexOfNextWord = game.words.indexOf(selectedWord) - 1;
     if (indexOfNextWord < 0) {
-      indexOfNextWord = Game.words.length - 1;
+      indexOfNextWord = game.words.length - 1;
     }
-    const nextWord = Game.words[indexOfNextWord];
+    const nextWord = game.words[indexOfNextWord];
 
     selectCell(nextWord.row, nextWord.col, nextWord.direction);
   }
 
-  function getWordAt(row: number, col: number, dir?: Direction) {
+  function getWordAt(row: number, col: number, dir?: string) {
     const requestedDir = dir ?? selectedCell.dir;
     return requestedDir === HORIZONTAL
       ? mapGrid[row][col]?.horiz

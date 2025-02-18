@@ -42,7 +42,7 @@ export default function RootLayout() {
         <Stack
           screenOptions={{
             headerBackButtonDisplayMode: "minimal",
-            headerTransparent: true,
+            headerShadowVisible: false,
             title: "",
             headerLeft: () => (
               <TouchableOpacity onPress={navigation.goBack}>
