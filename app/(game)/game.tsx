@@ -19,7 +19,7 @@ enum CurrentView {
 
 export default function GameScreen() {
   const startWordIndex = 0;
-  const testGame = comida.games[1];
+  const testGame = comida.games[0];
 
   const [clue, setClue] = useState(testGame.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);

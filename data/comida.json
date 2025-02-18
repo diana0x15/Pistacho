@@ -156,6 +156,88 @@
           "col": 6
         }
       ]
+    },
+    {
+      "id": "3",
+      "words": [
+        {
+          "word": "PESCADO",
+          "clue": "Carne de animales acuáticos, a menudo servida a la plancha o frita 🐟",
+          "direction": "horizontal",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "word": "QUESO",
+          "clue": "Se hace con leche y puede ser blando o duro. 🧀",
+          "direction": "vertical",
+          "row": 0,
+          "col": 8
+        },
+        {
+          "word": "HAMBURGUESA",
+          "clue": "Comida rápida que consiste en una carne entre dos panes. 🍔",
+          "direction": "horizontal",
+          "row": 2,
+          "col": 0
+        },
+        {
+          "word": "AGUACATE",
+          "clue": "Fruta verde y cremosa, común en guacamole o en ensaladas. 🥑",
+          "direction": "vertical",
+          "row": 0,
+          "col": 4
+        },
+        {
+          "word": "ARÁNDANO",
+          "clue": "Fruta pequeña, azul, con sabor dulce. 🫐",
+          "direction": "vertical",
+          "row": 2,
+          "col": 1
+        },
+        {
+          "word": "CARNE",
+          "clue": "Producto que viene de animales, como la vaca o el cerdo. 🍖",
+          "direction": "horizontal",
+          "row": 5,
+          "col": 3
+        },
+        {
+          "word": "CERVEZA",
+          "clue": "Bebida alcohólica espumosa. 🍺",
+          "direction": "horizontal",
+          "row": 7,
+          "col": 3
+        },
+        {
+          "word": "PAELLA",
+          "clue": "Plato típico de España con arroz, mariscos y verduras. 🥘",
+          "direction": "vertical",
+          "row": 1,
+          "col": 10
+        },
+        {
+          "word": "SOPA",
+          "clue": "Plato líquido caliente que puede llevar verduras, carne o fideos. 🍲",
+          "direction": "horizontal",
+          "row": 9,
+          "col": 0
+        },
+        {
+          "word": "AJO",
+          "clue": "Condimento pequeño y fuerte que se usa para dar sabor a la comida. 🧄",
+          "direction": "vertical",
+          "row": 7,
+          "col": 9
+        },
+        {
+          "word": "HUEVO",
+          "clue": "Alimento ovalado que ponen las gallinas. 🥚",
+          "direction": "horizontal",
+          "row": 9,
+          "col": 5
+        }
+      ]
     }
   ]
 }

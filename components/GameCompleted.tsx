@@ -5,8 +5,7 @@ import ThemedText from "./ThemedText";
 import ThemedView from "./ThemedView";
 import ThemedButton from "./ThemedButton";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
-
-const { width, height } = Dimensions.get("window");
+import { getWindowWidth } from "@/constants/Dimensions";
 
 interface Callbacks {
   showWordList: () => void;
@@ -15,7 +14,7 @@ interface Callbacks {
 export default function GameCompleted(callbacks: Callbacks) {
   const navigation = useNavigation();
 
-  const circleSize = width * 0.8;
+  const circleSize = getWindowWidth() * 0.8;
 
   return (
     <ThemedView style={styles.container}>
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flex: 1,
     gap: 60,
-    paddingBlock: 80,
+    paddingBottom: 40,
   },
   pistachoContainer: {
     paddingTop: 80,

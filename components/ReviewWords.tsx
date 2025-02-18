@@ -7,11 +7,9 @@ import WordEntry from "./WordEntry";
 import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
 
 export default function ReviewWords() {
-  const PADDING_TOP = 80;
-
   return (
     <ThemedView style={styles.container}>
-      <ScrollView contentContainerStyle={{ paddingTop: PADDING_TOP }}>
+      <ScrollView>
         <View style={styles.header}>
           <BathroomReduced height={170} width={150} />
           <View style={styles.title}>
