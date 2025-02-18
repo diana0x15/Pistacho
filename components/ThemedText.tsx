@@ -13,6 +13,8 @@ export type ThemedTextProps = TextProps & {
     | "link"
     | "cardTitle";
   highlight?: boolean;
+  adjustsFontSizeToFit?: boolean;
+  numberOfLines?: number;
 };
 
 export default function ThemedText({
@@ -21,6 +23,8 @@ export default function ThemedText({
   darkColor,
   type = "default",
   highlight = false,
+  adjustsFontSizeToFit = false,
+  numberOfLines = undefined,
   ...rest
 }: ThemedTextProps) {
   const color = useThemeColor(
@@ -29,7 +33,11 @@ export default function ThemedText({
   );
 
   return (
-    <Text style={styles.baseText}>
+    <Text
+      adjustsFontSizeToFit={adjustsFontSizeToFit}
+      numberOfLines={2}
+      style={styles.baseText}
+    >
       <Text
         style={[
           { color },

@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useState } from "react";
 import { useAnimatedKeyboard, useAnimatedStyle } from "react-native-reanimated";
 import Animated from "react-native-reanimated";
@@ -19,7 +19,7 @@ enum CurrentView {
 
 export default function GameScreen() {
   const startWordIndex = 0;
-  const testGame = comida.games[0];
+  const testGame = comida.games[1];
 
   const [clue, setClue] = useState(testGame.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
@@ -61,7 +61,13 @@ export default function GameScreen() {
       </View>
       <Animated.View style={animatedStyles}>
         <View style={styles.clueContainer}>
-          <ThemedText type={"subtitle"}>{clue}</ThemedText>
+          <ThemedText
+            adjustsFontSizeToFit={true}
+            numberOfLines={2}
+            type={"subtitle"}
+          >
+            {clue}
+          </ThemedText>
         </View>
       </Animated.View>
     </ThemedView>
@@ -81,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#D7DECC",
-    paddingInline: 12,
+    paddingInline: 16,
     paddingBlock: 10,
   },
 });

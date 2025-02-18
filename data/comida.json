@@ -74,6 +74,88 @@
           "col": 9
         }
       ]
+    },
+    {
+      "id": "2",
+      "words": [
+        {
+          "word": "CEREZA",
+          "clue": "Fruta roja y redonda, en pareja. 🍒",
+          "direction": "vertical",
+          "row": 0,
+          "col": 0
+        },
+        {
+          "word": "ACEITUNA",
+          "clue": "Comida pequeña, verde o negra. 🫒",
+          "direction": "horizontal",
+          "row": 0,
+          "col": 2
+        },
+        {
+          "word": "AZÚCAR",
+          "clue": "Granos pequeños y dulces. Se ponen en té o café para endulzar.",
+          "direction": "horizontal",
+          "row": 5,
+          "col": 0
+        },
+        {
+          "word": "TAPAS",
+          "clue": "Pequeñas porciones de comida española, ideales para compartir en grupos.",
+          "direction": "vertical",
+          "row": 0,
+          "col": 6
+        },
+        {
+          "word": "CALABAZA",
+          "clue": "Grande, naranja y se usa en Halloween. 🎃",
+          "direction": "vertical",
+          "row": 2,
+          "col": 4
+        },
+        {
+          "word": "PATATA",
+          "clue": "Se puede freír, cocer o hacer puré. 🥔",
+          "direction": "horizontal",
+          "row": 3,
+          "col": 3
+        },
+        {
+          "word": "SAL",
+          "clue": "Polvo blanco que da sabor a la comida. 🧂",
+          "direction": "horizontal",
+          "row": 2,
+          "col": 8
+        },
+        {
+          "word": "SANDÍA",
+          "clue": "Fruta grande, verde por fuera y roja por dentro. 🍉",
+          "direction": "vertical",
+          "row": 2,
+          "col": 8
+        },
+        {
+          "word": "ENSALADA",
+          "clue": "Mezcla de verduras crudas, a menudo aderezada con aceite y vinagre. 🥗",
+          "direction": "horizontal",
+          "row": 7,
+          "col": 1
+        },
+        {
+          "word": "TARTA",
+          "clue": "Postre dulce con crema, chocolate o frutas. 🎂",
+          "direction": "horizontal",
+          "row": 9,
+          "col": 0
+        },
+        {
+          "word": "MANGO",
+          "clue": "Fruta tropical y dulce, de piel amarilla. 🥭",
+          "direction": "vertical",
+          "row": 6,
+          "col": 6
+        }
+      ]
     }
   ]
 }
