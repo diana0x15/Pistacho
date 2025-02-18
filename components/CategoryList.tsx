@@ -1,71 +1,65 @@
 import { StyleSheet, View } from "react-native";
 
 import CategoryCard from "./CategoryCard";
-import CanvasStand from "@/assets/images/illustrations/canvas-stand.svg";
 import Bathroom from "@/assets/images/illustrations/bathroom.svg";
-import Kitchen from "@/assets/images/illustrations/kitchen.svg";
+import Rainbow from "@/assets/images/illustrations/rainbow.svg";
+import LivingRoom from "@/assets/images/illustrations/living-room.svg";
+import Burger from "@/assets/images/illustrations/burger.svg";
+import CanvasStand from "@/assets/images/illustrations/canvas-stand.svg";
+import CityRoad from "@/assets/images/illustrations/city-road.svg";
+import Autumn from "@/assets/images/illustrations/autumn.svg";
+import Mac from "@/assets/images/illustrations/imac.svg";
+import Calculator from "@/assets/images/illustrations/calculator.svg";
+import Christmas from "@/assets/images/illustrations/christmas.svg";
+import Sneezing from "@/assets/images/illustrations/sneezing.svg";
+import GymGuy from "@/assets/images/illustrations/gym-guy.svg";
+import Wallet from "@/assets/images/illustrations/wallet.svg";
+import categories from "@/data/categories.json";
+
+function getAssetComponent(name: string, size: number) {
+  switch (name) {
+    case "burger":
+      return <Burger width={size} height={size} />;
+    case "living-room":
+      return <LivingRoom width={size} height={size} />;
+    case "canvas-stand":
+      return <CanvasStand width={size} height={size} />;
+    case "city-road":
+      return <CityRoad width={size} height={size} />;
+    case "autumn":
+      return <Autumn width={size} height={size} />;
+    case "imac":
+      return <Mac width={size} height={size} />;
+    case "gym-guy":
+      return <GymGuy width={size} height={size} />;
+    case "wallet":
+      return <Wallet width={size} height={size} />;
+    case "calculator":
+      return <Calculator width={size} height={size} />;
+    case "christmas":
+      return <Christmas width={size} height={size} />;
+    case "sneezing":
+      return <Sneezing width={size} height={size} />;
+    default:
+      return <Bathroom width={size} height={size} />;
+  }
+}
 
 export default function CategoryList() {
   return (
     <View style={styles.container}>
-      <CategoryCard
-        image={<Bathroom width={100} height={100} />}
-        title="Lavabo"
-        gradientStart="#F1F7FC"
-        gradientEnd="#E6F2FD"
-        color="#426CF8"
-        completedGames={7}
-        totalGames={11}
-      />
-
-      <CategoryCard
-        image={<Kitchen width={100} height={100} />}
-        title="Cocina"
-        gradientStart="#F4FBF0"
-        gradientEnd="#EDF7E5"
-        color="#7DC857"
-        completedGames={3}
-        totalGames={18}
-      />
-
-      <CategoryCard
-        image={<CanvasStand width={100} height={100} />}
-        title="Arte"
-        gradientStart="#FDFBFE"
-        gradientEnd="#EBDEEF"
-        color="#A380AF"
-        completedGames={3}
-        totalGames={6}
-      />
-      <CategoryCard
-        image={<Bathroom width={100} height={100} />}
-        title="Lavabo"
-        gradientStart="#F1F7FC"
-        gradientEnd="#E6F2FD"
-        color="#426CF8"
-        completedGames={7}
-        totalGames={11}
-      />
-
-      <CategoryCard
-        image={<Kitchen width={100} height={100} />}
-        title="Cocina"
-        gradientStart="#F4FBF0"
-        gradientEnd="#EDF7E5"
-        color="#7DC857"
-        completedGames={3}
-        totalGames={18}
-      />
-
-      <CategoryCard
-        image={<CanvasStand width={100} height={100} />}
-        title="Arte"
-        gradientStart="#FDFBFE"
-        gradientEnd="#EBDEEF"
-        color="#A380AF"
-        completedGames={3}
-        totalGames={6}
-      />
+      {categories.map((category) => (
+        <CategoryCard
+          key={category.id}
+          image={getAssetComponent(category.image, 100)}
+          title={category.name}
+          gradientStart={category.colors.gradient_start}
+          gradientEnd={category.colors.gradient_end}
+          color={category.colors.accent}
+          completedGames={7}
+          totalGames={11}
+        />
+      ))}
     </View>
   );
 }

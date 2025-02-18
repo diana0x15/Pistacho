@@ -1,0 +1,123 @@
+[
+  {
+    "id": "1",
+    "name": "Comida",
+    "games": ["1", "2", "3"],
+    "image": "burger",
+    "colors": {
+      "accent": "#8DB449",
+      "gradient_start": "#F4FBF0",
+      "gradient_end": "#EDF7E5"
+    }
+  },
+  {
+    "id": "2",
+    "name": "Casa y Muebles",
+    "games": [],
+    "image": "living-room",
+    "colors": {
+      "accent": "#75A7D3",
+      "gradient_start": "#F1F7FC",
+      "gradient_end": "#E6F2FD"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Pasatiempos",
+    "games": [],
+    "image": "canvas-stand",
+    "colors": {
+      "accent": "#A380AF",
+      "gradient_start": "#FDFBFE",
+      "gradient_end": "#EBDEEF"
+    }
+  },
+  {
+    "id": "4",
+    "name": "Viaje y Transporte",
+    "games": [],
+    "image": "city-road",
+    "colors": {
+      "accent": "#7AAAA6",
+      "gradient_start": "#F4FEFD",
+      "gradient_end": "#D7EEEC"
+    }
+  },
+  {
+    "id": "5",
+    "name": "Naturaleza",
+    "games": [],
+    "image": "autumn",
+    "colors": {
+      "accent": "#EDA340",
+      "gradient_start": "#FFF4E6",
+      "gradient_end": "#FFE1B9"
+    }
+  },
+  {
+    "id": "6",
+    "name": "Technología",
+    "games": [],
+    "image": "imac",
+    "colors": {
+      "accent": "#CA7F8A",
+      "gradient_start": "#FFF4F6",
+      "gradient_end": "#F1BDC5"
+    }
+  },
+  {
+    "id": "7",
+    "name": "El Cuerpo",
+    "games": [],
+    "image": "gym-guy",
+    "colors": {
+      "accent": "#75A7D3",
+      "gradient_start": "#F1F7FC",
+      "gradient_end": "#E6F2FD"
+    }
+  },
+  {
+    "id": "8",
+    "name": "Esenciales Diarios",
+    "games": [],
+    "image": "wallet",
+    "colors": {
+      "accent": "#8DB449",
+      "gradient_start": "#F4FBF0",
+      "gradient_end": "#EDF7E5"
+    }
+  },
+  {
+    "id": "9",
+    "name": "Números y Tiempo",
+    "games": [],
+    "image": "calculator",
+    "colors": {
+      "accent": "#A380AF",
+      "gradient_start": "#FDFBFE",
+      "gradient_end": "#EBDEEF"
+    }
+  },
+  {
+    "id": "10",
+    "name": "Celebraciones",
+    "games": [],
+    "image": "christmas",
+    "colors": {
+      "accent": "#7AAAA6",
+      "gradient_start": "#F4FEFD",
+      "gradient_end": "#D7EEEC"
+    }
+  },
+  {
+    "id": "11",
+    "name": "Emociones",
+    "games": [],
+    "image": "sneezing",
+    "colors": {
+      "accent": "#EDA340",
+      "gradient_start": "#FFF4E6",
+      "gradient_end": "#FFE1B9"
+    }
+  }
+]
