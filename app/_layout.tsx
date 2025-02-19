@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { PaperProvider } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { IconSymbol } from "@/components/ui/IconSymbol";
@@ -19,7 +20,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  //const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme();
   const colorScheme = "light";
   const navigation = useNavigation();
   const [isFontReady] = useFonts({
@@ -38,6 +39,7 @@ export default function RootLayout() {
 
   return (
     <PaperProvider>
+      <StatusBar style="dark" />
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack
           screenOptions={{

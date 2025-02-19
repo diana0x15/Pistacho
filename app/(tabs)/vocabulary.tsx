@@ -43,6 +43,7 @@ export default function VocabularyScreen() {
               values={["Pistas", "Traducciones"]}
               selectedIndex={0}
               onChange={(event) => {}}
+              appearance={"light"}
             />
           </View>
           <WordEntry />
