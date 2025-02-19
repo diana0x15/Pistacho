@@ -24,7 +24,7 @@
   {
     "id": "3",
     "name": "Trabajo y Escuela",
-    "games": [],
+    "games": ["3001", "3002", "3003", "3004", "3005"],
     "image": "it-girl",
     "colors": {
       "accent": "#CA7F8A",

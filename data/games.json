@@ -912,7 +912,7 @@
       {
         "word": "REGLA",
         "clue": "Herramienta para medir o trazar líneas rectas. 📏",
-        "direction": "vertical",
+        "direction": "horizontal",
         "row": 1,
         "col": 1
       },
@@ -955,7 +955,7 @@
         "word": "MÓVIL",
         "clue": "Aparato para hablar con otras personas a distancia. 📱",
         "direction": "vertical",
-        "row": 9,
+        "row": 5,
         "col": 2
       },
       {

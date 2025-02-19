@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     display: "flex",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#fff",
   },
   validCell: {
     flex: 1,
