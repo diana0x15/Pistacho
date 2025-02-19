@@ -1,5 +1,6 @@
-import { StyleSheet, View, Text } from "react-native";
 import { useState } from "react";
+import { StyleSheet, View, Text } from "react-native";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useAnimatedKeyboard, useAnimatedStyle } from "react-native-reanimated";
 import Animated from "react-native-reanimated";
 
@@ -9,7 +10,7 @@ import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
-import comida from "@/data/comida.json";
+import gameData from "@/data/games.json";
 
 enum CurrentView {
   GAME = "game",
@@ -18,10 +19,17 @@ enum CurrentView {
 }
 
 export default function GameScreen() {
-  const startWordIndex = 0;
-  const testGame = comida.games[0];
+  // Get the current game data.
+  const { gameId } = useLocalSearchParams();
+  const game = gameData.find((game) => game.id === gameId);
+  if (game === undefined) {
+    useNavigation().goBack();
+    return;
+  }
 
-  const [clue, setClue] = useState(testGame.words[startWordIndex].clue);
+  const startWordIndex = 0;
+
+  const [clue, setClue] = useState(game.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
 
   const keyboard = useAnimatedKeyboard();
@@ -50,7 +58,7 @@ export default function GameScreen() {
       <View style={styles.container}>
         <GestureWrapper>
           <CrosswordGrid
-            game={testGame}
+            game={game}
             startIndex={startWordIndex}
             updateClue={(newClue: string) => {
               setClue(newClue);

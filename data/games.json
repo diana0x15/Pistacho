@@ -1,0 +1,241 @@
+[
+  {
+    "id": "1",
+    "words": [
+      {
+        "word": "LIMÓN",
+        "clue": "Es una fruta muy ácida. 🍋",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "AGUA",
+        "clue": "Líquido que bebemos todos los días. 💧",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 4
+      },
+      {
+        "word": "ZANAHORIA",
+        "clue": "Verdura crujiente de color naranja que come el conejo. 🥕",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 1
+      },
+      {
+        "word": "LECHUGA",
+        "clue": "Verde y crujiente, se usa en ensaladas. 🥬",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      },
+      {
+        "word": "LECHE",
+        "clue": "Bebida blanca que viene de la vaca. 🥛",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "MANZANA",
+        "clue": "Fruta redonda que puede ser roja, verde o amarilla. 🍏🍎",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "NARANJA",
+        "clue": "Fruta redonda y anaranjada con mucho zumo. 🍊",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "CEBOLLA",
+        "clue": "Verdura que hace llorar cuando la cortas. 🧅",
+        "direction": "vertical",
+        "row": 3,
+        "col": 6
+      },
+      {
+        "word": "PAN",
+        "clue": "Comida hecha con harina y que se hornea. 🥖",
+        "direction": "vertical",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "word": "CHOCOLATE",
+        "clue": "Dulce hecho con cacao, a veces con leche o frutos secos. 🍫",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "words": [
+      {
+        "word": "CEREZA",
+        "clue": "Fruta roja y redonda, en pareja. 🍒",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "ACEITUNA",
+        "clue": "Comida pequeña, verde o negra. 🫒",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "AZÚCAR",
+        "clue": "Granos pequeños y dulces. Se ponen en té o café para endulzar.",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "TAPAS",
+        "clue": "Pequeñas porciones de comida española, ideales para compartir en grupos.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 6
+      },
+      {
+        "word": "CALABAZA",
+        "clue": "Grande, naranja y se usa en Halloween. 🎃",
+        "direction": "vertical",
+        "row": 2,
+        "col": 4
+      },
+      {
+        "word": "PATATA",
+        "clue": "Se puede freír, cocer o hacer puré. 🥔",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 3
+      },
+      {
+        "word": "SAL",
+        "clue": "Polvo blanco que da sabor a la comida. 🧂",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 8
+      },
+      {
+        "word": "SANDÍA",
+        "clue": "Fruta grande, verde por fuera y roja por dentro. 🍉",
+        "direction": "vertical",
+        "row": 2,
+        "col": 8
+      },
+      {
+        "word": "ENSALADA",
+        "clue": "Mezcla de verduras crudas, a menudo aderezada con aceite y vinagre. 🥗",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 1
+      },
+      {
+        "word": "TARTA",
+        "clue": "Postre dulce con crema, chocolate o frutas. 🎂",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      },
+      {
+        "word": "MANGO",
+        "clue": "Fruta tropical y dulce, de piel amarilla. 🥭",
+        "direction": "vertical",
+        "row": 6,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "words": [
+      {
+        "word": "PESCADO",
+        "clue": "Carne de animales acuáticos, a menudo servida a la plancha o frita 🐟",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "QUESO",
+        "clue": "Se hace con leche y puede ser blando o duro. 🧀",
+        "direction": "vertical",
+        "row": 0,
+        "col": 8
+      },
+      {
+        "word": "HAMBURGUESA",
+        "clue": "Comida rápida que consiste en una carne entre dos panes. 🍔",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "AGUACATE",
+        "clue": "Fruta verde y cremosa, común en guacamole o en ensaladas. 🥑",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "ARÁNDANO",
+        "clue": "Fruta pequeña, azul, con sabor dulce. 🫐",
+        "direction": "vertical",
+        "row": 2,
+        "col": 1
+      },
+      {
+        "word": "CARNE",
+        "clue": "Producto que viene de animales, como la vaca o el cerdo. 🍖",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 3
+      },
+      {
+        "word": "CERVEZA",
+        "clue": "Bebida alcohólica espumosa. 🍺",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 3
+      },
+      {
+        "word": "PAELLA",
+        "clue": "Plato típico de España con arroz, mariscos y verduras. 🥘",
+        "direction": "vertical",
+        "row": 1,
+        "col": 10
+      },
+      {
+        "word": "SOPA",
+        "clue": "Plato líquido caliente que puede llevar verduras, carne o fideos. 🍲",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      },
+      {
+        "word": "AJO",
+        "clue": "Condimento pequeño y fuerte que se usa para dar sabor a la comida. 🧄",
+        "direction": "vertical",
+        "row": 7,
+        "col": 9
+      },
+      {
+        "word": "HUEVO",
+        "clue": "Alimento ovalado que ponen las gallinas. 🥚",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 5
+      }
+    ]
+  }
+]

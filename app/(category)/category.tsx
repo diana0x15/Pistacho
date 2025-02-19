@@ -1,4 +1,5 @@
 import { StyleSheet, ScrollView, View } from "react-native";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
@@ -6,9 +7,33 @@ import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
 import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
+import { Game } from "@/constants/Game";
+import categories from "@/data/categories.json";
+import gameData from "@/data/games.json";
 
-export default function Category() {
+export default function CategoryScreen() {
+  // Get the current category data.
+  const { categoryId } = useLocalSearchParams();
+  const category = categories.find((category) => category.id === categoryId);
+  if (category === undefined) {
+    useNavigation().goBack();
+    return;
+  }
+
+  // Get the games in the current category.
+  const games: Game[] = [];
+  category.games.forEach((id) => {
+    const game = gameData.find((g) => g.id === id);
+    if (game) {
+      games.push(game);
+    }
+  });
+
   const squareSize = getWindowWidth() / 3 - 50;
+  const totalGames = games.length;
+  // TODO: Read completed games from user data.
+  const completedGames = 0;
+  const progress = totalGames === 0 ? 0 : completedGames / totalGames;
 
   return (
     <ThemedView style={[styles.container]}>
@@ -20,142 +45,22 @@ export default function Category() {
           </View>
         </View>
         <View style={styles.progressContainer}>
-          <ThemedText>3/22 crucigramas</ThemedText>
-          <ProgressBar color="#75A7D3" progress={3 / 22} style="elevated" />
+          <ThemedText>
+            {completedGames}/{totalGames} crucigramas
+          </ThemedText>
+          <ProgressBar color="#75A7D3" progress={progress} style="elevated" />
         </View>
         <View style={styles.grid}>
-          <GameEntry
-            isCompleted={true}
-            isLocked={false}
-            index={1}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={true}
-            isLocked={false}
-            index={2}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={true}
-            isLocked={false}
-            index={3}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={true}
-            isLocked={false}
-            index={4}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={false}
-            index={5}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={false}
-            index={6}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={false}
-            index={7}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={false}
-            index={8}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={false}
-            index={9}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={10}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={11}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={12}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={13}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={14}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={15}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={16}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={17}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={18}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={19}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={20}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={21}
-            viewSize={squareSize}
-          />
-          <GameEntry
-            isCompleted={false}
-            isLocked={true}
-            index={22}
-            viewSize={squareSize}
-          />
+          {games.map((game, index) => (
+            <GameEntry
+              key={game.id}
+              gameId={game.id}
+              isCompleted={false}
+              isLocked={false}
+              index={index + 1}
+              viewSize={squareSize}
+            />
+          ))}
         </View>
       </ScrollView>
     </ThemedView>

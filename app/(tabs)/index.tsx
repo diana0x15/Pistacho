@@ -1,9 +1,9 @@
-import { StyleSheet, Text, ScrollView, View, Dimensions } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
-import CategoryList from "@/components/CategoryList";
 import ThemedButton from "@/components/ThemedButton";
+import CategoryCard from "@/components/CategoryCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import { getAdjustedTextSize } from "@/utils/Text";
@@ -13,6 +13,7 @@ import {
   getTopInset,
   getVisibleHeight,
 } from "@/constants/Dimensions";
+import categories from "@/data/categories.json";
 
 export default function HomeScreen() {
   const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
@@ -67,7 +68,11 @@ export default function HomeScreen() {
     return (
       <View style={[styles.listContainer, { paddingBottom: PADDING_BOTTOM }]}>
         <ThemedText type="subtitle">Mi progreso:</ThemedText>
-        <CategoryList />
+        <View style={styles.list}>
+          {categories.map((category) => (
+            <CategoryCard key={category.id} category={category} />
+          ))}
+        </View>
       </View>
     );
   };
@@ -135,5 +140,8 @@ const styles = StyleSheet.create({
     paddingInline: 20,
     paddingTop: 30,
     gap: 10,
+  },
+  list: {
+    gap: 20,
   },
 });

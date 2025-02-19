@@ -4,6 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
 export type GameEntryProps = {
+  gameId: string;
   index: number;
   viewSize: number;
   isCompleted: boolean;
@@ -43,7 +44,7 @@ export default function GameEntry(props: GameEntryProps) {
   };
 
   return (
-    <Link push href="../game">
+    <Link push href={{ pathname: "../game", params: { gameId: props.gameId } }}>
       <View
         style={[
           styles.container,
