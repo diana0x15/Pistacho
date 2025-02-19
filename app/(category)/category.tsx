@@ -5,9 +5,9 @@ import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
-import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { Game } from "@/constants/Game";
+import { getAssetComponent } from "@/components/CategoryCard";
 import categories from "@/data/categories.json";
 import gameData from "@/data/games.json";
 
@@ -39,9 +39,15 @@ export default function CategoryScreen() {
     <ThemedView style={[styles.container]}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.header}>
-          <BathroomReduced height={170} width={150} />
+          {getAssetComponent(category.image, 150, styles.image)}
           <View style={styles.title}>
-            <ThemedText type="title">Lavabo</ThemedText>
+            <ThemedText
+              type="titleSecondary"
+              adjustsFontSizeToFit={true}
+              numberOfLines={2}
+            >
+              {category.name}
+            </ThemedText>
           </View>
         </View>
         <View style={styles.progressContainer}>
@@ -85,12 +91,15 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
   },
   title: {
     display: "flex",
-    marginTop: 20, // Needed to align with the bathroom image.
+    alignItems: "flex-start",
+    justifyContent: "center",
+    flex: 1,
+  },
+  image: {
+    flex: 1,
   },
   progressContainer: {
     width: "100%",

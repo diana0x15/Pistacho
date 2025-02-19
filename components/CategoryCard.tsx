@@ -20,28 +20,28 @@ import ThemedText from "@/components/ThemedText";
 import ProgressBar from "@/components/ProgressBar";
 import { Category } from "@/constants/Category";
 
-function getAssetComponent(name: string, size: number) {
+export function getAssetComponent(name: string, size: number, style?: any) {
   switch (name) {
     case "burger":
-      return <Burger width={size} height={size} />;
+      return <Burger width={size} height={size} style={style} />;
     case "living-room":
-      return <LivingRoom width={size} height={size} />;
+      return <LivingRoom width={size} height={size} style={style} />;
     case "canvas-stand":
-      return <CanvasStand width={size} height={size} />;
+      return <CanvasStand width={size} height={size} style={style} />;
     case "city-road":
-      return <CityRoad width={size} height={size} />;
+      return <CityRoad width={size} height={size} style={style} />;
     case "autumn":
-      return <Autumn width={size} height={size} />;
+      return <Autumn width={size} height={size} style={style} />;
     case "imac":
-      return <Mac width={size} height={size} />;
+      return <Mac width={size} height={size} style={style} />;
     case "gym-guy":
-      return <GymGuy width={size} height={size} />;
+      return <GymGuy width={size} height={size} style={style} />;
     case "wallet":
-      return <Wallet width={size} height={size} />;
+      return <Wallet width={size} height={size} style={style} />;
     case "calculator":
-      return <Calculator width={size} height={size} />;
+      return <Calculator width={size} height={size} style={style} />;
     case "christmas":
-      return <Christmas width={size} height={size} />;
+      return <Christmas width={size} height={size} style={style} />;
     case "sneezing":
       return <Sneezing width={size} height={size} />;
     case "it-girl":
