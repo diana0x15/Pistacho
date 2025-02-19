@@ -3,8 +3,10 @@ import { StyleSheet, View } from "react-native";
 import ThemedText from "./ThemedText";
 import ThemedView from "./ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import { VocabEntry } from "@/constants/Vocabulary";
 
 type WordEntryProps = {
+  vocabEntry: VocabEntry;
   hasActionButton?: boolean;
   isSaved?: boolean;
 };

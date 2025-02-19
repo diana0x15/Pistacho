@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "1001",
     "words": [
       {
         "word": "LIMÓN",
@@ -75,7 +75,7 @@
     ]
   },
   {
-    "id": "2",
+    "id": "1002",
     "words": [
       {
         "word": "CEREZA",
@@ -157,7 +157,7 @@
     ]
   },
   {
-    "id": "3",
+    "id": "1003",
     "words": [
       {
         "word": "PESCADO",
@@ -237,5 +237,682 @@
         "col": 5
       }
     ]
+  },
+  {
+    "id": "1004",
+    "words": [
+      {
+        "word": "CAFÉ",
+        "clue": "Bebida oscura, ideal para las mañanas. ☕️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "MANTEQUILLA",
+        "clue": "Se unta en el pan y se usa para cocinar. 🧈",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 0
+      },
+      {
+        "word": "TOMATE",
+        "clue": "Roja y jugosa, se usa en ensaladas y salsas. 🍅",
+        "direction": "vertical",
+        "row": 1,
+        "col": 3
+      },
+      {
+        "word": "MIEL",
+        "clue": "Alimento que producen las abejas. 🍯",
+        "direction": "vertical",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "word": "JAMÓN",
+        "clue": "Carne curada que se corta en lonchas finas. 🍖",
+        "direction": "vertical",
+        "row": 0,
+        "col": 10
+      },
+      {
+        "word": "PLÁTANO",
+        "clue": "Fruta tropical larga y amarilla. 🍌",
+        "direction": "vertical",
+        "row": 3,
+        "col": 5
+      },
+      {
+        "word": "ACEITE",
+        "clue": "Líquido usado para cocinar, puede ser de oliva.",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 1
+      },
+      {
+        "word": "YOGUR",
+        "clue": "Producto lácteo cremoso, a veces con frutas. 🥄",
+        "direction": "vertical",
+        "row": 5,
+        "col": 8
+      },
+      {
+        "word": "COCO",
+        "clue": "Fruta tropical marrón por fuera y blanca por dentro. 🥥",
+        "direction": "vertical",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "POSTRE",
+        "clue": "Plato dulce que se sirve al final de una comida. 🍰",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "id": "1005",
+    "words": [
+      {
+        "word": "ZUMO",
+        "clue": "Bebida líquida extraída de frutas. 🧃",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "VINO",
+        "clue": "Bebida alcohólica de uvas. 🍷",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "MANTEQUILLA",
+        "clue": "Se unta en el pan y se usa para cocinar. 🧈",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "PEPINO",
+        "clue": "Verdura verde y fresca, común en ensaladas. 🥒",
+        "direction": "vertical",
+        "row": 1,
+        "col": 4
+      },
+      {
+        "word": "LIMÓN",
+        "clue": "Es una fruta muy ácida. 🍋",
+        "direction": "vertical",
+        "row": 2,
+        "col": 8
+      },
+      {
+        "word": "ZANAHORIA",
+        "clue": "Verdura crujiente de color naranja que come el conejo. 🥕",
+        "direction": "vertical",
+        "row": 1,
+        "col": 10
+      },
+      {
+        "word": "PIÑA",
+        "clue": "Fruta tropical amarilla con hojas largas. 🍍",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 3
+      },
+      {
+        "word": "DÓNUT",
+        "clue": "Pastel redondo con agujero en el medio. 🍩",
+        "direction": "vertical",
+        "row": 5,
+        "col": 2
+      },
+      {
+        "word": "BRÓCOLI",
+        "clue": "Verdura verde con forma de árbol. 🥦",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "SUSHI",
+        "clue": "Comida japonesa que lleva arroz y pescado crudo. 🍣",
+        "direction": "horizontal",
+        "row": 8,
+        "col": 6
+      },
+      {
+        "word": "TÉ",
+        "clue": "Bebida caliente que viene de hojas secas. 🍵",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 2
+      }
+    ]
+  },
+  {
+    "id": "2001",
+    "words": [
+      {
+        "word": "RELOJ",
+        "clue": "Objeto que muestra la hora. ⏰",
+        "direction": "vertical",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "NEVERA",
+        "clue": "Electrodoméstico que mantiene los alimentos fríos.",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "SOFÁ",
+        "clue": "Mueble cómodo para sentarse o tumbarse. 🛋️",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 0
+      },
+      {
+        "word": "LÁMPARA",
+        "clue": "Objeto que da luz, puede ser de mesa o de pie. 💡",
+        "direction": "vertical",
+        "row": 2,
+        "col": 3
+      },
+      {
+        "word": "ESTANTERÍA",
+        "clue": "Mueble para colocar libros o otros objetos. 📚",
+        "direction": "vertical",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "word": "ESPEJO",
+        "clue": "Objeto que refleja la imagen. 🪞",
+        "direction": "vertical",
+        "row": 3,
+        "col": 5
+      },
+      {
+        "word": "ARMARIO",
+        "clue": "Mueble donde guardamos ropa.",
+        "direction": "vertical",
+        "row": 3,
+        "col": 9
+      },
+      {
+        "word": "SILLA",
+        "clue": "Mueble para sentarse, con respaldo y asiento. 🪑",
+        "direction": "vertical",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "PAPELERA",
+        "clue": "Contenedor donde tiramos la basura. 🗑️",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "LAVABO",
+        "clue": "Lugar donde lavamos platos o utensilios en la cocina. 🍴",
+        "direction": "horizontal",
+        "row": 8,
+        "col": 0
+      },
+      {
+        "word": "BAÑO",
+        "clue": "Habitación donde hay ducha o bañera",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "id": "2002",
+    "words": [
+      {
+        "word": "CAFETERA",
+        "clue": "Máquina para hacer café.",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "ALMOHADA",
+        "clue": "Objeto suave donde apoyamos la cabeza al dormir. 🛏️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "ESCOBA",
+        "clue": "Herramienta para barrer el suelo. 🧹",
+        "direction": "vertical",
+        "row": 0,
+        "col": 3
+      },
+      {
+        "word": "ESCRITORIO",
+        "clue": "Mesa para trabajar, estudiar o escribir. 🖋️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 5
+      },
+      {
+        "word": "BAÑERA",
+        "clue": "Objeto grande donde nos sumergimos para bañarnos. 🛁",
+        "direction": "vertical",
+        "row": 1,
+        "col": 9
+      },
+      {
+        "word": "CUCHARA",
+        "clue": "Utensilio que usamos para comer sopas. 🥄",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 3
+      },
+      {
+        "word": "TELE",
+        "clue": "Aparato que usamos para ver programas, películas o noticias. 📺",
+        "direction": "vertical",
+        "row": 4,
+        "col": 7
+      },
+      {
+        "word": "TAZA",
+        "clue": "Vaso pequeño para beber té o café. ☕",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "TOALLA",
+        "clue": "Tela que usamos para secarnos después de bañarnos.",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 4
+      },
+      {
+        "word": "MICROONDAS",
+        "clue": "Electrodoméstico usado para calentar comida rápidamente.",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "2003",
+    "words": [
+      {
+        "word": "CUADRO",
+        "clue": "Obra de arte o fotografía que colgamos en la pared. 🖼️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "TENEDOR",
+        "clue": "Utensilio con dientes que usamos para pinchar comida. 🍴",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 1
+      },
+      {
+        "word": "DORMITORIO",
+        "clue": "Habitación donde dormimos y descansamos. 🛏️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "word": "COCINA",
+        "clue": "Habitación donde preparamos la comida.",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 4
+      },
+      {
+        "word": "DUCHA",
+        "clue": "Espacio donde nos bañamos con agua corriente. 🚿",
+        "direction": "vertical",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "JARRÓN",
+        "clue": "Recipiente decorativo donde ponemos flores. 🌸",
+        "direction": "vertical",
+        "row": 3,
+        "col": 9
+      },
+      {
+        "word": "CUCHILLO",
+        "clue": "Utensilio que usamos para cortar comida. 🔪",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "COPA",
+        "clue": "Vaso de cristal, generalmente usado para beber vino. 🍷",
+        "direction": "vertical",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "PARED",
+        "clue": "Superficie vertical que forma las habitaciones de una casa. 🏠",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "id": "2004",
+    "words": [
+      {
+        "word": "DESPACHO",
+        "clue": "Habitación destinada al trabajo o estudio. 🖥️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "FRUTERO",
+        "clue": "Recipiente donde ponemos frutas. 🍎",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "RADIO",
+        "clue": "Aparato para escuchar música o noticias. 📻",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "word": "SALÓN",
+        "clue": "Habitación principal de la casa, donde se reciben visitas y se descansa. 🛋️",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "LAVADORA",
+        "clue": "Máquina para lavar la ropa.",
+        "direction": "vertical",
+        "row": 1,
+        "col": 9
+      },
+      {
+        "word": "ASPIRADORA",
+        "clue": "Aparato eléctrico para limpiar el suelo.",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "SECADOR",
+        "clue": "Aparato para secar el pelo. ",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 3
+      },
+      {
+        "word": "BAÑO",
+        "clue": "Habitación donde nos aseamos y usamos el váter.",
+        "direction": "vertical",
+        "row": 6,
+        "col": 6
+      },
+      {
+        "word": "TELÉFONO",
+        "clue": "Aparato que usamos para hablar con otras personas a distancia. ☎️",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 2
+      }
+    ]
+  },
+  {
+    "id": "2005",
+    "words": [
+      {
+        "word": "JUGUETE",
+        "clue": "Objeto con el que juegan los niños. 🧸",
+        "direction": "vertical",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "BUZÓN",
+        "clue": "Caja donde dejamos las cartas o recibimos correspondencia. 📬",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 0
+      },
+      {
+        "word": "LLAVE",
+        "clue": "Objeto pequeño que abre la puerta de la casa. 🗝️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 5
+      },
+      {
+        "word": "VÁTER",
+        "clue": "Objeto en el baño donde nos sentamos para hacer nuestras necesidades. 🚽",
+        "direction": "vertical",
+        "row": 0,
+        "col": 8
+      },
+      {
+        "word": "PEINE",
+        "clue": "Herramienta para ordenar o desenredar el pelo. ",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 4
+      },
+      {
+        "word": "MESA",
+        "clue": "Mueble donde dormimos. 🛏️",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "ESPONJA",
+        "clue": "Utensilio suave que usamos para limpiar o lavar. 🧽",
+        "direction": "vertical",
+        "row": 3,
+        "col": 5
+      },
+      {
+        "word": "JABÓN",
+        "clue": "Producto que usamos para lavarnos las manos o el cuerpo. 🧼",
+        "direction": "vertical",
+        "row": 5,
+        "col": 7
+      },
+      {
+        "word": "SECADORA",
+        "clue": "Máquina que se usa para secar la ropa.",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "CESTA",
+        "clue": "Recipiente donde guardamos la ropa sucia.",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "id": "2006",
+    "words": [
+      {
+        "word": "PERIÓDICO",
+        "clue": "Publicación de noticias que leemos todos los días. 📰",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "PLANCHA",
+        "clue": "Herramienta para alisar la ropa. 👗",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "ALFOMBRA",
+        "clue": "Tejido que se pone en el suelo para decorar o aislar el frío.",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "COJÍN",
+        "clue": "Almohada pequeña que se coloca en sofás o camas. 🛋️",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "ALMOHADA",
+        "clue": "Objeto suave donde apoyamos la cabeza al dormir. 🛏️",
+        "direction": "vertical",
+        "row": 2,
+        "col": 7
+      },
+      {
+        "word": "TIMBRE",
+        "clue": "Dispositivo que suena cuando alguien pulsa el botón en la puerta. 🔔",
+        "direction": "vertical",
+        "row": 4,
+        "col": 9
+      },
+      {
+        "word": "CUBO",
+        "clue": "Recipiente usado para transportar o contener líquidos. 🪣",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "CUNA",
+        "clue": "Cama pequeña para bebés.",
+        "direction": "vertical",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "VENTILADOR",
+        "clue": "Aparato que mueve el aire para refrescar.",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "3001",
+    "words": []
+  },
+  {
+    "id": "3002",
+    "words": []
+  },
+  {
+    "id": "3003",
+    "words": [
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      },
+      {
+        "word": "",
+        "clue": "",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "id": "3004",
+    "words": []
+  },
+  {
+    "id": "3005",
+    "words": []
   }
 ]

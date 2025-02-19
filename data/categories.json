@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Comida",
-    "games": ["1", "2", "3"],
+    "games": ["1001", "1002", "1003", "1004", "1005"],
     "image": "burger",
     "colors": {
       "accent": "#8DB449",
@@ -13,7 +13,7 @@
   {
     "id": "2",
     "name": "Casa y Muebles",
-    "games": [],
+    "games": ["2001", "2002"],
     "image": "living-room",
     "colors": {
       "accent": "#75A7D3",

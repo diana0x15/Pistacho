@@ -299,10 +299,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   cell: {
-    width: 36,
-    height: 36,
+    width: 34,
+    height: 34,
     display: "flex",
-    backgroundColor: "#fff",
+    backgroundColor: "#f5f5f5",
   },
   validCell: {
     flex: 1,
