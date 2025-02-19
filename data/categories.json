@@ -13,7 +13,7 @@
   {
     "id": "2",
     "name": "Casa y Muebles",
-    "games": ["2001", "2002"],
+    "games": ["2001", "2002", "2003", "2004", "2005", "2006"],
     "image": "living-room",
     "colors": {
       "accent": "#75A7D3",
@@ -23,6 +23,17 @@
   },
   {
     "id": "3",
+    "name": "Trabajo y Escuela",
+    "games": [],
+    "image": "it-girl",
+    "colors": {
+      "accent": "#CA7F8A",
+      "gradient_start": "#FFF4F6",
+      "gradient_end": "#FACBD2"
+    }
+  },
+  {
+    "id": "4",
     "name": "Pasatiempos",
     "games": [],
     "image": "canvas-stand",
@@ -33,7 +44,7 @@
     }
   },
   {
-    "id": "4",
+    "id": "5",
     "name": "Viaje y Transporte",
     "games": [],
     "image": "city-road",
@@ -44,7 +55,7 @@
     }
   },
   {
-    "id": "5",
+    "id": "6",
     "name": "Naturaleza",
     "games": [],
     "image": "autumn",
@@ -52,17 +63,6 @@
       "accent": "#EDA340",
       "gradient_start": "#FFF4E6",
       "gradient_end": "#FFE1B9"
-    }
-  },
-  {
-    "id": "6",
-    "name": "Technología",
-    "games": [],
-    "image": "imac",
-    "colors": {
-      "accent": "#CA7F8A",
-      "gradient_start": "#FFF4F6",
-      "gradient_end": "#F1BDC5"
     }
   },
   {

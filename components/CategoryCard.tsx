@@ -15,6 +15,7 @@ import Christmas from "@/assets/images/illustrations/christmas.svg";
 import Sneezing from "@/assets/images/illustrations/sneezing.svg";
 import GymGuy from "@/assets/images/illustrations/gym-guy.svg";
 import Wallet from "@/assets/images/illustrations/wallet.svg";
+import ITGirl from "@/assets/images/illustrations/it-girl.svg";
 import ThemedText from "@/components/ThemedText";
 import ProgressBar from "@/components/ProgressBar";
 import { Category } from "@/constants/Category";
@@ -43,6 +44,8 @@ function getAssetComponent(name: string, size: number) {
       return <Christmas width={size} height={size} />;
     case "sneezing":
       return <Sneezing width={size} height={size} />;
+    case "it-girl":
+      return <ITGirl width={size} height={size} />;
     default:
       return <Bathroom width={size} height={size} />;
   }
