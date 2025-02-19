@@ -35,6 +35,21 @@ export default function CategoryScreen() {
   const completedGames = 0;
   const progress = totalGames === 0 ? 0 : completedGames / totalGames;
 
+  const grid = () => {
+    let index = 0;
+    while (index < games.length) {
+      <GameEntry
+        key={games[index].id}
+        gameId={games[index].id}
+        isCompleted={false}
+        isLocked={false}
+        index={index + 1}
+        viewSize={squareSize}
+      />;
+      index++;
+    }
+  };
+
   return (
     <ThemedView style={[styles.container]}>
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -56,17 +71,28 @@ export default function CategoryScreen() {
           </ThemedText>
           <ProgressBar color="#75A7D3" progress={progress} style="elevated" />
         </View>
-        <View style={styles.grid}>
-          {games.map((game, index) => (
-            <GameEntry
-              key={game.id}
-              gameId={game.id}
-              isCompleted={false}
-              isLocked={false}
-              index={index + 1}
-              viewSize={squareSize}
-            />
-          ))}
+        <View style={styles.gridWrapper}>
+          <View style={styles.grid}>
+            {games.map((game, index) => (
+              <View
+                key={game.id}
+                style={[
+                  (index % 3 === 0 || index % 3 === 1) &&
+                  index >= games.length - (games.length % 3)
+                    ? styles.alignLeft
+                    : null,
+                ]}
+              >
+                <GameEntry
+                  gameId={game.id}
+                  isCompleted={false}
+                  isLocked={false}
+                  index={index + 1}
+                  viewSize={squareSize}
+                />
+              </View>
+            ))}
+          </View>
         </View>
       </ScrollView>
     </ThemedView>
@@ -80,13 +106,21 @@ const styles = StyleSheet.create({
   scrollView: {
     paddingBottom: 20,
   },
+  gridWrapper: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+  },
   grid: {
+    width: "80%",
     marginTop: 40,
-    paddingInline: 40,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
-    rowGap: 32,
+    justifyContent: "flex-start",
+    gap: 30,
+  },
+  alignLeft: {
+    marginRight: 0,
   },
   header: {
     display: "flex",
