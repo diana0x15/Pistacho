@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Link, useRootNavigationState, useNavigation } from "expo-router";
+import { useContext } from "react";
+import { StyleSheet, View } from "react-native";
+import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 
 import Bathroom from "@/assets/images/illustrations/bathroom.svg";
@@ -16,6 +16,7 @@ import Sneezing from "@/assets/images/illustrations/sneezing.svg";
 import GymGuy from "@/assets/images/illustrations/gym-guy.svg";
 import Wallet from "@/assets/images/illustrations/wallet.svg";
 import ITGirl from "@/assets/images/illustrations/it-girl.svg";
+import { GameContext } from "@/context/GameContext";
 import ThemedText from "@/components/ThemedText";
 import ProgressBar from "@/components/ProgressBar";
 import { Category } from "@/constants/Category";
@@ -52,10 +53,15 @@ export function getAssetComponent(name: string, size: number, style?: any) {
 }
 
 export default function CategoryCard({ category }: { category: Category }) {
-  const totalGames = category.games.length;
-  // TODO: Read completed games from user data.
-  const completedGames = 0;
-  const progress = totalGames === 0 ? 0 : completedGames / totalGames;
+  const { completedGames } = useContext(GameContext);
+
+  // Compute the progress stats for the current category.
+  const completedGamesInThisCategory = category.games.filter((gameId) => {
+    return completedGames.includes(gameId);
+  });
+  const totalCount = category.games.length;
+  const completedCount = completedGamesInThisCategory.length;
+  const progress = totalCount === 0 ? 0 : completedCount / totalCount;
 
   return (
     <Link
@@ -72,7 +78,7 @@ export default function CategoryCard({ category }: { category: Category }) {
         <View style={styles.cardContent}>
           <ThemedText type="cardTitle">{category.name}</ThemedText>
           <ThemedText>
-            {completedGames}/{totalGames} crucigramas
+            {completedCount}/{totalCount} crucigramas
           </ThemedText>
           <ProgressBar progress={progress} color={category.colors.accent} />
         </View>

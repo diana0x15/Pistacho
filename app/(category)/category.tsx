@@ -33,9 +33,12 @@ export default function CategoryScreen() {
     }
   });
 
-  // Get the progress stats for the current category.
+  // Compute the progress stats for the current category.
+  const completedGamesInThisCategory = games.filter((game) => {
+    return completedGames.includes(game.id);
+  });
   const totalCount = games.length;
-  const completedCount = completedGames.length;
+  const completedCount = completedGamesInThisCategory.length;
   const progress = totalCount === 0 ? 0 : completedCount / totalCount;
 
   // Compute dimensions for the layout.
