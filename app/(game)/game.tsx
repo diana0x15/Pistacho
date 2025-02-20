@@ -5,7 +5,7 @@ import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { completeGame as storeCompletedGame } from "@/services/storage";
 
 import ThemedView from "@/components/ThemedView";
 import ThemedText from "@/components/ThemedText";
@@ -19,14 +19,6 @@ enum CurrentView {
   GAME = "game",
   GAME_COMPLETE = "game_complete",
   WORDS = "words",
-}
-
-async function setGameAsCompleted(gameId: string) {
-  try {
-    await AsyncStorage.setItem(gameId, "completed");
-  } catch (e) {
-    // saving error
-  }
 }
 
 // Route URL: app/{gameId}.
@@ -54,7 +46,7 @@ export default function GameScreen() {
   };
 
   const completeGame = () => {
-    setGameAsCompleted(gameId);
+    storeCompletedGame(gameId);
     setCurrentView(CurrentView.GAME_COMPLETE);
   };
 

@@ -6,6 +6,8 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 export type GameEntryProps = {
   gameId: string;
   index: number;
+  primaryColor: string;
+  secondaryColor: string;
   isCompleted: boolean;
   isLocked: boolean;
   size: number;
@@ -28,7 +30,7 @@ export default function GameEntry(props: GameEntryProps) {
     }
     return (
       <View style={{ position: "absolute" }}>
-        <IconSymbol size={40} name="checkmark" color={"#fff"} />
+        <IconSymbol size={30} name="checkmark" color={"#fff"} />
       </View>
     );
   };
@@ -38,23 +40,25 @@ export default function GameEntry(props: GameEntryProps) {
     }
     return (
       <View style={{ position: "absolute" }}>
-        <Text style={styles.gameIndex}>{props.index}</Text>
+        <Text style={[styles.gameIndex, { color: props.primaryColor }]}>
+          {props.index}
+        </Text>
       </View>
     );
   };
+
+  const backgroundColor = props.isLocked
+    ? "#EFEFEF"
+    : props.isCompleted
+    ? props.primaryColor
+    : props.secondaryColor;
 
   return (
     <Link push href={{ pathname: "../game", params: { gameId: props.gameId } }}>
       <View
         style={[styles.container, { width: props.size, height: props.size }]}
       >
-        <View
-          style={[
-            styles.square,
-            props.isCompleted ? styles.completed : undefined,
-            props.isLocked ? styles.locked : undefined,
-          ]}
-        >
+        <View style={[styles.square, { backgroundColor: backgroundColor }]}>
           <GameIndex />
           <CheckIcon />
           <LockIcon />
@@ -66,7 +70,7 @@ export default function GameEntry(props: GameEntryProps) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 6,
+    padding: 10,
   },
   square: {
     height: "100%",
@@ -75,16 +79,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#F3F9FB",
-  },
-  completed: {
-    backgroundColor: "#75A7D3",
-  },
-  locked: {
-    backgroundColor: "#EFEFEF",
   },
   gameIndex: {
     fontSize: 30,
-    color: "#75A7D3",
+    fontWeight: "500",
   },
 });

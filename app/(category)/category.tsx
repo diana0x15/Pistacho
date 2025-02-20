@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 
@@ -8,6 +9,7 @@ import GameEntry from "@/components/GameEntry";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { Game } from "@/constants/Game";
 import { getAssetComponent } from "@/components/CategoryCard";
+import { getCompletedGames } from "@/services/storage";
 import categories from "@/data/categories.json";
 import gameData from "@/data/games.json";
 
@@ -29,14 +31,23 @@ export default function CategoryScreen() {
     }
   });
 
+  // Fetch completed games from local storage.
+  const [completedGames, setCompletedGames] = useState<string[]>([]);
+  useEffect(() => {
+    const fetchCompletedGames = async () => {
+      const completedGames = await getCompletedGames();
+      setCompletedGames(completedGames);
+    };
+    fetchCompletedGames();
+  }, []);
+
   // Get the progress stats for the current category.
-  const totalGames = games.length;
-  // TODO: Read completed games from user data.
-  const completedGames = 0;
-  const progress = totalGames === 0 ? 0 : completedGames / totalGames;
+  const totalCount = games.length;
+  const completedCount = completedGames.length;
+  const progress = totalCount === 0 ? 0 : completedCount / totalCount;
 
   // Compute dimensions for the layout.
-  const entryWidth = Math.round((getWindowWidth() - 80) / 3);
+  const entryWidth = Math.floor((getWindowWidth() - 40) / 3);
 
   return (
     <ThemedView style={[styles.container]}>
@@ -55,7 +66,7 @@ export default function CategoryScreen() {
         </View>
         <View style={styles.progressContainer}>
           <ThemedText>
-            {completedGames}/{totalGames} crucigramas
+            {completedCount}/{totalCount} crucigramas
           </ThemedText>
           <ProgressBar color="#75A7D3" progress={progress} style="elevated" />
         </View>
@@ -73,10 +84,12 @@ export default function CategoryScreen() {
               >
                 <GameEntry
                   gameId={game.id}
-                  isCompleted={false}
+                  isCompleted={completedGames.includes(game.id)}
                   isLocked={false}
                   index={index + 1}
                   size={entryWidth}
+                  primaryColor={category.colors.accent}
+                  secondaryColor={category.colors.gradient_end}
                 />
               </View>
             ))}
@@ -101,7 +114,7 @@ const styles = StyleSheet.create({
   },
   grid: {
     marginTop: 40,
-    marginInline: 40,
+    marginInline: 20,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
