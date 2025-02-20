@@ -13,6 +13,7 @@ import { PaperProvider } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
+import { GameProvider } from "@/context/GameContext";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
@@ -38,26 +39,30 @@ export default function RootLayout() {
   }
 
   return (
-    <PaperProvider>
-      <StatusBar style="dark" />
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack
-          screenOptions={{
-            headerBackButtonDisplayMode: "minimal",
-            headerShadowVisible: false,
-            title: "",
-            headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack}>
-                <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
-              </TouchableOpacity>
-            ),
-          }}
+    <GameProvider>
+      <PaperProvider>
+        <StatusBar style="dark" />
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(category)" />
-          <Stack.Screen name="(game)" />
-        </Stack>
-      </ThemeProvider>
-    </PaperProvider>
+          <Stack
+            screenOptions={{
+              headerBackButtonDisplayMode: "minimal",
+              headerShadowVisible: false,
+              title: "",
+              headerLeft: () => (
+                <TouchableOpacity onPress={navigation.goBack}>
+                  <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
+                </TouchableOpacity>
+              ),
+            }}
+          >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(category)" />
+            <Stack.Screen name="(game)" />
+          </Stack>
+        </ThemeProvider>
+      </PaperProvider>
+    </GameProvider>
   );
 }

@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import { completeGame as storeCompletedGame } from "@/services/storage";
 
+import { GameContext } from "@/context/GameContext";
 import ThemedView from "@/components/ThemedView";
 import ThemedText from "@/components/ThemedText";
 import CrosswordGrid from "@/components/CrosswordGrid";
@@ -23,6 +23,8 @@ enum CurrentView {
 
 // Route URL: app/{gameId}.
 export default function GameScreen() {
+  const { addCompletedGame } = useContext(GameContext);
+
   // Get the current game data.
   const { gameId } = useLocalSearchParams<{ gameId: string }>();
   const game = gameData.find((game) => game.id === gameId);
@@ -46,7 +48,7 @@ export default function GameScreen() {
   };
 
   const completeGame = () => {
-    storeCompletedGame(gameId);
+    addCompletedGame(gameId);
     setCurrentView(CurrentView.GAME_COMPLETE);
   };
 

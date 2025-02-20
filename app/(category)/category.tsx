@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 
+import { GameContext } from "@/context/GameContext";
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import ProgressBar from "@/components/ProgressBar";
@@ -9,11 +10,12 @@ import GameEntry from "@/components/GameEntry";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { Game } from "@/constants/Game";
 import { getAssetComponent } from "@/components/CategoryCard";
-import { getCompletedGames } from "@/services/storage";
 import categories from "@/data/categories.json";
 import gameData from "@/data/games.json";
 
 export default function CategoryScreen() {
+  const { completedGames } = useContext(GameContext);
+
   // Get the data for the current category.
   const { categoryId } = useLocalSearchParams();
   const category = categories.find((category) => category.id === categoryId);
@@ -30,16 +32,6 @@ export default function CategoryScreen() {
       games.push(game);
     }
   });
-
-  // Fetch completed games from local storage.
-  const [completedGames, setCompletedGames] = useState<string[]>([]);
-  useEffect(() => {
-    const fetchCompletedGames = async () => {
-      const completedGames = await getCompletedGames();
-      setCompletedGames(completedGames);
-    };
-    fetchCompletedGames();
-  }, []);
 
   // Get the progress stats for the current category.
   const totalCount = games.length;
