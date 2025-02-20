@@ -12,6 +12,7 @@ type WordEntryProps = {
 };
 
 export default function WordEntry({
+  vocabEntry,
   hasActionButton = false,
   isSaved = false,
 }: WordEntryProps) {
@@ -27,11 +28,9 @@ export default function WordEntry({
     <View style={styles.conatiner}>
       <View style={styles.leftSide}>
         <ThemedText type={"cardTitle"} style={styles.title}>
-          toalla
+          {vocabEntry.word}
         </ThemedText>
-        <ThemedText>
-          Se usa para secarse el cuerpo después de la ducha.
-        </ThemedText>
+        <ThemedText>{vocabEntry.clue}</ThemedText>
       </View>
       <View style={styles.rightSide}>{action}</View>
     </View>

@@ -26,7 +26,10 @@ export default function GameScreen() {
   const { addCompletedGame } = useContext(GameContext);
 
   // Get the current game data.
-  const { gameId } = useLocalSearchParams<{ gameId: string }>();
+  const { gameId, categoryId } = useLocalSearchParams<{
+    gameId: string;
+    categoryId: string;
+  }>();
   const game = gameData.find((game) => game.id === gameId);
   if (game === undefined) {
     useNavigation().goBack();
@@ -57,7 +60,7 @@ export default function GameScreen() {
   }
 
   if (currentView === CurrentView.WORDS) {
-    return <ReviewWords />;
+    return <ReviewWords categoryId={categoryId} words={game.words} />;
   }
 
   return (

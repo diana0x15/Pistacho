@@ -5,6 +5,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 
 export type GameEntryProps = {
   gameId: string;
+  categoryId: string;
   index: number;
   primaryColor: string;
   secondaryColor: string;
@@ -54,7 +55,13 @@ export default function GameEntry(props: GameEntryProps) {
     : props.secondaryColor;
 
   return (
-    <Link push href={{ pathname: "../game", params: { gameId: props.gameId } }}>
+    <Link
+      push
+      href={{
+        pathname: "../game",
+        params: { gameId: props.gameId, categoryId: props.categoryId },
+      }}
+    >
       <View
         style={[styles.container, { width: props.size, height: props.size }]}
       >

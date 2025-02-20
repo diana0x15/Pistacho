@@ -4,16 +4,27 @@ import SegmentedControl from "@react-native-segmented-control/segmented-control"
 import ThemedText from "./ThemedText";
 import ThemedView from "./ThemedView";
 import WordEntry from "./WordEntry";
-import BathroomReduced from "@/assets/images/illustrations/bathroom-reduced.svg";
+import { getAssetComponent } from "@/components/CategoryCard";
+import categories from "@/data/categories.json";
+import { Word } from "@/constants/Game";
 
-export default function ReviewWords() {
+type ReviewWordsProps = {
+  categoryId: string;
+  words: Word[];
+};
+
+export default function ReviewWords(props: ReviewWordsProps) {
+  const category = categories.find((c) => c.id === props.categoryId);
+
   return (
     <ThemedView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <BathroomReduced height={170} width={150} />
+          {category
+            ? getAssetComponent(category?.image, 150, styles.image)
+            : null}
           <View style={styles.title}>
-            <ThemedText type="title">Lavabo</ThemedText>
+            <ThemedText type="titleSecondary">{category?.name}</ThemedText>
           </View>
         </View>
 
@@ -25,16 +36,22 @@ export default function ReviewWords() {
               onChange={(event) => {}}
             />
           </View>
-          <WordEntry hasActionButton={true} isSaved={true} />
-          <WordEntry hasActionButton={true} isSaved={false} />
-          <WordEntry hasActionButton={true} isSaved={false} />
-          <WordEntry hasActionButton={true} isSaved={true} />
-          <WordEntry hasActionButton={true} isSaved={false} />
-          <WordEntry hasActionButton={true} isSaved={true} />
-          <WordEntry hasActionButton={true} isSaved={false} />
-          <WordEntry hasActionButton={true} isSaved={false} />
-          <WordEntry hasActionButton={true} isSaved={true} />
-          <WordEntry hasActionButton={true} isSaved={false} />
+          {props.words.map((word, index) => {
+            const vocabEntry = {
+              id: "",
+              word: word.word,
+              clue: word.clue,
+              translation: "",
+            };
+            return (
+              <WordEntry
+                key={index}
+                vocabEntry={vocabEntry}
+                hasActionButton={true}
+                isSaved={false}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </ThemedView>
@@ -55,6 +72,9 @@ const styles = StyleSheet.create({
   title: {
     display: "flex",
     marginTop: 20, // Needed to align with the bathroom image.
+  },
+  image: {
+    flex: 1,
   },
   wordsContainer: {
     width: "100%",

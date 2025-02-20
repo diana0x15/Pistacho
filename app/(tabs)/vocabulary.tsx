@@ -15,6 +15,13 @@ export default function VocabularyScreen() {
   const PADDING_TOP = getTopInset() + 20;
   const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
 
+  const vocabEntry = {
+    id: "",
+    word: "CEREZA",
+    clue: "Fruta roja y redonda, en pareja. 🍒",
+    translation: "",
+  };
+
   return (
     <ThemedView style={[styles.container, { paddingTop: PADDING_TOP }]}>
       <Image
@@ -46,19 +53,14 @@ export default function VocabularyScreen() {
               appearance={"light"}
             />
           </View>
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
-          <WordEntry />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
+          <WordEntry vocabEntry={vocabEntry} />
         </View>
       </ScrollView>
     </ThemedView>

@@ -7,9 +7,9 @@ import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
+import { getAssetComponent } from "@/components/CategoryCard";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { Game } from "@/constants/Game";
-import { getAssetComponent } from "@/components/CategoryCard";
 import categories from "@/data/categories.json";
 import gameData from "@/data/games.json";
 
@@ -50,13 +50,7 @@ export default function CategoryScreen() {
         <View style={styles.header}>
           {getAssetComponent(category.image, 150, styles.image)}
           <View style={styles.title}>
-            <ThemedText
-              type="titleSecondary"
-              adjustsFontSizeToFit={true}
-              numberOfLines={2}
-            >
-              {category.name}
-            </ThemedText>
+            <ThemedText type="titleSecondary">{category.name}</ThemedText>
           </View>
         </View>
         <View style={styles.progressContainer}>
@@ -79,6 +73,7 @@ export default function CategoryScreen() {
               >
                 <GameEntry
                   gameId={game.id}
+                  categoryId={category.id}
                   isCompleted={completedGames.includes(game.id)}
                   isLocked={false}
                   index={index + 1}
