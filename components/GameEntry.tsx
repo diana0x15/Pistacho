@@ -6,9 +6,9 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 export type GameEntryProps = {
   gameId: string;
   index: number;
-  viewSize: number;
   isCompleted: boolean;
   isLocked: boolean;
+  size: number;
 };
 
 export default function GameEntry(props: GameEntryProps) {
@@ -46,16 +46,19 @@ export default function GameEntry(props: GameEntryProps) {
   return (
     <Link push href={{ pathname: "../game", params: { gameId: props.gameId } }}>
       <View
-        style={[
-          styles.container,
-          props.isCompleted ? styles.completed : undefined,
-          props.isLocked ? styles.locked : undefined,
-          { width: props.viewSize, height: props.viewSize },
-        ]}
+        style={[styles.container, { width: props.size, height: props.size }]}
       >
-        <GameIndex />
-        <CheckIcon />
-        <LockIcon />
+        <View
+          style={[
+            styles.square,
+            props.isCompleted ? styles.completed : undefined,
+            props.isLocked ? styles.locked : undefined,
+          ]}
+        >
+          <GameIndex />
+          <CheckIcon />
+          <LockIcon />
+        </View>
       </View>
     </Link>
   );
@@ -63,6 +66,11 @@ export default function GameEntry(props: GameEntryProps) {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 6,
+  },
+  square: {
+    height: "100%",
+    width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

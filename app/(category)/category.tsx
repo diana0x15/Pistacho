@@ -12,7 +12,7 @@ import categories from "@/data/categories.json";
 import gameData from "@/data/games.json";
 
 export default function CategoryScreen() {
-  // Get the current category data.
+  // Get the data for the current category.
   const { categoryId } = useLocalSearchParams();
   const category = categories.find((category) => category.id === categoryId);
   if (category === undefined) {
@@ -29,26 +29,14 @@ export default function CategoryScreen() {
     }
   });
 
-  const squareSize = getWindowWidth() / 3 - 50;
+  // Get the progress stats for the current category.
   const totalGames = games.length;
   // TODO: Read completed games from user data.
   const completedGames = 0;
   const progress = totalGames === 0 ? 0 : completedGames / totalGames;
 
-  const grid = () => {
-    let index = 0;
-    while (index < games.length) {
-      <GameEntry
-        key={games[index].id}
-        gameId={games[index].id}
-        isCompleted={false}
-        isLocked={false}
-        index={index + 1}
-        viewSize={squareSize}
-      />;
-      index++;
-    }
-  };
+  // Compute dimensions for the layout.
+  const entryWidth = Math.round((getWindowWidth() - 80) / 3);
 
   return (
     <ThemedView style={[styles.container]}>
@@ -88,7 +76,7 @@ export default function CategoryScreen() {
                   isCompleted={false}
                   isLocked={false}
                   index={index + 1}
-                  viewSize={squareSize}
+                  size={entryWidth}
                 />
               </View>
             ))}
@@ -112,12 +100,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   grid: {
-    width: "80%",
     marginTop: 40,
+    marginInline: 40,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    gap: 30,
   },
   alignLeft: {
     marginRight: 0,

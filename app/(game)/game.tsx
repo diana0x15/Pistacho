@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import { useAnimatedKeyboard, useAnimatedStyle } from "react-native-reanimated";
-import Animated from "react-native-reanimated";
+import Animated, {
+  useAnimatedKeyboard,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ThemedView from "@/components/ThemedView";
 import ThemedText from "@/components/ThemedText";
@@ -18,9 +21,18 @@ enum CurrentView {
   WORDS = "words",
 }
 
+async function setGameAsCompleted(gameId: string) {
+  try {
+    await AsyncStorage.setItem(gameId, "completed");
+  } catch (e) {
+    // saving error
+  }
+}
+
+// Route URL: app/{gameId}.
 export default function GameScreen() {
   // Get the current game data.
-  const { gameId } = useLocalSearchParams();
+  const { gameId } = useLocalSearchParams<{ gameId: string }>();
   const game = gameData.find((game) => game.id === gameId);
   if (game === undefined) {
     useNavigation().goBack();
@@ -41,7 +53,8 @@ export default function GameScreen() {
     setCurrentView(CurrentView.WORDS);
   };
 
-  const showGameCompleted = () => {
+  const completeGame = () => {
+    setGameAsCompleted(gameId);
     setCurrentView(CurrentView.GAME_COMPLETE);
   };
 
@@ -63,7 +76,7 @@ export default function GameScreen() {
             updateClue={(newClue: string) => {
               setClue(newClue);
             }}
-            completeGame={showGameCompleted}
+            completeGame={completeGame}
           />
         </GestureWrapper>
       </View>
