@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
+import { GameContext } from "@/context/GameContext";
 import ThemedText from "./ThemedText";
 import ThemedView from "./ThemedView";
 import WordEntry from "./WordEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import categories from "@/data/categories.json";
 import { Word } from "@/constants/Game";
-import { DefinitionType } from "@/constants/Vocabulary";
+import { DefinitionType, VocabEntry } from "@/constants/Vocabulary";
 import WIP from "@/components/WIP";
 
 type ReviewWordsProps = {
@@ -17,6 +18,8 @@ type ReviewWordsProps = {
 };
 
 export default function ReviewWords(props: ReviewWordsProps) {
+  const { savedWords } = useContext(GameContext);
+
   const category = categories.find((c) => c.id === props.categoryId);
 
   const [currentView, setCurrentView] = useState(DefinitionType.CLUE);
@@ -56,12 +59,15 @@ export default function ReviewWords(props: ReviewWordsProps) {
                 word: word.word,
                 clue: word.clue,
               };
+              const isSaved = savedWords.find((savedWord: VocabEntry) => {
+                return savedWord.word === vocabEntry.word;
+              });
               return (
                 <WordEntry
                   key={index}
                   vocabEntry={vocabEntry}
                   hasActionButton={true}
-                  isSaved={false}
+                  isSaved={isSaved}
                 />
               );
             })

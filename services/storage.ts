@@ -17,10 +17,10 @@ export const saveWord = async (word: VocabEntry) => {
 
 export const unsaveWord = async (word: VocabEntry) => {
   try {
-    let words = await AsyncStorage.getItem(SAVED_WORDS);
-    let wordList = words ? JSON.parse(words) : [];
-    const updatedWordList = wordList.filter(
-      (entry: { word: VocabEntry }) => entry.word !== word
+    let savedWords = await AsyncStorage.getItem(SAVED_WORDS);
+    let vocabEntryList = savedWords ? JSON.parse(savedWords) : [];
+    const updatedWordList = vocabEntryList.filter(
+      (entry: VocabEntry) => entry.word !== word.word
     );
     await AsyncStorage.setItem(SAVED_WORDS, JSON.stringify(updatedWordList));
   } catch (error) {

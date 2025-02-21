@@ -41,7 +41,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const removeSavedWord = async (vocabEntry: VocabEntry) => {
     await unsaveWord(vocabEntry);
     setSavedWords((prevState) => {
-      const updatedList = prevState.filter((item) => item !== vocabEntry);
+      const updatedList = prevState.filter(
+        (entry: VocabEntry) => entry.word !== vocabEntry.word
+      );
       return updatedList;
     });
   };
