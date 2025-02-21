@@ -7,4 +7,5 @@ export default interface Category {
     gradient_start: string;
     gradient_end: string;
   };
+  games: string[];
 }

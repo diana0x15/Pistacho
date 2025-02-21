@@ -19,8 +19,7 @@ import ITGirl from "@/assets/images/illustrations/it-girl.svg";
 import { GameContext } from "@/context/GameContext";
 import ThemedText from "@/components/ThemedText";
 import ProgressBar from "@/components/ProgressBar";
-import Category from "@/constants/Category";
-import Crossword from "@/constants/Crossword";
+import { Category } from "@/constants/Category";
 
 export function getAssetComponent(name: string, size: number, style?: any) {
   switch (name) {
@@ -54,18 +53,13 @@ export function getAssetComponent(name: string, size: number, style?: any) {
 }
 
 export default function CategoryCard({ category }: { category: Category }) {
-  const { completedGames, crosswords } = useContext(GameContext);
-
-  // Get the games in the current category.
-  const games = crosswords.filter((crossword: Crossword) => {
-    return crossword.category === category.id;
-  });
+  const { completedGames } = useContext(GameContext);
 
   // Compute the progress stats for the current category.
-  const completedGamesInThisCategory = games.filter((game: Crossword) => {
-    return completedGames.includes(game.id);
+  const completedGamesInThisCategory = category.games.filter((gameId) => {
+    return completedGames.includes(gameId);
   });
-  const totalCount = games.length;
+  const totalCount = category.games.length;
   const completedCount = completedGamesInThisCategory.length;
   const progress = totalCount === 0 ? 0 : completedCount / totalCount;
 
