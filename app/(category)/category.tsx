@@ -57,7 +57,11 @@ export default function CategoryScreen() {
           <ThemedText>
             {completedCount}/{totalCount} crucigramas
           </ThemedText>
-          <ProgressBar color="#75A7D3" progress={progress} style="elevated" />
+          <ProgressBar
+            color={category.colors.accent}
+            progress={progress}
+            style="elevated"
+          />
         </View>
         <View style={styles.gridWrapper}>
           <View style={styles.grid}>

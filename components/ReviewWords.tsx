@@ -34,6 +34,7 @@ export default function ReviewWords(props: ReviewWordsProps) {
               values={["Pistas", "Traducciones"]}
               selectedIndex={0}
               onChange={(event) => {}}
+              appearance={"light"}
             />
           </View>
           {props.words.map((word, index) => {
