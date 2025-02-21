@@ -9,12 +9,13 @@ import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import { getWindowWidth } from "@/constants/Dimensions";
+import { Game } from "@/constants/Game";
 import categories from "@/data/categories.json";
-import Crossword from "@/constants/Crossword";
+import gameData from "@/data/games.json";
 
 // Route URL: app/{categoryId}.
 export default function CategoryScreen() {
-  const { completedGames, crosswords } = useContext(GameContext);
+  const { completedGames } = useContext(GameContext);
 
   // Get the data for the current category.
   const { categoryId } = useLocalSearchParams();
@@ -25,17 +26,21 @@ export default function CategoryScreen() {
   }
 
   // Get the games in the current category.
-  const games = crosswords.filter((crossword: Crossword) => {
-    return crossword.category === categoryId;
+  const games: Game[] = [];
+  category.games.forEach((id) => {
+    const game = gameData.find((g) => g.id === id);
+    if (game) {
+      games.push(game);
+    }
   });
 
   const paddedGames = [...games];
   for (let i = 1; i <= 6; ++i) {
-    paddedGames.push({ id: i + "", category: categoryId });
+    paddedGames.push({ id: i + "", words: [] });
   }
 
   // Compute the progress stats for the current category.
-  const completedGamesInThisCategory = games.filter((game: Crossword) => {
+  const completedGamesInThisCategory = games.filter((game) => {
     return completedGames.includes(game.id);
   });
   const totalCount = games.length;
@@ -66,9 +71,9 @@ export default function CategoryScreen() {
         </View>
         <View style={styles.gridWrapper}>
           <View style={styles.grid}>
-            {paddedGames.map((crossword, index) => (
+            {paddedGames.map((game, index) => (
               <View
-                key={crossword.id}
+                key={game.id}
                 style={[
                   (index % 3 === 0 || index % 3 === 1) &&
                   index >= paddedGames.length - (paddedGames.length % 3)
@@ -77,9 +82,9 @@ export default function CategoryScreen() {
                 ]}
               >
                 <GameEntry
-                  gameId={crossword.id}
+                  gameId={game.id}
                   categoryId={category.id}
-                  isCompleted={completedGames.includes(crossword.id)}
+                  isCompleted={completedGames.includes(game.id)}
                   isLocked={index >= games.length}
                   index={index + 1}
                   size={entryWidth}
