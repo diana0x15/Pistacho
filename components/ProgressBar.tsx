@@ -1,7 +1,8 @@
 import { StyleSheet, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export type ProgressBarProps = {
-  progress: number;
+  progress: number; // Number between 0 and 1.
   color: string;
   style?: "default" | "elevated";
 };
@@ -12,6 +13,8 @@ export default function ProgressBar({
   style = "default",
 }: ProgressBarProps) {
   const barColor = style === "default" ? "#fff" : "#E7E2E2";
+  const dotColor = progress === 1 ? color : barColor;
+  const trophyColor = progress === 1 ? "#fff" : color;
 
   return (
     <View style={styles.container}>
@@ -23,7 +26,9 @@ export default function ProgressBar({
           ]}
         />
       </View>
-      <View style={[{ backgroundColor: barColor }, styles.dot]} />
+      <View style={[{ backgroundColor: dotColor }, styles.dot]}>
+        <Ionicons name="trophy" size={10} color={trophyColor} />
+      </View>
     </View>
   );
 }
@@ -46,6 +51,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   dot: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     width: 20,
     height: 20,
     marginLeft: -8,
