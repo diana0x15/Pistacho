@@ -48,20 +48,8 @@ export default function GameEntry(props: GameEntryProps) {
     );
   };
 
-  const backgroundColor = props.isLocked
-    ? "#EFEFEF"
-    : props.isCompleted
-    ? props.primaryColor
-    : props.secondaryColor;
-
-  return (
-    <Link
-      push
-      href={{
-        pathname: "../game",
-        params: { gameId: props.gameId, categoryId: props.categoryId },
-      }}
-    >
+  const Entry = () => {
+    return (
       <View
         style={[styles.container, { width: props.size, height: props.size }]}
       >
@@ -71,6 +59,27 @@ export default function GameEntry(props: GameEntryProps) {
           <LockIcon />
         </View>
       </View>
+    );
+  };
+
+  const backgroundColor = props.isLocked
+    ? "#EFEFEF"
+    : props.isCompleted
+    ? props.primaryColor
+    : props.secondaryColor;
+
+  if (props.isLocked) {
+    return <Entry />;
+  }
+  return (
+    <Link
+      push
+      href={{
+        pathname: "../game",
+        params: { gameId: props.gameId, categoryId: props.categoryId },
+      }}
+    >
+      <Entry />
     </Link>
   );
 }

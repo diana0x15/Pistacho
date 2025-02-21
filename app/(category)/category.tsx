@@ -34,6 +34,11 @@ export default function CategoryScreen() {
     }
   });
 
+  const paddedGames = [...games];
+  for (let i = 1; i <= 6; ++i) {
+    paddedGames.push({ id: i + "", words: [] });
+  }
+
   // Compute the progress stats for the current category.
   const completedGamesInThisCategory = games.filter((game) => {
     return completedGames.includes(game.id);
@@ -66,12 +71,12 @@ export default function CategoryScreen() {
         </View>
         <View style={styles.gridWrapper}>
           <View style={styles.grid}>
-            {games.map((game, index) => (
+            {paddedGames.map((game, index) => (
               <View
                 key={game.id}
                 style={[
                   (index % 3 === 0 || index % 3 === 1) &&
-                  index >= games.length - (games.length % 3)
+                  index >= paddedGames.length - (paddedGames.length % 3)
                     ? styles.alignLeft
                     : null,
                 ]}
@@ -80,7 +85,7 @@ export default function CategoryScreen() {
                   gameId={game.id}
                   categoryId={category.id}
                   isCompleted={completedGames.includes(game.id)}
-                  isLocked={false}
+                  isLocked={index >= games.length}
                   index={index + 1}
                   size={entryWidth}
                   primaryColor={category.colors.accent}
