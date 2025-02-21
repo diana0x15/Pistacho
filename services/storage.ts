@@ -1,9 +1,10 @@
+import { VocabEntry } from "@/constants/Vocabulary";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const COMPLETED_GAMES = "completedGames";
 const SAVED_WORDS = "savedWords";
 
-export const saveWord = async (word: string) => {
+export const saveWord = async (word: VocabEntry) => {
   try {
     let words = await AsyncStorage.getItem(SAVED_WORDS);
     let wordList = words ? JSON.parse(words) : [];
@@ -11,6 +12,19 @@ export const saveWord = async (word: string) => {
     await AsyncStorage.setItem(SAVED_WORDS, JSON.stringify(wordList));
   } catch (error) {
     console.error("Error saving word:", error);
+  }
+};
+
+export const unsaveWord = async (word: VocabEntry) => {
+  try {
+    let words = await AsyncStorage.getItem(SAVED_WORDS);
+    let wordList = words ? JSON.parse(words) : [];
+    const updatedWordList = wordList.filter(
+      (entry: { word: VocabEntry }) => entry.word !== word
+    );
+    await AsyncStorage.setItem(SAVED_WORDS, JSON.stringify(updatedWordList));
+  } catch (error) {
+    console.error("Error unsaving word:", error);
   }
 };
 

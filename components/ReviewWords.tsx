@@ -39,10 +39,8 @@ export default function ReviewWords(props: ReviewWordsProps) {
           </View>
           {props.words.map((word, index) => {
             const vocabEntry = {
-              id: "",
               word: word.word,
               clue: word.clue,
-              translation: "",
             };
             return (
               <WordEntry
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
   },
   title: {
     display: "flex",
-    marginTop: 20, // Needed to align with the bathroom image.
+    marginTop: 20, // Needed to align with the image.
   },
   image: {
     flex: 1,
@@ -83,8 +81,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingInline: 40,
-    gap: 18,
+    paddingInline: 30,
+    gap: 28,
     paddingBottom: 40,
   },
   switchContainer: {

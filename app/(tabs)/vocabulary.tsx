@@ -1,6 +1,8 @@
-import { View, StyleSheet, Dimensions, ScrollView, Image } from "react-native";
+import { useContext } from "react";
+import { View, StyleSheet, ScrollView, Image } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
+import { GameContext } from "@/context/GameContext";
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import WordEntry from "@/components/WordEntry";
@@ -9,18 +11,14 @@ import {
   getTopInset,
   getWindowHeight,
 } from "@/constants/Dimensions";
+import { VocabEntry } from "@/constants/Vocabulary";
 
 export default function VocabularyScreen() {
+  const { savedWords } = useContext(GameContext);
+
   const HEIGHT = getWindowHeight();
   const PADDING_TOP = getTopInset() + 20;
   const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
-
-  const vocabEntry = {
-    id: "",
-    word: "CEREZA",
-    clue: "Fruta roja y redonda, en pareja. 🍒",
-    translation: "",
-  };
 
   return (
     <ThemedView style={[styles.container, { paddingTop: PADDING_TOP }]}>
@@ -53,14 +51,9 @@ export default function VocabularyScreen() {
               appearance={"light"}
             />
           </View>
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
-          <WordEntry vocabEntry={vocabEntry} />
+          {savedWords.map((savedVocabEntry: VocabEntry, index: number) => {
+            return <WordEntry key={index} vocabEntry={savedVocabEntry} />;
+          })}
         </View>
       </ScrollView>
     </ThemedView>
@@ -83,8 +76,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingInline: 40,
-    gap: 18,
+    paddingInline: 30,
+    gap: 28,
   },
   switchContainer: {
     width: "80%",

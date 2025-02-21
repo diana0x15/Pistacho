@@ -1,7 +1,8 @@
-import { StyleSheet, View } from "react-native";
+import { useState, useContext } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
+import { GameContext } from "@/context/GameContext";
 import ThemedText from "./ThemedText";
-import ThemedView from "./ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { VocabEntry } from "@/constants/Vocabulary";
 
@@ -16,13 +17,27 @@ export default function WordEntry({
   hasActionButton = false,
   isSaved = false,
 }: WordEntryProps) {
+  const { addSavedWord, removeSavedWord } = useContext(GameContext);
+
+  const [isSavedState, setIsSavedState] = useState(isSaved);
+
   const action = hasActionButton ? (
-    isSaved ? (
+    isSavedState ? (
       <IconSymbol size={28} name="bookmark.fill" color={"#8BAB52"} />
     ) : (
       <IconSymbol size={28} name="bookmark" color={"#7E7E7E"} />
     )
   ) : undefined;
+
+  async function triggerSaved() {
+    if (isSavedState) {
+      await removeSavedWord(vocabEntry);
+      setIsSavedState(false);
+    } else {
+      await addSavedWord(vocabEntry);
+      setIsSavedState(true);
+    }
+  }
 
   return (
     <View style={styles.conatiner}>
@@ -32,7 +47,9 @@ export default function WordEntry({
         </ThemedText>
         <ThemedText>{vocabEntry.clue}</ThemedText>
       </View>
-      <View style={styles.rightSide}>{action}</View>
+      <View style={styles.rightSide}>
+        <TouchableOpacity onPress={triggerSaved}>{action}</TouchableOpacity>
+      </View>
     </View>
   );
 }

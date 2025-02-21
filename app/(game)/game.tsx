@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,

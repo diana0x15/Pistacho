@@ -13,6 +13,7 @@ import { Game } from "@/constants/Game";
 import categories from "@/data/categories.json";
 import gameData from "@/data/games.json";
 
+// Route URL: app/{categoryId}.
 export default function CategoryScreen() {
   const { completedGames } = useContext(GameContext);
 
