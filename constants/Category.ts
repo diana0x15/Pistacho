@@ -1,4 +1,4 @@
-type Category = {
+export default interface Category {
   id: string;
   name: string;
   image: string;
@@ -8,6 +8,4 @@ type Category = {
     gradient_end: string;
   };
   games: string[];
-};
-
-export { Category };
+}

@@ -8,14 +8,29 @@ import {
   unsaveWord,
 } from "@/services/storage";
 import { VocabEntry } from "@/constants/Vocabulary";
+import Crossword from "@/constants/Crossword";
+import { getCrosswords, getDictionary } from "@/services/firestoreService";
+import DictionaryEntry from "@/constants/Dictionary";
 
 export const GameContext = createContext<any>(null);
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
+  const [crosswords, setCrosswords] = useState<Crossword[]>([]);
+  const [dictionary, setDictionary] = useState<DictionaryEntry[]>([]);
   const [completedGames, setCompletedGames] = useState<string[]>([]);
   const [savedWords, setSavedWords] = useState<VocabEntry[]>([]);
 
   useEffect(() => {
+    const fetchCrosswords = async () => {
+      const crosswordsData = await getCrosswords();
+      setCrosswords(crosswordsData);
+    };
+
+    const fetchDictionary = async () => {
+      const dictionary = await getDictionary();
+      setDictionary(dictionary);
+    };
+
     const loadCompletedGames = async () => {
       const saved = await getCompletedGames();
       setCompletedGames(saved);
@@ -24,6 +39,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       const saved = await getSavedWords();
       setSavedWords(saved);
     };
+
+    fetchCrosswords();
+    fetchDictionary();
     loadCompletedGames();
     loadSavedWords();
   }, []);
@@ -51,9 +69,11 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <GameContext.Provider
       value={{
+        crosswords,
+        dictionary,
         completedGames,
-        addCompletedGame,
         savedWords,
+        addCompletedGame,
         addSavedWord,
         removeSavedWord,
       }}
