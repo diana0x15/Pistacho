@@ -1,4 +1,5 @@
-import { View, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { useState } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 import ThemedText from "./ThemedText";
@@ -7,6 +8,8 @@ import WordEntry from "./WordEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import categories from "@/data/categories.json";
 import { Word } from "@/constants/Game";
+import { DefinitionType } from "@/constants/Vocabulary";
+import WIP from "@/components/WIP";
 
 type ReviewWordsProps = {
   categoryId: string;
@@ -15,6 +18,8 @@ type ReviewWordsProps = {
 
 export default function ReviewWords(props: ReviewWordsProps) {
   const category = categories.find((c) => c.id === props.categoryId);
+
+  const [currentView, setCurrentView] = useState(DefinitionType.CLUE);
 
   return (
     <ThemedView style={styles.container}>
@@ -33,24 +38,34 @@ export default function ReviewWords(props: ReviewWordsProps) {
             <SegmentedControl
               values={["Pistas", "Traducciones"]}
               selectedIndex={0}
-              onChange={(event) => {}}
+              onChange={() => {
+                if (currentView === DefinitionType.CLUE) {
+                  setCurrentView(DefinitionType.TRANSLATION);
+                } else {
+                  setCurrentView(DefinitionType.CLUE);
+                }
+              }}
               appearance={"light"}
             />
           </View>
-          {props.words.map((word, index) => {
-            const vocabEntry = {
-              word: word.word,
-              clue: word.clue,
-            };
-            return (
-              <WordEntry
-                key={index}
-                vocabEntry={vocabEntry}
-                hasActionButton={true}
-                isSaved={false}
-              />
-            );
-          })}
+          {currentView === DefinitionType.TRANSLATION ? (
+            <WIP />
+          ) : (
+            props.words.map((word, index) => {
+              const vocabEntry = {
+                word: word.word,
+                clue: word.clue,
+              };
+              return (
+                <WordEntry
+                  key={index}
+                  vocabEntry={vocabEntry}
+                  hasActionButton={true}
+                  isSaved={false}
+                />
+              );
+            })
+          )}
         </View>
       </ScrollView>
     </ThemedView>

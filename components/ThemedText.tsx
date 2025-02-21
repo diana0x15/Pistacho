@@ -12,7 +12,8 @@ export type ThemedTextProps = TextProps & {
     | "defaultSemiBold"
     | "subtitle"
     | "link"
-    | "cardTitle";
+    | "cardTitle"
+    | "large";
   highlight?: boolean;
   adjustsFontSizeToFit?: boolean;
   numberOfLines?: number;
@@ -49,6 +50,7 @@ export default function ThemedText({
           type === "subtitle" ? styles.subtitle : undefined,
           type === "link" ? styles.link : undefined,
           type === "cardTitle" ? styles.cardTitle : undefined,
+          type === "large" ? styles.large : undefined,
           style,
         ]}
         {...rest}
@@ -90,6 +92,10 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
+    fontWeight: "bold",
+  },
+  large: {
+    fontSize: 26,
     fontWeight: "bold",
   },
 });

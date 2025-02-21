@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
@@ -12,9 +12,13 @@ import {
   getWindowHeight,
 } from "@/constants/Dimensions";
 import { VocabEntry } from "@/constants/Vocabulary";
+import { DefinitionType } from "@/constants/Vocabulary";
+import WIP from "@/components/WIP";
 
 export default function VocabularyScreen() {
   const { savedWords } = useContext(GameContext);
+
+  const [currentView, setCurrentView] = useState(DefinitionType.CLUE);
 
   const HEIGHT = getWindowHeight();
   const PADDING_TOP = getTopInset() + 20;
@@ -47,13 +51,23 @@ export default function VocabularyScreen() {
             <SegmentedControl
               values={["Pistas", "Traducciones"]}
               selectedIndex={0}
-              onChange={(event) => {}}
+              onChange={() => {
+                if (currentView === DefinitionType.CLUE) {
+                  setCurrentView(DefinitionType.TRANSLATION);
+                } else {
+                  setCurrentView(DefinitionType.CLUE);
+                }
+              }}
               appearance={"light"}
             />
           </View>
-          {savedWords.map((savedVocabEntry: VocabEntry, index: number) => {
-            return <WordEntry key={index} vocabEntry={savedVocabEntry} />;
-          })}
+          {currentView === DefinitionType.TRANSLATION ? (
+            <WIP />
+          ) : (
+            savedWords.map((savedVocabEntry: VocabEntry, index: number) => {
+              return <WordEntry key={index} vocabEntry={savedVocabEntry} />;
+            })
+          )}
         </View>
       </ScrollView>
     </ThemedView>

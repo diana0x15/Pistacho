@@ -3,4 +3,9 @@ type VocabEntry = {
   clue: string;
 };
 
-export { VocabEntry };
+enum DefinitionType {
+  CLUE = "clue",
+  TRANSLATION = "translation",
+}
+
+export { VocabEntry, DefinitionType };
