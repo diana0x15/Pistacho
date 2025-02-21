@@ -2,7 +2,6 @@
   {
     "id": "1",
     "name": "Comida",
-    "games": ["1001", "1002", "1003", "1004", "1005"],
     "image": "burger",
     "colors": {
       "accent": "#8DB449",
@@ -13,7 +12,6 @@
   {
     "id": "2",
     "name": "Casa y Muebles",
-    "games": ["2001", "2002", "2003", "2004", "2005", "2006"],
     "image": "living-room",
     "colors": {
       "accent": "#75A7D3",
@@ -24,7 +22,6 @@
   {
     "id": "3",
     "name": "Trabajo y Escuela",
-    "games": ["3001", "3002", "3003", "3004", "3005"],
     "image": "it-girl",
     "colors": {
       "accent": "#CA7F8A",
