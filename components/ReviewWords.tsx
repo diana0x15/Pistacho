@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { GameContext } from "@/context/GameContext";
 import ThemedText from "./ThemedText";
@@ -8,6 +9,7 @@ import ThemedView from "./ThemedView";
 import WordEntry from "./WordEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import categories from "@/data/categories.json";
+import { countWords } from "@/utils/Text";
 import { Word } from "@/constants/Game";
 import { DefinitionType, VocabEntry } from "@/constants/Vocabulary";
 import WIP from "@/components/WIP";
@@ -24,15 +26,21 @@ export default function ReviewWords(props: ReviewWordsProps) {
 
   const [currentView, setCurrentView] = useState(DefinitionType.CLUE);
 
+  const numberOfLines = countWords(category?.name) === 1 ? 1 : 2;
+
   return (
     <ThemedView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          {category
-            ? getAssetComponent(category?.image, 150, styles.image)
-            : null}
-          <View style={styles.title}>
-            <ThemedText type="titleSecondary">{category?.name}</ThemedText>
+          {category ? getAssetComponent(category?.image, 150) : null}
+          <View style={styles.titleWrapper}>
+            <Text
+              numberOfLines={numberOfLines}
+              adjustsFontSizeToFit
+              style={styles.title}
+            >
+              {category?.name}
+            </Text>
           </View>
         </View>
 
@@ -86,15 +94,21 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    paddingInline: 20,
+  },
+  titleWrapper: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
   },
   title: {
-    display: "flex",
-    marginTop: 20, // Needed to align with the image.
-  },
-  image: {
-    flex: 1,
+    textAlign: "left",
+    fontSize: RFPercentage(5),
+    fontWeight: "bold",
+    fontFamily: "Hanken Grotesk",
+    color: "#7F7F7F",
+    marginLeft: 8,
+    flexWrap: "wrap",
   },
   wordsContainer: {
     width: "100%",

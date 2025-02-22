@@ -20,3 +20,13 @@ export function getAdjustedTextSize(text: string, baseSize: number) {
   }
   return baseSize - adjustment;
 }
+
+export function countWords(str: string | undefined) {
+  if (!str) {
+    return 0;
+  }
+  return str
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0).length;
+}

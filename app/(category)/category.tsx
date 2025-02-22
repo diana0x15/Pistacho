@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, Text } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { GameContext } from "@/context/GameContext";
 import ThemedText from "@/components/ThemedText";
@@ -10,6 +11,7 @@ import GameEntry from "@/components/GameEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { getGamesInCategory } from "@/utils/Data";
+import { countWords } from "@/utils/Text";
 import categories from "@/data/categories.json";
 
 // Route URL: app/{categoryId}.
@@ -41,14 +43,21 @@ export default function CategoryScreen() {
 
   // Compute dimensions for the layout.
   const entryWidth = Math.floor((getWindowWidth() - 40) / 3);
+  const numberOfLines = countWords(category.name) === 1 ? 1 : 2;
 
   return (
     <ThemedView style={[styles.container]}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.header}>
-          {getAssetComponent(category.image, 150, styles.image)}
-          <View style={styles.title}>
-            <ThemedText type="titleSecondary">{category.name}</ThemedText>
+          {getAssetComponent(category.image, 150)}
+          <View style={styles.titleWrapper}>
+            <Text
+              numberOfLines={numberOfLines}
+              adjustsFontSizeToFit
+              style={styles.title}
+            >
+              {category.name}
+            </Text>
           </View>
         </View>
         <View style={styles.progressContainer}>
@@ -117,15 +126,21 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
+    paddingInline: 20,
+  },
+  titleWrapper: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
   },
   title: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    flex: 1,
-  },
-  image: {
-    flex: 1,
+    textAlign: "left",
+    fontSize: RFPercentage(6),
+    fontWeight: "bold",
+    fontFamily: "Hanken Grotesk",
+    color: "#7F7F7F",
+    marginLeft: 8,
+    flexWrap: "wrap",
   },
   progressContainer: {
     width: "100%",
