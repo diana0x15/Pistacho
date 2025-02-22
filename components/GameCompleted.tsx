@@ -15,31 +15,41 @@ export default function GameCompleted(callbacks: Callbacks) {
   const navigation = useNavigation();
 
   const circleSize = getWindowWidth() * 0.8;
+  const pistachoSize = getWindowWidth() * 0.5;
 
   return (
     <ThemedView style={styles.container}>
-      <View style={styles.pistachoContainer}>
-        <View
-          style={[
-            styles.pistachoBackground,
-            { height: circleSize, width: circleSize },
-          ]}
-        >
-          <View style={[styles.pistachoShadow, { height: 220, width: 220 }]} />
-          <Pistacho style={styles.pistacho} height={220} width={220} />
+      <View style={styles.contentTop}>
+        <View style={styles.pistachoContainer}>
+          <View
+            style={[
+              styles.pistachoBackground,
+              { height: circleSize, width: circleSize },
+            ]}
+          >
+            <View
+              style={[styles.pistachoShadow, { height: 220, width: 220 }]}
+            />
+            <Pistacho
+              style={styles.pistacho}
+              height={pistachoSize}
+              width={pistachoSize}
+            />
+          </View>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={{ textAlign: "center" }}>
+            <ThemedText type="subtitle" highlight={true}>
+              ¡Crujiente!
+            </ThemedText>
+            <ThemedText type="subtitle"> </ThemedText>
+            <ThemedText style={{ color: "#585858" }} type="subtitle">
+              Has completado otro crucigrama.
+            </ThemedText>
+          </Text>
         </View>
       </View>
-      <View style={styles.textContainer}>
-        <Text style={{ textAlign: "center" }}>
-          <ThemedText type="subtitle" highlight={true}>
-            ¡Crujiente!
-          </ThemedText>
-          <ThemedText type="subtitle"> </ThemedText>
-          <ThemedText style={{ color: "#585858" }} type="subtitle">
-            Has completado otro crucigrama.
-          </ThemedText>
-        </Text>
-      </View>
+
       <View style={styles.buttonsContainer}>
         <ThemedButton mode={"secondary"} onPress={callbacks.showWordList}>
           Revisa las palabras
@@ -63,11 +73,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     flex: 1,
-    gap: 60,
-    paddingBottom: 40,
   },
   pistachoContainer: {
-    paddingTop: 80,
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   pistachoBackground: {
     backgroundColor: "#FAFAFA",
@@ -76,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
+    marginBlock: 6,
   },
   pistacho: {
     position: "absolute",
@@ -87,12 +99,16 @@ const styles = StyleSheet.create({
     bottom: -160,
   },
   textContainer: {
+    marginTop: "auto",
     width: "100%",
     paddingInline: 20,
+  },
+  contentTop: {
+    flex: 1,
   },
   buttonsContainer: {
     display: "flex",
     gap: 18,
-    marginTop: "auto",
+    marginBlock: "12%",
   },
 });

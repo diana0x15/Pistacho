@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, Dimensions } from "react-native";
 import { useNavigation, useRouter } from "expo-router";
 
 import ThemedText from "@/components/ThemedText";
@@ -8,13 +8,14 @@ import ThemedButton from "@/components/ThemedButton";
 import CategoryCard from "@/components/CategoryCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { GameContext } from "@/context/GameContext";
-import Pistacho from "@/assets/images/pistacho/pistacho.svg";
+import Pistacho from "@/assets/images/pistacho/pistacho-rotated.svg";
 import { getAdjustedTextSize } from "@/utils/Text";
 import {
   getBottomInset,
   getBottomTabHeight,
   getTopInset,
   getVisibleHeight,
+  getWindowWidth,
 } from "@/constants/Dimensions";
 import { getRandomGame } from "@/utils/Data";
 import categories from "@/data/categories.json";
@@ -24,6 +25,7 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
+  const SCREEN_WIDTH = getWindowWidth();
   const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
   const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
   const PISTACHO_SIZE = HEADER_HEIGHT * 0.6;
@@ -62,7 +64,7 @@ export default function HomeScreen() {
         </View>
         <View style={styles.headerRightSide}>
           <Pistacho
-            width={PISTACHO_SIZE}
+            width={SCREEN_WIDTH * 0.4}
             height={PISTACHO_SIZE}
             style={styles.pistacho}
           />
@@ -120,15 +122,16 @@ const styles = StyleSheet.create({
     paddingBlock: 40,
   },
   headerLeftSide: {
-    flex: 6,
     display: "flex",
+    flex: 1,
     flexDirection: "column",
     paddingLeft: 20,
   },
   headerRightSide: {
-    flex: 4,
     display: "flex",
+    alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
   title: {
     flex: 1,
@@ -140,8 +143,7 @@ const styles = StyleSheet.create({
     marginTop: "auto",
   },
   pistacho: {
-    transform: [{ rotate: "-20deg" }],
-    marginLeft: -14,
+    marginBottom: -30,
   },
   listContainer: {
     paddingInline: 20,
