@@ -74,7 +74,7 @@ export default function CategoryScreen() {
                 ]}
               >
                 <GameEntry
-                  gameId={game.id}
+                  game={game}
                   categoryId={category.id}
                   isCompleted={completedGames.includes(game.id)}
                   isLocked={index >= games.length}

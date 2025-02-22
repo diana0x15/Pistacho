@@ -344,7 +344,7 @@ function computeGridSize(words: Word[]) {
  * Creates a crossword grid for the given words, where invalid cells are null.
  * If empty===true, the grid's cells will be ''.
  */
-function createGrid(words: Word[], empty: boolean) {
+export function createGrid(words: Word[], empty: boolean) {
   const gridSize = computeGridSize(words);
   const grid = Array.from({ length: gridSize }, () =>
     Array(gridSize).fill(null)
