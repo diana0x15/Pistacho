@@ -1,19 +1,13 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
-import { useNavigation } from "expo-router";
+import { View, Text, StyleSheet } from "react-native";
+import { router } from "expo-router";
 
-import ThemedText from "./ThemedText";
-import ThemedView from "./ThemedView";
-import ThemedButton from "./ThemedButton";
+import ThemedText from "@/components/ThemedText";
+import ThemedView from "@/components/ThemedView";
+import ThemedButton from "@/components/ThemedButton";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
 
-interface Callbacks {
-  showWordList: () => void;
-}
-
-export default function GameCompleted(callbacks: Callbacks) {
-  const navigation = useNavigation();
-
+export default function WelcomeScreen() {
   const circleSize = getWindowWidth() * 0.8;
   const pistachoSize = getWindowWidth() * 0.5;
 
@@ -39,24 +33,21 @@ export default function GameCompleted(callbacks: Callbacks) {
         </View>
         <View style={styles.textContainer}>
           <Text style={{ textAlign: "center" }}>
-            <ThemedText type="subtitle" highlight={true}>
-              ¡Crujiente!
+            <ThemedText type="titleSecondary">¡Aprende Español con</ThemedText>
+            <ThemedText type="titleSecondary"> </ThemedText>
+            <ThemedText type="titleSecondary" highlight={true}>
+              Pistacho
             </ThemedText>
-            <ThemedText type="subtitle"> </ThemedText>
-            <ThemedText style={{ color: "#585858" }} type="subtitle">
-              Has completado otro crucigrama.
-            </ThemedText>
+            <ThemedText type="titleSecondary">!</ThemedText>
           </Text>
         </View>
       </View>
 
       <View style={styles.buttonsContainer}>
-        <ThemedButton mode={"secondary"} onPress={callbacks.showWordList}>
-          Revisa las palabras
-        </ThemedButton>
         <ThemedButton
+          mode={"secondary"}
           onPress={() => {
-            navigation.goBack();
+            router.replace("/(welcome)/form");
           }}
         >
           Siguente
@@ -75,7 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   pistachoContainer: {
-    flex: 1,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -99,13 +89,16 @@ const styles = StyleSheet.create({
     bottom: -160,
   },
   textContainer: {
-    marginTop: "auto",
     width: "100%",
     paddingInline: 20,
+    marginTop: 30,
   },
   contentTop: {
     flex: 1,
     width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonsContainer: {
     display: "flex",

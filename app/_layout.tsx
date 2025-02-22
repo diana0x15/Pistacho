@@ -38,6 +38,18 @@ export default function RootLayout() {
     return null;
   }
 
+  const options = {
+    headerShown: true,
+    title: "",
+    headerBackButtonDisplayMode: "minimal" as "minimal",
+    headerShadowVisible: false,
+    headerLeft: () => (
+      <TouchableOpacity onPress={navigation.goBack}>
+        <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
+      </TouchableOpacity>
+    ),
+  };
+
   return (
     <GameProvider>
       <PaperProvider>
@@ -45,21 +57,11 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack
-            screenOptions={{
-              headerBackButtonDisplayMode: "minimal",
-              headerShadowVisible: false,
-              title: "",
-              headerLeft: () => (
-                <TouchableOpacity onPress={navigation.goBack}>
-                  <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
-                </TouchableOpacity>
-              ),
-            }}
-          >
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="(category)" />
-            <Stack.Screen name="(game)" />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="(category)" options={options} />
+            <Stack.Screen name="(game)" options={options} />
+            <Stack.Screen name="(welcome)" />
           </Stack>
         </ThemeProvider>
       </PaperProvider>
