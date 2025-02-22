@@ -13,7 +13,6 @@ import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
-import gameData from "@/data/games.json";
 import { getGamesInCategory } from "@/utils/Data";
 
 enum CurrentView {

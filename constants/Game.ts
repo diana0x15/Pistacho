@@ -1,3 +1,8 @@
+type GameWithCategory = {
+  id: string;
+  category: number;
+};
+
 type Game = {
   id: string;
   words: Word[];
@@ -18,4 +23,4 @@ enum Direction {
 const HORIZONTAL = Direction.HORIZONTAL;
 const VERTICAL = Direction.VERTICAL;
 
-export { Game, Word, Direction, HORIZONTAL, VERTICAL };
+export { Game, Word, Direction, HORIZONTAL, VERTICAL, GameWithCategory };

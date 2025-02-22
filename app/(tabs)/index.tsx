@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
+import { useNavigation, useRouter } from "expo-router";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import ThemedButton from "@/components/ThemedButton";
 import CategoryCard from "@/components/CategoryCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { GameContext } from "@/context/GameContext";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import { getAdjustedTextSize } from "@/utils/Text";
 import {
@@ -13,13 +16,22 @@ import {
   getTopInset,
   getVisibleHeight,
 } from "@/constants/Dimensions";
+import { getRandomGame } from "@/utils/Data";
 import categories from "@/data/categories.json";
 
 export default function HomeScreen() {
+  const { completedGames } = useContext(GameContext);
+  const router = useRouter();
+
   const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
   const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
   const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
   const PISTACHO_SIZE = HEADER_HEIGHT * 0.6;
+
+  function openRandomGame() {
+    const { id, category } = getRandomGame(completedGames);
+    router.push(`/(game)/game?gameId=${id}&categoryId=${category}`);
+  }
 
   const Header = () => {
     const [name] = "Diana".split(" ", 1);
@@ -43,12 +55,7 @@ export default function HomeScreen() {
             </ThemedText>
           </View>
           <View style={styles.buttonContainer}>
-            <ThemedButton
-              mode="primary"
-              onPress={() => {
-                console.log("hi");
-              }}
-            >
+            <ThemedButton mode="primary" onPress={openRandomGame}>
               Juego aleatorio
             </ThemedButton>
           </View>
