@@ -1,0 +1,349 @@
+[
+  {
+    "id": "3001",
+    "words": [
+      {
+        "word": "ESTUDIANTE",
+        "clue": "Persona que aprende en una universidad. 📖",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "TARJETA",
+        "clue": "Objeto pequeño usado para comprar o identificar. 💳",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "DENTISTA",
+        "clue": "Profesional que se ocupa de la salud dental. 🦷",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "TRAJE",
+        "clue": "Conjunto elegante de chaqueta y pantalón o falda, usado en trabajos formales.",
+        "direction": "vertical",
+        "row": 3,
+        "col": 6
+      },
+      {
+        "word": "PAPEL",
+        "clue": "Material blanco usado para escribir, dibujar o imprimir. 📃",
+        "direction": "vertical",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "ARTISTA",
+        "clue": "Persona que se dedica a crear arte, como pintura o escultura. 🎨",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "CÁMARA",
+        "clue": "Objeto para tomar fotos o grabar videos. 📷",
+        "direction": "vertical",
+        "row": 4,
+        "col": 9
+      },
+      {
+        "word": "AGENDA",
+        "clue": "Cuaderno donde se apuntan citas o tareas. 📅",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 4
+      },
+      {
+        "word": "MOCHILA",
+        "clue": "Bolsa con correas para llevar cosas en la espalda. 🎒",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "id": "3002",
+    "words": [
+      {
+        "word": "CAMARERO",
+        "clue": "Persona que sirve comida y bebidas en un restaurante.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 5
+      },
+      {
+        "word": "REGLA",
+        "clue": "Herramienta para medir o trazar líneas rectas. 📏",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 1
+      },
+      {
+        "word": "ORDENADOR",
+        "clue": "Aparato para trabajar con programas o navegar en internet.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "word": "PEGAMENTO",
+        "clue": "Sustancia para unir cosas.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "word": "BAILARÍN",
+        "clue": "Persona que se dedica a bailar profesionalmente. 💃",
+        "direction": "vertical",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "ESCALERA",
+        "clue": "Objeto usado para subir o bajar. 🪜",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 2
+      },
+      {
+        "word": "LIMPIEZA",
+        "clue": "Persona que se encarga de mantener un lugar limpio y ordenado.",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "MÓVIL",
+        "clue": "Aparato para hablar con otras personas a distancia. 📱",
+        "direction": "vertical",
+        "row": 5,
+        "col": 2
+      },
+      {
+        "word": "LÁPIZ",
+        "clue": "Utensilio para escribir o dibujar. ✏️",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 2
+      }
+    ]
+  },
+  {
+    "id": "3003",
+    "words": [
+      {
+        "word": "COCINERO",
+        "clue": "Persona que prepara comida en un restaurante.",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "CUADERNO",
+        "clue": "Libro de hojas en blanco para escribir. 📒",
+        "direction": "vertical",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "GAFAS",
+        "clue": "Objetos que usamos para ver mejor o proteger los ojos. 👓",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "PINCEL",
+        "clue": "Herramienta para pintar. 🖌️",
+        "direction": "vertical",
+        "row": 1,
+        "col": 9
+      },
+      {
+        "word": "CAJÓN",
+        "clue": "Parte de un mueble donde se guardan cosas. 🗄️",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 5
+      },
+      {
+        "word": "ABOGADO",
+        "clue": "Persona que defiende a otras en un tribunal. ⚖️",
+        "direction": "vertical",
+        "row": 3,
+        "col": 6
+      },
+      {
+        "word": "PROFESOR",
+        "clue": "Persona que enseña en una escuela o universidad.",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "FOTÓGRAFO",
+        "clue": "Persona que toma fotos como trabajo. 📸",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 0
+      },
+      {
+        "word": "RELOJ",
+        "clue": "Objeto para ver la hora. ⏰",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "id": "3004",
+    "words": [
+      {
+        "word": "PELUQUERO",
+        "clue": "Persona que corta o peina el pelo. 💇‍♂️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "PLUMA",
+        "clue": "Herramienta para escribir, a menudo usada para firmar documentos. 🖋️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "ESCRITOR",
+        "clue": "Persona que crea libros, artículos o textos. 📚",
+        "direction": "vertical",
+        "row": 0,
+        "col": 6
+      },
+      {
+        "word": "MÉDICO",
+        "clue": "Persona que cuida la salud de las personas. 👩‍⚕️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 10
+      },
+      {
+        "word": "IMPRESORA",
+        "clue": "Máquina que imprime documentos en papel. 🖨️",
+        "direction": "vertical",
+        "row": 2,
+        "col": 2
+      },
+      {
+        "word": "AGUJA",
+        "clue": "Herramienta fina y puntiaguda usada para coser. 🪡",
+        "direction": "vertical",
+        "row": 3,
+        "col": 4
+      },
+      {
+        "word": "ARQUITECTO",
+        "clue": "Profesional que diseña edificios y estructuras. 🏛️",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 1
+      },
+      {
+        "word": "GOMA",
+        "clue": "Herramienta para borrar lo escrito con lápiz.",
+        "direction": "vertical",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "RATÓN",
+        "clue": "Dispositivo para mover el cursor en un ordenador. 🖱️",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 6
+      },
+      {
+        "word": "AURICULARES",
+        "clue": "Dispositivo que se pone en los oídos para escuchar sonido. 🎧",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "3005",
+    "words": [
+      {
+        "word": "TECLADO",
+        "clue": "Dispositivo para escribir en un ordenador. ⌨️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "CASCO",
+        "clue": "Objeto que protege la cabeza en el trabajo. ⛑️",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "MECÁNICO",
+        "clue": "Persona que repara y mantiene vehículos. 🛠️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 3
+      },
+      {
+        "word": "MICRÓFONO",
+        "clue": "Objeto que captura la voz o sonidos. 🎤",
+        "direction": "vertical",
+        "row": 1,
+        "col": 7
+      },
+      {
+        "word": "BOMBERO",
+        "clue": "Persona que apaga incendios y rescata a personas. 🚒",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "word": "UNIFORME",
+        "clue": "Ropa especial usada en ciertos trabajos.",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 2
+      },
+      {
+        "word": "MONITOR",
+        "clue": "Pantalla de un ordenador. 🖥️",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 2
+      },
+      {
+        "word": "PILA",
+        "clue": "Objeto pequeño que almacena energía para hacer funcionar dispositivos. 🔋",
+        "direction": "vertical",
+        "row": 6,
+        "col": 5
+      },
+      {
+        "word": "CARGADOR",
+        "clue": "Dispositivo para dar energía a aparatos electrónicos.",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 1
+      }
+    ]
+  }
+]

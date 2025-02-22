@@ -14,6 +14,7 @@ import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
 import gameData from "@/data/games.json";
+import { getGamesInCategory } from "@/utils/Data";
 
 enum CurrentView {
   GAME = "game",
@@ -30,7 +31,7 @@ export default function GameScreen() {
     gameId: string;
     categoryId: string;
   }>();
-  const game = gameData.find((game) => game.id === gameId);
+  const game = getGamesInCategory(categoryId).find((g) => g.id === gameId);
   if (game === undefined) {
     useNavigation().goBack();
     return;

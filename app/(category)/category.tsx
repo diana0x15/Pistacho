@@ -9,9 +9,8 @@ import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import { getWindowWidth } from "@/constants/Dimensions";
-import { Game } from "@/constants/Game";
+import { getGamesInCategory } from "@/utils/Data";
 import categories from "@/data/categories.json";
-import gameData from "@/data/games.json";
 
 // Route URL: app/{categoryId}.
 export default function CategoryScreen() {
@@ -26,14 +25,7 @@ export default function CategoryScreen() {
   }
 
   // Get the games in the current category.
-  const games: Game[] = [];
-  category.games.forEach((id) => {
-    const game = gameData.find((g) => g.id === id);
-    if (game) {
-      games.push(game);
-    }
-  });
-
+  const games = getGamesInCategory(category.id);
   const paddedGames = [...games];
   for (let i = 1; i <= 6; ++i) {
     paddedGames.push({ id: i + "", words: [] });
