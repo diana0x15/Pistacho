@@ -9,9 +9,8 @@ export default function AppIndex() {
   useEffect(() => {
     // TODO: Maybe also load app data here, while the splash screen is shown.
     const checkLogin = async () => {
-      const hasSeenLogin = await AsyncStorage.getItem("hasSeenLogin");
-      // router.replace(hasSeenLogin ? "/(tabs)" : "/(welcome)/welcome");
-      router.replace("/(welcome)/welcome");
+      const onboardingDone = await AsyncStorage.getItem("onboardingDone");
+      router.replace(onboardingDone ? "/(tabs)" : "/(onboarding)/welcome");
       setIsLoading(false);
     };
 

@@ -2,7 +2,7 @@ import { View, StyleSheet, ScrollView, Image } from "react-native";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
-import ToolBox from "@/assets/images/illustrations/toolbox.svg";
+import ToolBox from "@/assets/images/illustrations/other/toolbox.svg";
 
 export default function WIP() {
   return (

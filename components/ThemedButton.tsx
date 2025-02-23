@@ -9,6 +9,7 @@ type ThemedButtonProps = {
   mode?: "primary" | "secondary";
   lightColor?: string;
   darkColor?: string;
+  isDisbaled?: boolean;
   onPress: (event: GestureResponderEvent) => void;
 };
 
@@ -17,6 +18,7 @@ export default function ThemedButton({
   mode = "primary",
   lightColor,
   darkColor,
+  isDisbaled = false,
   onPress,
 }: ThemedButtonProps) {
   const color = useThemeColor(
@@ -40,6 +42,7 @@ export default function ThemedButton({
       style={[{ borderColor: outlineColor }, styles.buttonStyle]}
       labelStyle={[{ color: textColor }, styles.labelStyle]}
       onPress={onPress}
+      disabled={isDisbaled}
     >
       {children}
     </Button>

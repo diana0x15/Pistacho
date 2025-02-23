@@ -61,7 +61,7 @@ export default function RootLayout() {
             <Stack.Screen name="(tabs)" />
             <Stack.Screen name="(category)" options={options} />
             <Stack.Screen name="(game)" options={options} />
-            <Stack.Screen name="(welcome)" />
+            <Stack.Screen name="(onboarding)" />
           </Stack>
         </ThemeProvider>
       </PaperProvider>

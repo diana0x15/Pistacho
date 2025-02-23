@@ -30,3 +30,7 @@ export function countWords(str: string | undefined) {
     .split(/\s+/)
     .filter((word) => word.length > 0).length;
 }
+
+export function isNameValid(str: string) {
+  return str.length > 0;
+}
