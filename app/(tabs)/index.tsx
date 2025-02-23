@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { StyleSheet, ScrollView, View, Dimensions } from "react-native";
-import { useNavigation, useRouter } from "expo-router";
+import { StyleSheet, ScrollView, View } from "react-native";
+import { useRouter } from "expo-router";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
@@ -8,6 +8,7 @@ import ThemedButton from "@/components/ThemedButton";
 import CategoryCard from "@/components/CategoryCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { GameContext } from "@/context/GameContext";
+import { UserContext } from "@/context/UserContext";
 import Pistacho from "@/assets/images/pistacho/pistacho-rotated.svg";
 import { getAdjustedTextSize } from "@/utils/Text";
 import {
@@ -22,6 +23,7 @@ import categories from "@/data/categories.json";
 
 export default function HomeScreen() {
   const { completedGames } = useContext(GameContext);
+  const { name } = useContext(UserContext);
   const router = useRouter();
 
   const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
@@ -36,8 +38,6 @@ export default function HomeScreen() {
   }
 
   const Header = () => {
-    const [name] = "Diana".split(" ", 1);
-
     // Dynamically adjust font size based on the length of the name
     let textSize = getAdjustedTextSize(name, 64);
     const fontStyle = {

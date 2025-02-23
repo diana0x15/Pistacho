@@ -1,22 +1,13 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { TextInput } from "react-native-paper";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import ThemedButton from "@/components/ThemedButton";
 import CanvasStand from "@/assets/images/illustrations/onboarding/canvas-stand.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
-import { isNameValid } from "@/utils/Text";
 
 enum Level {
   BEGINNER = "Principiante",

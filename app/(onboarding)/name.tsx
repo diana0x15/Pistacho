@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -16,8 +16,10 @@ import ThemedButton from "@/components/ThemedButton";
 import Blackboard from "@/assets/images/illustrations/onboarding/blackboard.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { isNameValid } from "@/utils/Text";
+import { UserContext } from "@/context/UserContext";
 
 export default function NameScreen() {
+  const { setUserName } = useContext(UserContext);
   const [name, setName] = useState("");
 
   const imageSize = getWindowWidth() * 0.8;
@@ -42,6 +44,7 @@ export default function NameScreen() {
               mode="outlined"
               placeholder="Nombre..."
               placeholderTextColor="D9D9D9"
+              autoCapitalize="words"
               theme={{ roundness: 100 }}
               outlineColor="#8BAB52"
               activeOutlineColor="#8BAB52"
@@ -55,8 +58,8 @@ export default function NameScreen() {
         <View style={styles.buttonContainer}>
           <ThemedButton
             isDisbaled={!isNameValid(name)}
-            onPress={() => {
-              AsyncStorage.setItem("username", name.split(" ", 1)[0]);
+            onPress={async () => {
+              await setUserName(name.split(" ", 1)[0]);
               router.replace("/(onboarding)/level");
             }}
           >

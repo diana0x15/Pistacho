@@ -14,6 +14,7 @@ import { TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import { GameProvider } from "@/context/GameContext";
+import { UserProvider } from "@/context/UserContext";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
@@ -38,7 +39,7 @@ export default function RootLayout() {
     return null;
   }
 
-  const options = {
+  const headerOptions = {
     headerShown: true,
     title: "",
     headerBackButtonDisplayMode: "minimal" as "minimal",
@@ -50,21 +51,27 @@ export default function RootLayout() {
     ),
   };
 
+  const fadeOptions = {
+    animation: "fade",
+  };
+
   return (
-    <GameProvider>
-      <PaperProvider>
-        <StatusBar style="dark" />
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="(category)" options={options} />
-            <Stack.Screen name="(game)" options={options} />
-            <Stack.Screen name="(onboarding)" />
-          </Stack>
-        </ThemeProvider>
-      </PaperProvider>
-    </GameProvider>
+    <UserProvider>
+      <GameProvider>
+        <PaperProvider>
+          <StatusBar style="dark" />
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+          >
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" options={fadeOptions} />
+              <Stack.Screen name="(category)" options={headerOptions} />
+              <Stack.Screen name="(game)" options={headerOptions} />
+              <Stack.Screen name="(onboarding)" options={fadeOptions} />
+            </Stack>
+          </ThemeProvider>
+        </PaperProvider>
+      </GameProvider>
+    </UserProvider>
   );
 }
