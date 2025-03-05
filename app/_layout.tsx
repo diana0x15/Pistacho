@@ -48,15 +48,9 @@ export default function RootLayout() {
             value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
           >
             <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="(tabs)" options={fadeOptions} />
-              <Stack.Screen name="(onboarding)" options={fadeOptions} />
+              <Stack.Screen name="tabs" options={fadeOptions} />
+              <Stack.Screen name="onboarding" options={fadeOptions} />
             </Stack>
-            {/* <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="(tabs)" options={fadeOptions} />
-              <Stack.Screen name="(category)" options={headerOptions} />
-              <Stack.Screen name="(game)" options={headerOptions} />
-              <Stack.Screen name="(onboarding)" options={fadeOptions} />
-            </Stack> */}
           </ThemeProvider>
         </PaperProvider>
       </GameProvider>
