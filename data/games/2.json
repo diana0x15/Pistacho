@@ -220,7 +220,7 @@
         "clue": "Superficie vertical que forma las habitaciones de una casa. 🏠",
         "direction": "horizontal",
         "row": 9,
-        "col": 6
+        "col": 1
       }
     ]
   },
@@ -331,7 +331,7 @@
         "col": 4
       },
       {
-        "word": "MESA",
+        "word": "CAMA",
         "clue": "Mueble donde dormimos. 🛏️",
         "direction": "horizontal",
         "row": 4,
