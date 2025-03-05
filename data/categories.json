@@ -34,19 +34,8 @@
   },
   {
     "id": "4",
-    "name": "Pasatiempos",
-    "games": [],
-    "image": "canvas-stand",
-    "colors": {
-      "accent": "#A380AF",
-      "gradient_start": "#FDFBFE",
-      "gradient_end": "#EBDEEF"
-    }
-  },
-  {
-    "id": "5",
     "name": "Viaje y Transporte",
-    "games": [],
+    "games": ["4001", "4002", "4003", "4004", "4005", "4006", "4007"],
     "image": "city-road",
     "colors": {
       "accent": "#7AAAA6",
@@ -55,7 +44,7 @@
     }
   },
   {
-    "id": "6",
+    "id": "5",
     "name": "Naturaleza",
     "games": [],
     "image": "autumn",
@@ -63,6 +52,17 @@
       "accent": "#EDA340",
       "gradient_start": "#FFF4E6",
       "gradient_end": "#FFE1B9"
+    }
+  },
+  {
+    "id": "6",
+    "name": "Pasatiempos",
+    "games": [],
+    "image": "canvas-stand",
+    "colors": {
+      "accent": "#A380AF",
+      "gradient_start": "#FDFBFE",
+      "gradient_end": "#EBDEEF"
     }
   },
   {

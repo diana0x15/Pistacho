@@ -8,6 +8,7 @@ const CATEGORY_COUNT = 3;
 import category1 from "@/data/games/1.json";
 import category2 from "@/data/games/2.json";
 import category3 from "@/data/games/3.json";
+import category4 from "@/data/games/4.json";
 
 export function getGamesInCategory(category: string) {
   switch (category) {
@@ -17,6 +18,8 @@ export function getGamesInCategory(category: string) {
       return category2;
     case "3":
       return category3;
+    case "4":
+      return category4;
     default:
       return [];
   }

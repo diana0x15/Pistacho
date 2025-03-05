@@ -1,0 +1,520 @@
+[
+  {
+    "id": "4001",
+    "words": [
+      {
+        "word": "AEROPUERTO",
+        "clue": "Aquí los vuelos despegan y aterrizan. ✈️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "AUTOBÚS",
+        "clue": "Vehículo para moverte por la ciudad junto con muchos pasajeros. 🚌",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "PASAPORTE",
+        "clue": "Documento indispensable para cruzar fronteras.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "BICICLETA",
+        "clue": "Medio de transporte ecológico que requiere pedales y equilibrio. 🚲",
+        "direction": "vertical",
+        "row": 2,
+        "col": 5
+      },
+      {
+        "word": "MOCHILA",
+        "clue": "Se lleva a la espalda, ideal para excursiones. 🎒",
+        "direction": "vertical",
+        "row": 3,
+        "col": 2
+      },
+      {
+        "word": "BARCO",
+        "clue": "Puede ser un velero, un transatlántico o un crucero, pero siempre navega. 🚢",
+        "direction": "vertical",
+        "row": 3,
+        "col": 8
+      },
+      {
+        "word": "MALETA",
+        "clue": "Lugar donde guardas tu ropa y objetos para un viaje. 🧳",
+        "direction": "vertical",
+        "row": 3,
+        "col": 10
+      },
+      {
+        "word": "COCHE",
+        "clue": "Lo conduces por carreteras y suele tener cuatro ruedas. 🚗",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 6
+      },
+      {
+        "word": "BILLETE",
+        "clue": "Sin él, no puedes subir al tren, avión o autobús. 🎫",
+        "direction": "horizontal",
+        "row": 8,
+        "col": 0
+      },
+      {
+        "word": "ESTACIÓN",
+        "clue": "Punto de partida y llegada para trenes y autobuses. 🚉",
+        "direction": "horizontal",
+        "row": 10,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "id": "4002",
+    "words": [
+      {
+        "word": "PLAYA",
+        "clue": "Lugar con arena y mar, ideal para relajarse y tomar el sol. 🏖️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "PUERTO",
+        "clue": "Donde atracan barcos y zarpan hacia nuevos destinos. ⚓",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "METRO",
+        "clue": "Un tren que viaja bajo tierra en muchas ciudades. 🚇",
+        "direction": "vertical",
+        "row": 1,
+        "col": 0
+      },
+      {
+        "word": "TURISTA",
+        "clue": "Persona que explora lugares nuevos por placer. 🌍",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 0
+      },
+      {
+        "word": "GASOLINA",
+        "clue": "Sin ella, muchos vehículos no pueden moverse. ⛽",
+        "direction": "vertical",
+        "row": 2,
+        "col": 6
+      },
+      {
+        "word": "VUELO",
+        "clue": "Viaje en avión con duración y destino específicos. ✈️",
+        "direction": "vertical",
+        "row": 2,
+        "col": 9
+      },
+      {
+        "word": "HOTEL",
+        "clue": "Un lugar con camas y servicios para viajeros.",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 5
+      },
+      {
+        "word": "TREN",
+        "clue": "Viaja sobre rieles y hace paradas en estaciones. 🚆",
+        "direction": "vertical",
+        "row": 6,
+        "col": 4
+      },
+      {
+        "word": "EXCURSIÓN",
+        "clue": "Un viaje corto para conocer un lugar especial. 🥾",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 0
+      },
+      {
+        "word": "AVIÓN",
+        "clue": "Máquina voladora que surca los cielos y aterriza en pistas. ✈️",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "4003",
+    "words": [
+      {
+        "word": "SOMBRERO",
+        "clue": "Protege del sol en la cabeza. 👒",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "GRANERO",
+        "clue": "Edificio donde se guardan alimentos y animales. 🚜",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "RECUERDO",
+        "clue": "Objeto que compras durante tus viajes. 🎁",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 2
+      },
+      {
+        "word": "SENDERISMO",
+        "clue": "Caminar por la naturaleza.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 6
+      },
+      {
+        "word": "CULTURA",
+        "clue": "Costumbres, arte y tradiciones de un lugar o comunidad. 🎭",
+        "direction": "vertical",
+        "row": 1,
+        "col": 4
+      },
+      {
+        "word": "ESTRELLA",
+        "clue": "Se ven en el cielo por la noche. ✨",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 2
+      },
+      {
+        "word": "PALMERA",
+        "clue": "Árbol típico de las playas. 🌴",
+        "direction": "vertical",
+        "row": 3,
+        "col": 9
+      },
+      {
+        "word": "RÍO",
+        "clue": "Agua que corre entre montañas y ciudades.",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "PAISAJE",
+        "clue": "Vista de un lugar, especialmente si es bonito o interesante. 🌅",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 3
+      },
+      {
+        "word": "HELADO",
+        "clue": "Postre frío perfecto para el verano. 🍦",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "id": "4004",
+    "words": [
+      {
+        "word": "CARRETERA",
+        "clue": "Asfalto por donde circulan coches y camiones. 🛣️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "RESERVA",
+        "clue": "Acción de asegurar un hotel, vuelo o excursión con anticipación. 📅",
+        "direction": "vertical",
+        "row": 0,
+        "col": 3
+      },
+      {
+        "word": "ESCALA",
+        "clue": "Parada en un viaje antes de llegar al destino final. 🛫",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 2
+      },
+      {
+        "word": "HORARIO",
+        "clue": "Documento que indica horas de salida y llegada. ⏰",
+        "direction": "vertical",
+        "row": 1,
+        "col": 9
+      },
+      {
+        "word": "CAMIÓN",
+        "clue": "Vehículo de gran tamaño que transporta mercancías pesadas. 🚛",
+        "direction": "vertical",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "FRONTERA",
+        "clue": "Línea que divide dos países.",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 2
+      },
+      {
+        "word": "MAPA",
+        "clue": "Un dibujo detallado que te ayuda a no perderte. 🗺️",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "RETRASO",
+        "clue": "Ocurre cuando el transporte no llega a la hora esperada. 🕒",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 3
+      },
+      {
+        "word": "TAXI",
+        "clue": "Transporte con conductor que te lleva donde necesites. 🚖",
+        "direction": "vertical",
+        "row": 6,
+        "col": 7
+      },
+      {
+        "word": "DESTINO",
+        "clue": "Es el lugar al que quieres llegar. 📍",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "id": "4005",
+    "words": [
+      {
+        "word": "TIENDA",
+        "clue": "Lugar donde se venden cosas.",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "VIAJERO",
+        "clue": "Persona que viaja. 🌍",
+        "direction": "vertical",
+        "row": 1,
+        "col": 0
+      },
+      {
+        "word": "EXPLORAR",
+        "clue": "Acción de descubrir o conocer un lugar nuevo. 🔍",
+        "direction": "vertical",
+        "row": 0,
+        "col": 3
+      },
+      {
+        "word": "POSTAL",
+        "clue": "Tarjeta con foto que envías de viaje. 💌",
+        "direction": "vertical",
+        "row": 0,
+        "col": 8
+      },
+      {
+        "word": "SOL",
+        "clue": "Brilla en el cielo y da calor. ☀️",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 7
+      },
+      {
+        "word": "MONTAÑA",
+        "clue": "Gran elevación natural de la tierra, a menudo ideal para hacer senderismo. 🏔️",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 2
+      },
+      {
+        "word": "CASCADA",
+        "clue": "Agua que cae desde una montaña.",
+        "direction": "vertical",
+        "row": 3,
+        "col": 6
+      },
+      {
+        "word": "RUTA",
+        "clue": "Camino o itinerario que sigues durante un viaje. 🚗",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "LAGO",
+        "clue": "Gran cuerpo de agua en la tierra. 🏞️",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 5
+      },
+      {
+        "word": "FOTOGRAFÍA",
+        "clue": "Imagen que captura un momento especial. 📸",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "4006",
+    "words": [
+      {
+        "word": "TRANVÍA",
+        "clue": "Como un tren, pero más corto y circula por las calles. 🚋",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "MOTO",
+        "clue": "Más rápida que una bici, pero con motor y dos ruedas. 🏍️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "PISTA",
+        "clue": "Lugar donde despegan y aterrizan los aviones. 🏁",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "AUTOPISTA",
+        "clue": "Una carretera sin semáforos y de alta velocidad. 🏎️",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "word": "ITINERARIO",
+        "clue": "Un plan detallado de actividades y horarios de un viaje. 📝",
+        "direction": "vertical",
+        "row": 0,
+        "col": 5
+      },
+      {
+        "word": "CUEVA",
+        "clue": "Un hueco en la montaña o la tierra.",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 3
+      },
+      {
+        "word": "CÁMARA",
+        "clue": "Sirve para tomar fotos. 📷",
+        "direction": "vertical",
+        "row": 4,
+        "col": 3
+      },
+      {
+        "word": "EMBARQUE",
+        "clue": "Momento en que subes a un avión o barco.",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "MUSEO",
+        "clue": "Lugar con arte y historia. 🖼️",
+        "direction": "vertical",
+        "row": 3,
+        "col": 9
+      },
+      {
+        "word": "VISADO",
+        "clue": "Permiso que necesitas para ingresar a algunos países. 🛂",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "4007",
+    "words": [
+      {
+        "word": "HOSTAL",
+        "clue": "Alojamiento económico para viajeros.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "BOSQUE",
+        "clue": "Lugar lleno de árboles y animales. 🌲",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 0
+      },
+      {
+        "word": "TÚNEL",
+        "clue": "Un pasaje bajo tierra o dentro de una montaña. 🚇",
+        "direction": "vertical",
+        "row": 1,
+        "col": 8
+      },
+      {
+        "word": "PASAPORTE",
+        "clue": "Documento indispensable para cruzar fronteras. 🌍",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "PARQUE",
+        "clue": "Espacio verde para pasear. 🌳",
+        "direction": "vertical",
+        "row": 3,
+        "col": 3
+      },
+      {
+        "word": "BRÚJULA",
+        "clue": "Pequeña herramienta que siempre apunta al norte. 🧭",
+        "direction": "vertical",
+        "row": 3,
+        "col": 6
+      },
+      {
+        "word": "GUÍA",
+        "clue": "Puede ser una persona o un libro que te muestra los mejores lugares.",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 5
+      },
+      {
+        "word": "HOTEL",
+        "clue": "Un lugar con camas y servicios para viajeros.",
+        "direction": "horizontal",
+        "row": 8,
+        "col": 0
+      },
+      {
+        "word": "BARCO",
+        "clue": "Puede ser un velero, un transatlántico o un crucero, pero siempre navega. 🚢",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 5
+      }
+    ]
+  }
+]
