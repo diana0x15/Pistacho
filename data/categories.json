@@ -46,7 +46,7 @@
   {
     "id": "5",
     "name": "Naturaleza",
-    "games": [],
+    "games": ["5001", "5002", "5003", "5004", "5005"],
     "image": "autumn",
     "colors": {
       "accent": "#EDA340",

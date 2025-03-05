@@ -1,0 +1,358 @@
+[
+  {
+    "id": "5001",
+    "words": [
+      {
+        "word": "MARIPOSA",
+        "clue": "Insecto colorido que vuela entre las flores. 🦋",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "ZEBRA",
+        "clue": "Animal con rayas blancas y negras. 🦓",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "ELEFANTE",
+        "clue": "Gran mamífero con trompa. 🐘",
+        "direction": "horizontal",
+        "row": 1,
+        "col": 2
+      },
+      {
+        "word": "PLANETA",
+        "clue": "La Tierra es uno de ellos. 🪐",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "word": "TERREMOTO",
+        "clue": "Movimiento fuerte de la tierra que hace temblar el suelo.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "PEZ",
+        "clue": "Animal que vive en el agua y nada. 🐟",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "word": "PALMERA",
+        "clue": "Árbol típico de zonas cálidas. 🌴",
+        "direction": "vertical",
+        "row": 3,
+        "col": 6
+      },
+      {
+        "word": "CABALLO",
+        "clue": "Animal de cuatro patas usado para montar. 🐴",
+        "direction": "vertical",
+        "row": 3,
+        "col": 8
+      },
+      {
+        "word": "SOL",
+        "clue": "Brilla en el cielo y da calor. 🌞",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 0
+      },
+      {
+        "word": "LEÓN",
+        "clue": "El rey de la selva. 🦁",
+        "direction": "vertical",
+        "row": 6,
+        "col": 2
+      },
+      {
+        "word": "ESTRELLA",
+        "clue": "Brilla en el cielo de noche. ✨",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 2
+      },
+      {
+        "word": "LUNA",
+        "clue": "Se ve de noche en el cielo. 🌙",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      },
+      {
+        "word": "LAGO",
+        "clue": "Cuerpo de agua rodeado de tierra.",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 5
+      }
+    ]
+  },
+  {
+    "id": "5002",
+    "words": [
+      {
+        "word": "MONTAÑA",
+        "clue": "Elevación natural muy alta. ⛰️",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "MAR",
+        "clue": "Gran cantidad de agua salada.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "CIELO",
+        "clue": "Se ve arriba de nosotros, azul de día y oscuro de noche.",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "word": "TORMENTA",
+        "clue": "Fuerte lluvia acompañada de viento y rayos. 🌩️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 3
+      },
+      {
+        "word": "NIEVE",
+        "clue": "Agua congelada que cae del cielo en invierno. ❄️",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 5
+      },
+      {
+        "word": "PERRO",
+        "clue": "Compañero fiel que ladra. 🐶",
+        "direction": "vertical",
+        "row": 1,
+        "col": 7
+      },
+      {
+        "word": "DESIERTO",
+        "clue": "Lugar seco con arena y poco agua. 🏜️",
+        "direction": "horizontal",
+        "row": 4,
+        "col": 2
+      },
+      {
+        "word": "NUBES",
+        "clue": "Flotan en el cielo y pueden traer lluvia. ☁️",
+        "direction": "vertical",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "CASCADA",
+        "clue": "Agua que cae desde lo alto.",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 2
+      },
+      {
+        "word": "RAMA",
+        "clue": "Parte del árbol que sostiene las hojas. 🌳",
+        "direction": "vertical",
+        "row": 6,
+        "col": 6
+      },
+      {
+        "word": "GATO",
+        "clue": "Animal doméstico que maúlla. 🐱",
+        "direction": "vertical",
+        "row": 6,
+        "col": 8
+      },
+      {
+        "word": "SEMILLA",
+        "clue": "De aquí nace una planta. 🌱",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 0
+      }
+    ]
+  },
+  {
+    "id": "5003",
+    "words": [
+      {
+        "word": "GALLINA",
+        "clue": "Ave que pone huevos. 🐔",
+        "direction": "horizontal",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "word": "TULIPÁN",
+        "clue": "Flor colorida de primavera. 🌷",
+        "direction": "vertical",
+        "row": 1,
+        "col": 0
+      },
+      {
+        "word": "LLUVIA",
+        "clue": "Agua que cae del cielo. 🌧️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "VIENTO",
+        "clue": "Aire que mueve las hojas y las nubes. 🌬️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "word": "ROSA",
+        "clue": "Flor aromática con espinas. 🌹",
+        "direction": "vertical",
+        "row": 2,
+        "col": 2
+      },
+      {
+        "word": "VOLCÁN",
+        "clue": "Montaña que puede expulsar lava. 🌋",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 4
+      },
+      {
+        "word": "PLAYA",
+        "clue": "Lugar con arena y mar. 🏖️",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "CACTUS",
+        "clue": "Planta que vive en el desierto. 🌵",
+        "direction": "vertical",
+        "row": 3,
+        "col": 7
+      },
+      {
+        "word": "BOSQUE",
+        "clue": "Lugar lleno de árboles y animales. 🌲",
+        "direction": "horizontal",
+        "row": 7,
+        "col": 3
+      },
+      {
+        "word": "OSO",
+        "clue": "Animal grande y peludo, a menudo en bosques. 🐻",
+        "direction": "vertical",
+        "row": 7,
+        "col": 4
+      },
+      {
+        "word": "ÁRBOL",
+        "clue": "Tiene tronco, hojas y da sombra. 🌳",
+        "direction": "horizontal",
+        "row": 9,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "id": "5004",
+    "words": [
+      {
+        "word": "HOJA",
+        "clue": "Parte verde que crece en los árboles. 🍃",
+        "direction": "vertical",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "word": "CONEJO",
+        "clue": "Animal de orejas largas que salta. 🐇",
+        "direction": "vertical",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "word": "PÁJARO",
+        "clue": "Animal que vuela. 🐦",
+        "direction": "vertical",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "word": "TORTUGA",
+        "clue": "Animal con caparazón que vive en tierra o mar. 🐢",
+        "direction": "vertical",
+        "row": 0,
+        "col": 6
+      },
+      {
+        "word": "ARAÑA",
+        "clue": "Insecto que teje telarañas y tiene muchas patas. 🕷️",
+        "direction": "vertical",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "word": "JIRAFA",
+        "clue": "Animal de cuello largo que vive en África. 🦒",
+        "direction": "horizontal",
+        "row": 2,
+        "col": 4
+      },
+      {
+        "word": "ABEJA",
+        "clue": "Insecto que produce miel. 🐝",
+        "direction": "horizontal",
+        "row": 3,
+        "col": 0
+      },
+      {
+        "word": "RÍO",
+        "clue": "Agua que corre entre montañas y ciudades.",
+        "direction": "horizontal",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "RAÍZ",
+        "clue": "Parte de la planta bajo la tierra.",
+        "direction": "vertical",
+        "row": 5,
+        "col": 0
+      },
+      {
+        "word": "VACA",
+        "clue": "Animal que da leche. 🐄",
+        "direction": "horizontal",
+        "row": 6,
+        "col": 5
+      },
+      {
+        "word": "RATÓN",
+        "clue": "Pequeño roedor que vive en muchos lugares. 🐭",
+        "direction": "vertical",
+        "row": 5,
+        "col": 8
+      },
+      {
+        "word": "TIBURÓN",
+        "clue": "Gran pez depredador del mar. 🦈",
+        "direction": "horizontal",
+        "row": 8,
+        "col": 3
+      }
+    ]
+  }
+]
