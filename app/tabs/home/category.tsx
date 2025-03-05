@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { GameContext } from "@/context/GameContext";
@@ -17,6 +17,10 @@ import categories from "@/data/categories.json";
 // Route URL: app/{categoryId}.
 export default function CategoryScreen() {
   const { completedGames } = useContext(GameContext);
+
+  function openGame(gameId: string, categoryId: string) {
+    router.push(`/tabs/home/game?gameId=${gameId}&categoryId=${categoryId}`);
+  }
 
   // Get the data for the current category.
   const { categoryId } = useLocalSearchParams();
@@ -91,6 +95,9 @@ export default function CategoryScreen() {
                   size={entryWidth}
                   primaryColor={category.colors.accent}
                   secondaryColor={category.colors.gradient_end}
+                  onPress={() => {
+                    openGame(game.id, category.id);
+                  }}
                 />
               </View>
             ))}

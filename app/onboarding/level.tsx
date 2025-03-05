@@ -64,7 +64,7 @@ export default function LevelScreen() {
           onPress={() => {
             AsyncStorage.setItem("userlevel", selectedLevel);
             AsyncStorage.setItem("onboardingDone", "true");
-            router.replace("/(tabs)");
+            router.replace("/tabs/home");
           }}
         >
           Empieza

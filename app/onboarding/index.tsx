@@ -33,7 +33,7 @@ export default function WelcomeScreen() {
         </View>
         <View style={styles.textContainer}>
           <Text style={{ textAlign: "center" }}>
-            <ThemedText type="titleSecondary">¡Aprende Español con</ThemedText>
+            <ThemedText type="titleSecondary">¡Aprende español con</ThemedText>
             <ThemedText type="titleSecondary"> </ThemedText>
             <ThemedText type="titleSecondary" highlight={true}>
               Pistacho
@@ -46,7 +46,7 @@ export default function WelcomeScreen() {
       <View style={styles.buttonContainer}>
         <ThemedButton
           onPress={() => {
-            router.replace("/(onboarding)/name");
+            router.replace("/onboarding/name");
           }}
         >
           Siguente

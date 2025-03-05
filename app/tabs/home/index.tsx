@@ -34,7 +34,11 @@ export default function HomeScreen() {
 
   function openRandomGame() {
     const { id, category } = getRandomGame(completedGames);
-    router.push(`/(game)/game?gameId=${id}&categoryId=${category}`);
+    router.push(`/tabs/home/game?gameId=${id}&categoryId=${category}`);
+  }
+
+  function goToCategory(categoryId: string) {
+    router.push(`/tabs/home/category?categoryId=${categoryId}`);
   }
 
   const Header = () => {
@@ -79,7 +83,13 @@ export default function HomeScreen() {
         <ThemedText type="subtitle">Mi progreso:</ThemedText>
         <View style={styles.list}>
           {categories.map((category) => (
-            <CategoryCard key={category.id} category={category} />
+            <CategoryCard
+              key={category.id}
+              category={category}
+              onPress={() => {
+                goToCategory(category.id);
+              }}
+            />
           ))}
         </View>
       </View>

@@ -60,7 +60,7 @@ export default function NameScreen() {
             isDisbaled={!isNameValid(name)}
             onPress={async () => {
               await setUserName(name.split(" ", 1)[0]);
-              router.replace("/(onboarding)/level");
+              router.replace("/onboarding/level");
             }}
           >
             Siguente

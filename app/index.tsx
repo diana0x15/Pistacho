@@ -10,7 +10,7 @@ export default function AppIndex() {
     // TODO: Maybe also load app data here, while the splash screen is shown.
     const checkLogin = async () => {
       const onboardingDone = await AsyncStorage.getItem("onboardingDone");
-      router.replace(onboardingDone ? "/(tabs)" : "/(onboarding)/welcome");
+      router.replace(onboardingDone ? "/tabs/home" : "/onboarding");
       setIsLoading(false);
     };
 

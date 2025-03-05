@@ -35,7 +35,7 @@ export default function VocabularyScreen() {
           },
         ]}
         resizeMode={"contain"}
-        source={require("../../assets/images/pistacho/shells.png")}
+        source={require("../../../assets/images/pistacho/shells.png")}
       />
       <ScrollView>
         <View style={styles.header}>

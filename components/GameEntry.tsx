@@ -1,6 +1,5 @@
 import { useMemo } from "react";
-import { Link } from "expo-router";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -16,6 +15,7 @@ export type GameEntryProps = {
   isCompleted: boolean;
   isLocked: boolean;
   size: number;
+  onPress: () => void;
 };
 
 export default function GameEntry(props: GameEntryProps) {
@@ -101,15 +101,9 @@ export default function GameEntry(props: GameEntryProps) {
   return props.isLocked ? (
     <Entry />
   ) : (
-    <Link
-      push
-      href={{
-        pathname: "../game",
-        params: { gameId: props.game.id, categoryId: props.categoryId },
-      }}
-    >
+    <TouchableOpacity onPress={props.onPress}>
       <Entry />
-    </Link>
+    </TouchableOpacity>
   );
 }
 

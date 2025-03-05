@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -52,7 +52,13 @@ export function getAssetComponent(name: string, size: number, style?: any) {
   }
 }
 
-export default function CategoryCard({ category }: { category: Category }) {
+export default function CategoryCard({
+  category,
+  onPress,
+}: {
+  category: Category;
+  onPress: () => void;
+}) {
   const { completedGames } = useContext(GameContext);
 
   // Compute the progress stats for the current category.
@@ -64,10 +70,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   const progress = totalCount === 0 ? 0 : completedCount / totalCount;
 
   return (
-    <Link
-      push
-      href={{ pathname: "../category", params: { categoryId: category.id } }}
-    >
+    <TouchableOpacity onPress={onPress}>
       <LinearGradient
         colors={[category.colors.gradient_start, category.colors.gradient_end]}
         start={{ x: 0, y: 0 }}
@@ -83,7 +86,7 @@ export default function CategoryCard({ category }: { category: Category }) {
           <ProgressBar progress={progress} color={category.colors.accent} />
         </View>
       </LinearGradient>
-    </Link>
+    </TouchableOpacity>
   );
 }
 
