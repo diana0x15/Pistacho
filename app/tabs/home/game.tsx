@@ -21,7 +21,7 @@ enum CurrentView {
   WORDS = "words",
 }
 
-// Route URL: app/(game)/game/gameId&categoryId.
+// Route URL: /tabs/home/game?gameId=123&categoryId=456.
 export default function GameScreen() {
   const { addCompletedGame } = useContext(GameContext);
 

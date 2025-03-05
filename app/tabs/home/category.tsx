@@ -14,7 +14,7 @@ import { getGamesInCategory } from "@/utils/Data";
 import { countWords } from "@/utils/Text";
 import categories from "@/data/categories.json";
 
-// Route URL: app/{categoryId}.
+// Route URL: /tabs/home/category?categoryId=123
 export default function CategoryScreen() {
   const { completedGames } = useContext(GameContext);
 
