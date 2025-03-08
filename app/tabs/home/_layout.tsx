@@ -14,7 +14,7 @@ export default function HomeLayout() {
     headerLeft: ({ canGoBack }: { canGoBack: boolean }) =>
       canGoBack ? (
         <TouchableOpacity onPress={router.back}>
-          <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
+          <IconSymbol size={28} name="chevron.left" color={"#7E7E7E"} />
         </TouchableOpacity>
       ) : null,
   };
