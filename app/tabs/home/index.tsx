@@ -34,7 +34,7 @@ export default function HomeScreen() {
 
   function openRandomGame() {
     const { id, category } = getRandomGame(completedGames);
-    router.push(`/tabs/home/game?gameId=${id}&categoryId=${category}`);
+    router.push(`/game?gameId=${id}&categoryId=${category}`);
   }
 
   function goToCategory(categoryId: string) {

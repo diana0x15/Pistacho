@@ -50,6 +50,7 @@ export default function RootLayout() {
             <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name="tabs" options={fadeOptions} />
               <Stack.Screen name="onboarding" options={fadeOptions} />
+              <Stack.Screen name="game" />
             </Stack>
           </ThemeProvider>
         </PaperProvider>

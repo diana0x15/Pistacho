@@ -9,7 +9,11 @@ import ThemedView from "@/components/ThemedView";
 import ProgressBar from "@/components/ProgressBar";
 import GameEntry from "@/components/GameEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
-import { getWindowWidth } from "@/constants/Dimensions";
+import {
+  getWindowWidth,
+  getBottomInset,
+  getTopInset,
+} from "@/constants/Dimensions";
 import { getGamesInCategory } from "@/utils/Data";
 import { countWords } from "@/utils/Text";
 import categories from "@/data/categories.json";
@@ -18,8 +22,10 @@ import categories from "@/data/categories.json";
 export default function CategoryScreen() {
   const { completedGames } = useContext(GameContext);
 
+  const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
+
   function openGame(gameId: string, categoryId: string) {
-    router.push(`/tabs/home/game?gameId=${gameId}&categoryId=${categoryId}`);
+    router.push(`/game?gameId=${gameId}&categoryId=${categoryId}`);
   }
 
   // Get the data for the current category.
@@ -50,8 +56,13 @@ export default function CategoryScreen() {
   const numberOfLines = countWords(category.name) === 1 ? 1 : 2;
 
   return (
-    <ThemedView style={[styles.container]}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+    <ThemedView style={styles.container}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.scrollView,
+          { paddingBottom: PADDING_BOTTOM },
+        ]}
+      >
         <View style={styles.header}>
           {getAssetComponent(category.image, 150)}
           <View style={styles.titleWrapper}>
