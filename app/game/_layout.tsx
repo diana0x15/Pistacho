@@ -13,7 +13,7 @@ export default function GameLayout() {
     headerShadowVisible: false,
     headerLeft: ({ canGoBack }: { canGoBack: boolean }) =>
       canGoBack ? (
-        <TouchableOpacity onPress={router.back}>
+        <TouchableOpacity onPressIn={router.back}>
           <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
         </TouchableOpacity>
       ) : null,

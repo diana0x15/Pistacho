@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,
@@ -41,10 +41,19 @@ export default function GameScreen() {
   const [clue, setClue] = useState(game.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
 
-  const keyboard = useAnimatedKeyboard();
-  const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{ translateY: -keyboard.height.value }],
-  }));
+  const getClueTransformation = () => {
+    if (Platform.OS === "ios") {
+      const keyboard = useAnimatedKeyboard();
+      return useAnimatedStyle(() => ({
+        transform: [{ translateY: -keyboard.height.value }],
+      }));
+    } else {
+      return {
+        transform: [{ translateY: 0 }],
+      };
+    }
+  };
+  const clueTransformation = getClueTransformation();
 
   const showWordList = () => {
     setCurrentView(CurrentView.WORDS);
@@ -77,7 +86,7 @@ export default function GameScreen() {
           />
         </GestureWrapper>
       </View>
-      <Animated.View style={animatedStyles}>
+      <Animated.View style={clueTransformation}>
         <View style={styles.clueContainer}>
           <ThemedText
             adjustsFontSizeToFit={true}

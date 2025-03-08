@@ -43,7 +43,7 @@ export default function NameScreen() {
             <TextInput
               mode="outlined"
               placeholder="Nombre..."
-              placeholderTextColor="D9D9D9"
+              placeholderTextColor="#D9D9D9"
               autoCapitalize="words"
               theme={{ roundness: 100 }}
               outlineColor="#8BAB52"

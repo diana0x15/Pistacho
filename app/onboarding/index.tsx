@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFEFEF",
     borderRadius: 1000,
     position: "absolute",
-    bottom: -160,
+    bottom: -130,
   },
   textContainer: {
     width: "100%",

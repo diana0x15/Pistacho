@@ -11,7 +11,7 @@ const MAPPING = {
   // See SF Symbols in the SF Symbols app on Mac.
   "house.fill": "home",
   "paperplane.fill": "send",
-  "chevron.left": "arrow-left",
+  "chevron.left": "chevron-left",
   "chevron.right": "chevron-right",
   "text.book.closed.fill": "book",
   checkmark: "check",
