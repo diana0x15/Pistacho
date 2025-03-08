@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { useRouter } from "expo-router";
+import LottieView from "lottie-react-native";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
@@ -9,14 +10,12 @@ import CategoryCard from "@/components/CategoryCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { GameContext } from "@/context/GameContext";
 import { UserContext } from "@/context/UserContext";
-import Pistacho from "@/assets/images/pistacho/pistacho-rotated.svg";
 import { getAdjustedTextSize } from "@/utils/Text";
 import {
   getBottomInset,
   getBottomTabHeight,
   getTopInset,
   getVisibleHeight,
-  getWindowWidth,
 } from "@/constants/Dimensions";
 import { getRandomGame } from "@/utils/Data";
 import categories from "@/data/categories.json";
@@ -27,10 +26,11 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
-  const SCREEN_WIDTH = getWindowWidth();
   const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
   const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
-  const PISTACHO_SIZE = HEADER_HEIGHT * 0.6;
+  const PISTACHO_SCALE = 0.33;
+  const PISTACHO_WIDTH = 436 * PISTACHO_SCALE;
+  const PISTACHO_HEIGHT = 900 * PISTACHO_SCALE;
 
   function openRandomGame() {
     const { id, category } = getRandomGame(completedGames);
@@ -67,11 +67,21 @@ export default function HomeScreen() {
           </View>
         </View>
         <View style={styles.headerRightSide}>
-          <Pistacho
-            width={SCREEN_WIDTH * 0.4}
-            height={PISTACHO_SIZE}
-            style={styles.pistacho}
-          />
+          <View
+            style={{
+              width: PISTACHO_WIDTH,
+              height: PISTACHO_HEIGHT,
+            }}
+          >
+            <LottieView
+              style={{
+                flex: 1,
+              }}
+              source={require("../../../assets/animations/wave.json")}
+              autoPlay
+              loop={false}
+            />
+          </View>
         </View>
       </View>
     );
@@ -140,7 +150,7 @@ const styles = StyleSheet.create({
   headerRightSide: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     overflow: "hidden",
   },
   title: {
@@ -151,9 +161,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     maxWidth: 200,
     marginTop: "auto",
-  },
-  pistacho: {
-    marginBottom: -30,
   },
   listContainer: {
     paddingInline: 20,
