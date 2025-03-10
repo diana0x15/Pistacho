@@ -12,7 +12,7 @@ export default function HomeLayout() {
     headerBackVisible: false,
     headerLeft: ({ canGoBack }: { canGoBack: boolean }) =>
       canGoBack ? (
-        <TouchableOpacity onPress={router.back}>
+        <TouchableOpacity onPressIn={router.back}>
           <Ionicons size={28} name="arrow-back" color={"#7E7E7E"} />
         </TouchableOpacity>
       ) : null,
