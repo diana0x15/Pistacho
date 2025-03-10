@@ -6,6 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Keyboard,
+  Platform,
 } from "react-native";
 import { Word, HORIZONTAL, VERTICAL, Game } from "@/constants/Game";
 
@@ -99,7 +101,17 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
       selectedCell.row === row && selectedCell.col === col;
 
     // Focus on the text input to show to keyboard.
-    textInput.current?.focus();
+    if (!Keyboard.isVisible()) {
+      if (Platform.OS === "ios") {
+        textInput.current?.focus();
+      } else {
+        // The timeout and blur() are needed to work correctly in Android.
+        setTimeout(() => {
+          textInput.current?.blur();
+          textInput.current?.focus();
+        }, 100);
+      }
+    }
 
     // If direction was not provided, compute the new direction.
     if (!dir) {

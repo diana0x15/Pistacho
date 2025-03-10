@@ -41,6 +41,7 @@ export default function GameScreen() {
   const [clue, setClue] = useState(game.words[startWordIndex].clue);
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
 
+  // Compute the position of the clue to display it on top of the keyboard.
   const getClueTransformation = () => {
     if (Platform.OS === "ios") {
       const keyboard = useAnimatedKeyboard();
