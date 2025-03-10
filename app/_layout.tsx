@@ -7,37 +7,49 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import "react-native-reanimated";
 import { PaperProvider } from "react-native-paper";
 import { StatusBar } from "expo-status-bar";
 
 import { GameProvider } from "@/context/GameContext";
-import { UserProvider } from "@/context/UserContext";
+import { UserProvider, UserContext } from "@/context/UserContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  // const colorScheme = useColorScheme();
-  const colorScheme = "light";
+const AppNavigator = () => {
   const [isFontReady] = useFonts({
     HankenGrotesk: require("../assets/fonts/HankenGrotesk-VariableFont_wght.ttf"),
   });
+  const { isUserDataReady } = useContext(UserContext);
 
   useEffect(() => {
-    if (isFontReady) {
+    if (isFontReady && isUserDataReady) {
       SplashScreen.hideAsync();
     }
-  }, [isFontReady]);
+  }, [isFontReady, isUserDataReady]);
 
-  if (!isFontReady) {
+  if (!isFontReady || !isUserDataReady) {
     return null;
   }
 
   const fadeOptions = {
     animation: "fade",
   };
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="tabs" options={fadeOptions} />
+      <Stack.Screen name="onboarding" options={fadeOptions} />
+      <Stack.Screen name="game" />
+    </Stack>
+  );
+};
+
+export default function RootLayout() {
+  // const colorScheme = useColorScheme();
+  const colorScheme = "light";
 
   return (
     <UserProvider>
@@ -47,11 +59,7 @@ export default function RootLayout() {
           <ThemeProvider
             value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
           >
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="tabs" options={fadeOptions} />
-              <Stack.Screen name="onboarding" options={fadeOptions} />
-              <Stack.Screen name="game" />
-            </Stack>
+            <AppNavigator />
           </ThemeProvider>
         </PaperProvider>
       </GameProvider>
