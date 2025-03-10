@@ -68,7 +68,7 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
         rowIndex === selectedCell.row && colIndex === selectedCell.col
           ? value === "Backspace"
             ? ""
-            : value
+            : value.toUpperCase()
           : cell
       )
     );
@@ -264,6 +264,7 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
         autoCorrect={false}
         autoCapitalize={"characters"}
         keyboardAppearance="light"
+        keyboardType="ascii-capable"
       />
 
       {userGrid.map((row, rowIndex) => (
