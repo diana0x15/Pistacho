@@ -11,8 +11,7 @@ import GameEntry from "@/components/GameEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import {
   getWindowWidth,
-  getBottomInset,
-  getTopInset,
+  getTabViewBottomPadding,
 } from "@/constants/Dimensions";
 import { getGamesInCategory } from "@/utils/Data";
 import { countWords } from "@/utils/Text";
@@ -22,7 +21,7 @@ import categories from "@/data/categories.json";
 export default function CategoryScreen() {
   const { completedGames } = useContext(GameContext);
 
-  const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
+  const PADDING_BOTTOM = getTabViewBottomPadding();
 
   function openGame(gameId: string, categoryId: string) {
     router.push(`/game?gameId=${gameId}&categoryId=${categoryId}`);

@@ -12,9 +12,8 @@ import { GameContext } from "@/context/GameContext";
 import { UserContext } from "@/context/UserContext";
 import { getAdjustedTextSize } from "@/utils/Text";
 import {
-  getBottomInset,
+  getTabViewBottomPadding,
   getBottomTabHeight,
-  getTopInset,
   getVisibleHeight,
 } from "@/constants/Dimensions";
 import { getRandomGame } from "@/utils/Data";
@@ -26,7 +25,7 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
-  const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
+  const PADDING_BOTTOM = getTabViewBottomPadding() + 20;
   const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
   const PISTACHO_SCALE = 0.33;
   const PISTACHO_WIDTH = 436 * PISTACHO_SCALE;

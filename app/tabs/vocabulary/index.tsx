@@ -7,9 +7,9 @@ import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
 import WordEntry from "@/components/WordEntry";
 import {
-  getBottomInset,
   getTopInset,
   getWindowHeight,
+  getTabViewBottomPadding,
 } from "@/constants/Dimensions";
 import { VocabEntry } from "@/constants/Vocabulary";
 import { DefinitionType } from "@/constants/Vocabulary";
@@ -22,7 +22,7 @@ export default function VocabularyScreen() {
 
   const HEIGHT = getWindowHeight();
   const PADDING_TOP = getTopInset() + 20;
-  const PADDING_BOTTOM = getBottomInset() + getTopInset() + 10;
+  const PADDING_BOTTOM = getTabViewBottomPadding() + 20;
 
   return (
     <ThemedView style={[styles.container, { paddingTop: PADDING_TOP }]}>
@@ -31,7 +31,7 @@ export default function VocabularyScreen() {
           styles.shells,
           {
             height: HEIGHT / 3,
-            bottom: PADDING_BOTTOM - 30,
+            bottom: getTabViewBottomPadding() - 30,
           },
         ]}
         resizeMode={"contain"}

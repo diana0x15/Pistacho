@@ -40,6 +40,10 @@ export function getVisibleHeight() {
   return getWindowHeight() - getStatusBarHeight();
 }
 
+export function getTabViewBottomPadding() {
+  return Platform.OS === "ios" ? getBottomTabHeight() : 0;
+}
+
 function print(description: string, size: number) {
   console.log(Platform.OS + " --- " + description + ": " + size);
 }
