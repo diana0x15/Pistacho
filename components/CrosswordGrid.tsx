@@ -9,7 +9,7 @@ import {
   Keyboard,
   Platform,
 } from "react-native";
-import { Word, HORIZONTAL, VERTICAL, Game } from "@/constants/Game";
+import { Word, HORIZONTAL, VERTICAL, Game, Direction } from "@/constants/Game";
 
 export type CrosswordGridProps = {
   game: Game;
@@ -178,13 +178,50 @@ const CrosswordGrid = (props: CrosswordGridProps) => {
 
   function moveToNextWord() {
     const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    let indexOfNextWord = props.game.words.indexOf(selectedWord) + 1;
-    if (indexOfNextWord >= props.game.words.length) {
-      indexOfNextWord = 0;
+    const nextWord = findNextUnfilledWord(selectedWord);
+    if (nextWord === null) {
+      // If all words are filled, stay here.
+      return;
     }
-    const nextWord = props.game.words[indexOfNextWord];
-
     selectCell(nextWord.row, nextWord.col, nextWord.direction);
+  }
+
+  function isWordFilled(word: Word) {
+    let row = word.row;
+    let col = word.col;
+    let rowIndex = 0;
+    let colIndex = 0;
+    const length = word.word.length;
+    while (rowIndex < length && colIndex < length) {
+      if (userGrid[row + rowIndex][col + colIndex] === "") {
+        return false;
+      }
+      if (word.direction === HORIZONTAL) {
+        colIndex++;
+      } else {
+        rowIndex++;
+      }
+    }
+    return true;
+  }
+
+  function findNextUnfilledWord(word: Word) {
+    const wordIndex = props.game.words.indexOf(word);
+    let index = wordIndex + 1;
+    while (index < props.game.words.length) {
+      if (!isWordFilled(props.game.words[index])) {
+        return props.game.words[index];
+      }
+      index++;
+    }
+    index = 0;
+    while (index < wordIndex) {
+      if (!isWordFilled(props.game.words[index])) {
+        return props.game.words[index];
+      }
+      index++;
+    }
+    return null;
   }
 
   function moveToPrevWord() {

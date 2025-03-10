@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "stretch",
     paddingBlock: 40,
-    backgroundColor: "blue",
   },
   headerLeftSide: {
     display: "flex",
