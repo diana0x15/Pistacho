@@ -47,7 +47,7 @@ export default function ReviewWords(props: ReviewWordsProps) {
           <View style={styles.switchContainer}>
             <SegmentedControl
               values={["Pistas", "Traducciones"]}
-              selectedIndex={0}
+              selectedIndex={currentView === DefinitionType.CLUE ? 0 : 1}
               onChange={() => {
                 if (currentView === DefinitionType.CLUE) {
                   setCurrentView(DefinitionType.TRANSLATION);
