@@ -24,9 +24,9 @@ export default function HomeScreen() {
   const { name } = useContext(UserContext);
   const router = useRouter();
 
-  const SCREEN_HEIGHT = getVisibleHeight() - getBottomTabHeight();
+  const SCREEN_HEIGHT = getVisibleHeight() - getTabViewBottomPadding();
   const PADDING_BOTTOM = getTabViewBottomPadding() + 20;
-  const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
+  const HEADER_HEIGHT = SCREEN_HEIGHT * 0.5;
   const PISTACHO_SCALE = 0.33;
   const PISTACHO_WIDTH = 436 * PISTACHO_SCALE;
   const PISTACHO_HEIGHT = 900 * PISTACHO_SCALE;
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "stretch",
     paddingBlock: 40,
+    backgroundColor: "blue",
   },
   headerLeftSide: {
     display: "flex",
