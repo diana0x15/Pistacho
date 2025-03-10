@@ -1,14 +1,15 @@
 import { useState, useContext } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View, TouchableOpacity } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { AutoSizeText, ResizeTextMode } from "react-native-auto-size-text";
 
 import { GameContext } from "@/context/GameContext";
 import ThemedView from "@/components/ThemedView";
-import ThemedText from "@/components/ThemedText";
 import CrosswordGrid from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
@@ -73,6 +74,22 @@ export default function GameScreen() {
     return <ReviewWords categoryId={categoryId} words={game.words} />;
   }
 
+  const NextButton = () => {
+    return (
+      <TouchableOpacity onPress={() => {}}>
+        <Ionicons size={28} name="chevron-forward" color={"#7E7E7E"} />
+      </TouchableOpacity>
+    );
+  };
+
+  const PrevButton = () => {
+    return (
+      <TouchableOpacity onPress={() => {}}>
+        <Ionicons size={28} name="chevron-back" color={"#7E7E7E"} />
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <ThemedView style={styles.container}>
       <View style={styles.container}>
@@ -89,13 +106,24 @@ export default function GameScreen() {
       </View>
       <Animated.View style={clueTransformation}>
         <View style={styles.clueContainer}>
-          <ThemedText
-            adjustsFontSizeToFit={true}
-            numberOfLines={2}
-            type={"subtitle"}
-          >
-            {clue}
-          </ThemedText>
+          <View style={styles.clueContent}>
+            <TouchableOpacity>
+              <PrevButton />
+            </TouchableOpacity>
+            <View style={styles.textContainer}>
+              <AutoSizeText
+                fontSize={20}
+                numberOfLines={2}
+                mode={ResizeTextMode.max_lines}
+                style={styles.text}
+              >
+                {clue}
+              </AutoSizeText>
+            </View>
+            <TouchableOpacity>
+              <NextButton />
+            </TouchableOpacity>
+          </View>
         </View>
       </Animated.View>
     </ThemedView>
@@ -108,14 +136,28 @@ const styles = StyleSheet.create({
   },
   clueContainer: {
     position: "absolute",
-    width: "100%",
-    height: 80,
+    left: 0,
+    right: 0,
     bottom: 0,
+    height: 80,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#D7DECC",
-    paddingInline: 16,
-    paddingBlock: 10,
+  },
+  clueContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  textContainer: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
+  text: {
+    fontFamily: "Hanken Grotesk",
+    color: "#6E6E6E",
+    textAlign: "center",
+    fontSize: 20,
   },
 });
