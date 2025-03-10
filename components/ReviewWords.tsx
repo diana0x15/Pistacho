@@ -4,7 +4,6 @@ import SegmentedControl from "@react-native-segmented-control/segmented-control"
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { GameContext } from "@/context/GameContext";
-import ThemedText from "./ThemedText";
 import ThemedView from "./ThemedView";
 import WordEntry from "./WordEntry";
 import { getAssetComponent } from "@/components/CategoryCard";

@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { GameContext } from "@/context/GameContext";
 import ThemedText from "./ThemedText";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import { VocabEntry } from "@/constants/Vocabulary";
 
 type WordEntryProps = {
@@ -23,9 +23,9 @@ export default function WordEntry({
 
   const action = hasActionButton ? (
     isSavedState ? (
-      <IconSymbol size={28} name="bookmark.fill" color={"#8BAB52"} />
+      <Ionicons size={28} name="bookmark" color={"#8BAB52"} />
     ) : (
-      <IconSymbol size={28} name="bookmark" color={"#7E7E7E"} />
+      <Ionicons size={28} name="bookmark-outline" color={"#7E7E7E"} />
     )
   ) : undefined;
 

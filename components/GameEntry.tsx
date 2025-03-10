@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createGrid } from "./CrosswordGrid";
 import { Game } from "@/constants/Game";
@@ -25,7 +24,7 @@ export default function GameEntry(props: GameEntryProps) {
     }
     return (
       <View style={{ position: "absolute" }}>
-        <IconSymbol size={30} name="lock" color={"#ACACAC"} />
+        <Ionicons size={30} name="lock-closed" color={"#ACACAC"} />
       </View>
     );
   };

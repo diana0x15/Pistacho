@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import { Stack } from "expo-router";
 import { useRouter } from "expo-router";
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function GameLayout() {
   const router = useRouter();
@@ -9,12 +9,11 @@ export default function GameLayout() {
   const headerOptions = {
     headerShown: true,
     title: "",
-    headerBackButtonDisplayMode: "minimal" as "minimal",
     headerShadowVisible: false,
     headerLeft: ({ canGoBack }: { canGoBack: boolean }) =>
       canGoBack ? (
         <TouchableOpacity onPressIn={router.back}>
-          <IconSymbol size={28} name="xmark" color={"#7E7E7E"} />
+          <Ionicons size={32} name="close" color={"#7E7E7E"} />
         </TouchableOpacity>
       ) : null,
   };

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "expo-router";
 
 import ThemedText from "./ThemedText";

@@ -1,7 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { Stack, useRouter } from "expo-router";
-
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function HomeLayout() {
   const router = useRouter();
@@ -9,12 +8,12 @@ export default function HomeLayout() {
   const headerOptions = {
     headerShown: true,
     title: "",
-    headerBackButtonDisplayMode: "minimal" as "minimal",
     headerShadowVisible: false,
+    headerBackVisible: false,
     headerLeft: ({ canGoBack }: { canGoBack: boolean }) =>
       canGoBack ? (
         <TouchableOpacity onPress={router.back}>
-          <IconSymbol size={28} name="chevron.left" color={"#7E7E7E"} />
+          <Ionicons size={28} name="arrow-back" color={"#7E7E7E"} />
         </TouchableOpacity>
       ) : null,
   };

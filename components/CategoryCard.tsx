@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 
 import Bathroom from "@/assets/images/illustrations/categories/bathroom.svg";

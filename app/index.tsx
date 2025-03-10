@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { View, ActivityIndicator } from "react-native";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { View, ActivityIndicator, Text } from "react-native";
 
 export default function AppIndex() {
   const [isLoading, setIsLoading] = useState(true);
