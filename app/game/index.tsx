@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { Platform, StyleSheet, View, TouchableOpacity } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import Animated, {
@@ -10,7 +10,7 @@ import { AutoSizeText, ResizeTextMode } from "react-native-auto-size-text";
 
 import { GameContext } from "@/context/GameContext";
 import ThemedView from "@/components/ThemedView";
-import CrosswordGrid from "@/components/CrosswordGrid";
+import CrosswordGrid, { GameControlRef } from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
@@ -37,10 +37,21 @@ export default function GameScreen() {
     return;
   }
 
-  const startWordIndex = 0;
-
-  const [clue, setClue] = useState(game.words[startWordIndex].clue);
+  // Set up the current view (GAME, GAME_COMPLETE or WORDS).
   const [currentView, setCurrentView] = useState(CurrentView.GAME);
+  if (currentView === CurrentView.GAME_COMPLETE) {
+    return (
+      <GameCompleted showWordList={() => setCurrentView(CurrentView.WORDS)} />
+    );
+  }
+  if (currentView === CurrentView.WORDS) {
+    return <ReviewWords categoryId={categoryId} words={game.words} />;
+  }
+
+  // Set up the clue.
+  const startIndex = 0;
+  const [clue, setClue] = useState(game.words[startIndex].clue);
+  const gameRef = useRef<GameControlRef>(null);
 
   // Compute the position of the clue to display it on top of the keyboard.
   const getClueTransformation = () => {
@@ -57,26 +68,15 @@ export default function GameScreen() {
   };
   const clueTransformation = getClueTransformation();
 
-  const showWordList = () => {
-    setCurrentView(CurrentView.WORDS);
-  };
-
-  const completeGame = () => {
-    addCompletedGame(gameId);
-    setCurrentView(CurrentView.GAME_COMPLETE);
-  };
-
-  if (currentView === CurrentView.GAME_COMPLETE) {
-    return <GameCompleted showWordList={showWordList} />;
-  }
-
-  if (currentView === CurrentView.WORDS) {
-    return <ReviewWords categoryId={categoryId} words={game.words} />;
-  }
-
   const NextButton = () => {
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity
+        onPress={() => {
+          if (gameRef.current) {
+            gameRef.current.nextWord();
+          }
+        }}
+      >
         <Ionicons size={28} name="chevron-forward" color={"#7E7E7E"} />
       </TouchableOpacity>
     );
@@ -84,10 +84,21 @@ export default function GameScreen() {
 
   const PrevButton = () => {
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity
+        onPress={() => {
+          if (gameRef.current) {
+            gameRef.current.prevWord();
+          }
+        }}
+      >
         <Ionicons size={28} name="chevron-back" color={"#7E7E7E"} />
       </TouchableOpacity>
     );
+  };
+
+  const completeGame = () => {
+    addCompletedGame(gameId);
+    setCurrentView(CurrentView.GAME_COMPLETE);
   };
 
   return (
@@ -96,11 +107,12 @@ export default function GameScreen() {
         <GestureWrapper>
           <CrosswordGrid
             game={game}
-            startIndex={startWordIndex}
+            startIndex={startIndex}
             updateClue={(newClue: string) => {
               setClue(newClue);
             }}
             completeGame={completeGame}
+            ref={gameRef}
           />
         </GestureWrapper>
       </View>

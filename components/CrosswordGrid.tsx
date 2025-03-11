@@ -1,5 +1,10 @@
-import React from "react";
-import { useState, useRef, useMemo } from "react";
+import {
+  useState,
+  useRef,
+  useMemo,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import {
   View,
   Text,
@@ -9,332 +14,349 @@ import {
   Keyboard,
   Platform,
 } from "react-native";
-import { Word, HORIZONTAL, VERTICAL, Game, Direction } from "@/constants/Game";
+import { Word, HORIZONTAL, VERTICAL, Game } from "@/constants/Game";
 
-export type CrosswordGridProps = {
+interface CrosswordGridProps {
   game: Game;
   startIndex: number;
   updateClue: (clue: string) => void;
   completeGame: () => void;
-};
+}
 
-const CrosswordGrid = (props: CrosswordGridProps) => {
-  const words = props.game.words;
+export interface GameControlRef {
+  nextWord: () => void;
+  prevWord: () => void;
+}
 
-  /***************************** HOOKS *******************************/
-  /**
-   * A square grid representing the crossword's solution, where each valid cell
-   * is a character. Cells that are not part of the crossword are null.
-   */
-  const solutionGrid = useMemo(() => {
-    return createGrid(words, false);
-  }, []);
+const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
+  (props, ref) => {
+    const words = props.game.words;
 
-  /**
-   * A square grid representing a map between cells and the word that touch the
-   * cell, in the format: mapGrid[i][j] = {horiz: word1|null, vert: word2|null}.
-   * Cells that are not part of the crossword are null.
-   */
-  const mapGrid = useMemo(() => {
-    return createMapGrid(words);
-  }, []);
+    /***************************** HOOKS *******************************/
+    /**
+     * A square grid representing the crossword's solution, where each valid cell
+     * is a character. Cells that are not part of the crossword are null.
+     */
+    const solutionGrid = useMemo(() => {
+      return createGrid(words, false);
+    }, []);
 
-  /**
-   * The square grid representing the user's game, where each valid cell is
-   * initially ''. Cells that are not part of the crossword are null.
-   */
-  const [userGrid, setUserGrid] = useState(createGrid(words, true));
+    /**
+     * A square grid representing a map between cells and the word that touch the
+     * cell, in the format: mapGrid[i][j] = {horiz: word1|null, vert: word2|null}.
+     * Cells that are not part of the crossword are null.
+     */
+    const mapGrid = useMemo(() => {
+      return createMapGrid(words);
+    }, []);
 
-  // Currently selected cell and direction (horizontal or vertical).
-  const [selectedCell, setSelectedCell] = useState({
-    row: words[props.startIndex].row,
-    col: words[props.startIndex].col,
-    dir: words[props.startIndex].direction,
-  });
+    /**
+     * The square grid representing the user's game, where each valid cell is
+     * initially ''. Cells that are not part of the crossword are null.
+     */
+    const [userGrid, setUserGrid] = useState(createGrid(words, true));
 
-  // Invisible text input, used to trigger the keyboard by focusing on it.
-  const textInput = useRef<TextInput>(null);
+    // Currently selected cell and direction (horizontal or vertical).
+    const [selectedCell, setSelectedCell] = useState({
+      row: words[props.startIndex].row,
+      col: words[props.startIndex].col,
+      dir: words[props.startIndex].direction,
+    });
 
-  /************************** USER ACTIONS ***************************/
-  /**
-   * Update the user grid with the input value, if valid. On each input,
-   * check if the game is complete.
-   */
-  function onInput(value: string) {
-    if (!value.match(/[A-ZÑÁÉÍÓÚÜ]/i) && value !== "Backspace") {
-      return;
-    }
+    // Invisible text input, used to trigger the keyboard by focusing on it.
+    const textInput = useRef<TextInput>(null);
 
-    const newGrid = userGrid.map((r, rowIndex) =>
-      r.map((cell, colIndex) =>
-        rowIndex === selectedCell.row && colIndex === selectedCell.col
-          ? value === "Backspace"
-            ? ""
-            : value.toUpperCase()
-          : cell
-      )
-    );
-    setUserGrid(newGrid);
+    // Expose the nextWord and prevWord methods to the parent component.
+    useImperativeHandle(ref, () => ({
+      nextWord() {
+        moveToNextWord();
+      },
+      prevWord() {
+        moveToPrevWord();
+      },
+    }));
 
-    if (isGameCompleteAndCorrect(newGrid)) {
-      props.completeGame();
-    }
+    /************************** USER ACTIONS ***************************/
+    /**
+     * Update the user grid with the input value, if valid. On each input,
+     * check if the game is complete.
+     */
+    function onInput(value: string) {
+      if (!value.match(/[A-ZÑÁÉÍÓÚÜ]/i) && value !== "Backspace") {
+        return;
+      }
 
-    if (value === "Backspace") {
-      moveToPrevCell();
-    } else {
-      moveToNextCell();
-    }
-  }
+      const newGrid = userGrid.map((r, rowIndex) =>
+        r.map((cell, colIndex) =>
+          rowIndex === selectedCell.row && colIndex === selectedCell.col
+            ? value === "Backspace"
+              ? ""
+              : value.toUpperCase()
+            : cell
+        )
+      );
+      setUserGrid(newGrid);
 
-  /**
-   * Selects the cell at the given row, col and direction. If direction is
-   * not provided, use the direction of the word at the given cell. If the
-   * selected cell is an intersection, keep the same direction as before.
-   */
-  function selectCell(row: number, col: number, dir?: string) {
-    let newRow = row;
-    let newCol = col;
-    let newDir = dir ?? selectedCell.dir;
-    const isIntersection = mapGrid[row][col].horiz && mapGrid[row][col].vert;
-    const isAlreadySelected =
-      selectedCell.row === row && selectedCell.col === col;
+      if (isGameCompleteAndCorrect(newGrid)) {
+        props.completeGame();
+      }
 
-    // Focus on the text input to show to keyboard.
-    if (!Keyboard.isVisible()) {
-      if (Platform.OS === "ios") {
-        textInput.current?.focus();
+      if (value === "Backspace") {
+        moveToPrevCell();
       } else {
-        // The timeout and blur() are needed to work correctly in Android.
-        setTimeout(() => {
-          textInput.current?.blur();
-          textInput.current?.focus();
-        }, 100);
+        moveToNextCell();
       }
     }
 
-    // If direction was not provided, compute the new direction.
-    if (!dir) {
-      // If this cell was already selected and it's an intersection, change the
-      // direction.
-      if (isAlreadySelected && isIntersection) {
-        if (selectedCell.dir === HORIZONTAL) {
-          newDir = VERTICAL;
+    /**
+     * Selects the cell at the given row, col and direction. If direction is
+     * not provided, use the direction of the word at the given cell. If the
+     * selected cell is an intersection, keep the same direction as before.
+     */
+    function selectCell(row: number, col: number, dir?: string) {
+      let newRow = row;
+      let newCol = col;
+      let newDir = dir ?? selectedCell.dir;
+      const isIntersection = mapGrid[row][col].horiz && mapGrid[row][col].vert;
+      const isAlreadySelected =
+        selectedCell.row === row && selectedCell.col === col;
+
+      // Focus on the text input to show to keyboard.
+      if (!Keyboard.isVisible()) {
+        if (Platform.OS === "ios") {
+          textInput.current?.focus();
         } else {
-          newDir = HORIZONTAL;
+          // The timeout and blur() are needed to work correctly in Android.
+          setTimeout(() => {
+            textInput.current?.blur();
+            textInput.current?.focus();
+          }, 100);
         }
-      } else {
-        // If it's an intersection, keep the same direction. Otherwise, update
-        // the direction to match the word at the new cell.
-        if (!isIntersection) {
-          if (mapGrid[row][col].horiz) {
-            newDir = HORIZONTAL;
-          } else {
+      }
+
+      // If direction was not provided, compute the new direction.
+      if (!dir) {
+        // If this cell was already selected and it's an intersection, change the
+        // direction.
+        if (isAlreadySelected && isIntersection) {
+          if (selectedCell.dir === HORIZONTAL) {
             newDir = VERTICAL;
+          } else {
+            newDir = HORIZONTAL;
+          }
+        } else {
+          // If it's an intersection, keep the same direction. Otherwise, update
+          // the direction to match the word at the new cell.
+          if (!isIntersection) {
+            if (mapGrid[row][col].horiz) {
+              newDir = HORIZONTAL;
+            } else {
+              newDir = VERTICAL;
+            }
           }
         }
       }
+
+      // Update the "selected cell" state.
+      setSelectedCell({ row: newRow, col: newCol, dir: newDir });
+
+      // Update the clue upstream to match the new selected word.
+      props.updateClue(getWordAt(newRow, newCol, newDir)?.clue);
     }
 
-    // Update the "selected cell" state.
-    setSelectedCell({ row: newRow, col: newCol, dir: newDir });
+    /*************************** GAME LOGIC ****************************/
+    function moveToNextCell() {
+      const direction = selectedCell.dir;
+      const nextRow =
+        direction === HORIZONTAL ? selectedCell.row : selectedCell.row + 1;
+      const nextCol =
+        direction === HORIZONTAL ? selectedCell.col + 1 : selectedCell.col;
 
-    // Update the clue upstream to match the new selected word.
-    props.updateClue(getWordAt(newRow, newCol, newDir)?.clue);
-  }
-
-  /*************************** GAME LOGIC ****************************/
-  function moveToNextCell() {
-    const direction = selectedCell.dir;
-    const nextRow =
-      direction === HORIZONTAL ? selectedCell.row : selectedCell.row + 1;
-    const nextCol =
-      direction === HORIZONTAL ? selectedCell.col + 1 : selectedCell.col;
-
-    if (
-      nextRow >= userGrid.length ||
-      nextCol >= userGrid.length ||
-      userGrid[nextRow][nextCol] === null
-    ) {
-      moveToNextWord();
-    } else {
-      selectCell(nextRow, nextCol);
-    }
-  }
-
-  function moveToPrevCell() {
-    const direction = selectedCell.dir;
-    const prevRow =
-      direction === HORIZONTAL ? selectedCell.row : selectedCell.row - 1;
-    const prevCol =
-      direction === HORIZONTAL ? selectedCell.col - 1 : selectedCell.col;
-
-    if (prevRow < 0 || prevCol < 0 || userGrid[prevRow][prevCol] === null) {
-      moveToPrevWord();
-    } else {
-      selectCell(prevRow, prevCol);
-    }
-  }
-
-  function moveToNextWord() {
-    const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    const nextWord = findNextUnfilledWord(selectedWord);
-    if (nextWord === null) {
-      // If all words are filled, stay here.
-      return;
-    }
-    selectCell(nextWord.row, nextWord.col, nextWord.direction);
-  }
-
-  function isWordFilled(word: Word) {
-    let row = word.row;
-    let col = word.col;
-    let rowIndex = 0;
-    let colIndex = 0;
-    const length = word.word.length;
-    while (rowIndex < length && colIndex < length) {
-      if (userGrid[row + rowIndex][col + colIndex] === "") {
-        return false;
-      }
-      if (word.direction === HORIZONTAL) {
-        colIndex++;
+      if (
+        nextRow >= userGrid.length ||
+        nextCol >= userGrid.length ||
+        userGrid[nextRow][nextCol] === null
+      ) {
+        moveToNextWord();
       } else {
-        rowIndex++;
+        selectCell(nextRow, nextCol);
       }
     }
-    return true;
-  }
 
-  function findNextUnfilledWord(word: Word) {
-    const wordIndex = props.game.words.indexOf(word);
-    let index = wordIndex + 1;
-    while (index < props.game.words.length) {
-      if (!isWordFilled(props.game.words[index])) {
-        return props.game.words[index];
+    function moveToPrevCell() {
+      const direction = selectedCell.dir;
+      const prevRow =
+        direction === HORIZONTAL ? selectedCell.row : selectedCell.row - 1;
+      const prevCol =
+        direction === HORIZONTAL ? selectedCell.col - 1 : selectedCell.col;
+
+      if (prevRow < 0 || prevCol < 0 || userGrid[prevRow][prevCol] === null) {
+        moveToPrevWord();
+      } else {
+        selectCell(prevRow, prevCol);
       }
-      index++;
     }
-    index = 0;
-    while (index < wordIndex) {
-      if (!isWordFilled(props.game.words[index])) {
-        return props.game.words[index];
+
+    function moveToNextWord() {
+      const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
+      const nextWord = findNextUnfilledWord(selectedWord);
+      if (nextWord === null) {
+        // If all words are filled, stay here.
+        return;
       }
-      index++;
+      selectCell(nextWord.row, nextWord.col, nextWord.direction);
     }
-    return null;
-  }
 
-  function moveToPrevWord() {
-    const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
-    let indexOfNextWord = props.game.words.indexOf(selectedWord) - 1;
-    if (indexOfNextWord < 0) {
-      indexOfNextWord = props.game.words.length - 1;
-    }
-    const nextWord = props.game.words[indexOfNextWord];
-
-    // Go the the end of the word.
-    const length = nextWord.word.length;
-    if (nextWord.direction === HORIZONTAL) {
-      selectCell(nextWord.row, nextWord.col + length - 1, nextWord.direction);
-    } else {
-      selectCell(nextWord.row + length - 1, nextWord.col, nextWord.direction);
-    }
-  }
-
-  function getWordAt(row: number, col: number, dir?: string) {
-    const requestedDir = dir ?? selectedCell.dir;
-    return requestedDir === HORIZONTAL
-      ? mapGrid[row][col]?.horiz
-      : mapGrid[row][col]?.vert;
-  }
-
-  function isGameCompleteAndCorrect(grid: string[][]) {
-    for (let i = 0; i < grid.length; i++) {
-      for (let j = 0; j < grid.length; ++j) {
-        if (grid[i][j] !== solutionGrid[i][j]) {
+    function isWordFilled(word: Word) {
+      let row = word.row;
+      let col = word.col;
+      let rowIndex = 0;
+      let colIndex = 0;
+      const length = word.word.length;
+      while (rowIndex < length && colIndex < length) {
+        if (userGrid[row + rowIndex][col + colIndex] === "") {
           return false;
         }
+        if (word.direction === HORIZONTAL) {
+          colIndex++;
+        } else {
+          rowIndex++;
+        }
+      }
+      return true;
+    }
+
+    function findNextUnfilledWord(word: Word) {
+      const wordIndex = props.game.words.indexOf(word);
+      let index = wordIndex + 1;
+      while (index < props.game.words.length) {
+        if (!isWordFilled(props.game.words[index])) {
+          return props.game.words[index];
+        }
+        index++;
+      }
+      index = 0;
+      while (index < wordIndex) {
+        if (!isWordFilled(props.game.words[index])) {
+          return props.game.words[index];
+        }
+        index++;
+      }
+      return null;
+    }
+
+    function moveToPrevWord() {
+      const selectedWord = getWordAt(selectedCell.row, selectedCell.col);
+      let indexOfNextWord = props.game.words.indexOf(selectedWord) - 1;
+      if (indexOfNextWord < 0) {
+        indexOfNextWord = props.game.words.length - 1;
+      }
+      const nextWord = props.game.words[indexOfNextWord];
+
+      // Go the the end of the word.
+      const length = nextWord.word.length;
+      if (nextWord.direction === HORIZONTAL) {
+        selectCell(nextWord.row, nextWord.col + length - 1, nextWord.direction);
+      } else {
+        selectCell(nextWord.row + length - 1, nextWord.col, nextWord.direction);
       }
     }
-    return true;
-  }
 
-  /************************** UI COMPONENTS ***************************/
-  function isCellSelected(row: number, col: number) {
-    return selectedCell.row === row && selectedCell.col === col;
-  }
+    function getWordAt(row: number, col: number, dir?: string) {
+      const requestedDir = dir ?? selectedCell.dir;
+      return requestedDir === HORIZONTAL
+        ? mapGrid[row][col]?.horiz
+        : mapGrid[row][col]?.vert;
+    }
 
-  function isCellHighlighted(row: number, col: number) {
-    const currentWord = getWordAt(row, col);
-    const highlightedWord = getWordAt(selectedCell.row, selectedCell.col);
-    return currentWord === highlightedWord;
-  }
+    function isGameCompleteAndCorrect(grid: string[][]) {
+      for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid.length; ++j) {
+          if (grid[i][j] !== solutionGrid[i][j]) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
 
-  const ValidCell = ({
-    row,
-    col,
-    value,
-  }: {
-    row: number;
-    col: number;
-    value: string;
-  }) => {
+    /************************** UI COMPONENTS ***************************/
+    function isCellSelected(row: number, col: number) {
+      return selectedCell.row === row && selectedCell.col === col;
+    }
+
+    function isCellHighlighted(row: number, col: number) {
+      const currentWord = getWordAt(row, col);
+      const highlightedWord = getWordAt(selectedCell.row, selectedCell.col);
+      return currentWord === highlightedWord;
+    }
+
+    const ValidCell = ({
+      row,
+      col,
+      value,
+    }: {
+      row: number;
+      col: number;
+      value: string;
+    }) => {
+      return (
+        <View style={styles.cell}>
+          <TouchableOpacity
+            style={[
+              styles.validCell,
+              isCellHighlighted(row, col) ? styles.highlightedCell : undefined,
+              isCellSelected(row, col) ? styles.selectedCell : undefined,
+            ]}
+            onPress={() => {
+              selectCell(row, col);
+            }}
+          >
+            <Text style={styles.cellContent}>{value}</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    };
+
+    const InvalidCell = () => {
+      return <View style={[styles.cell]} />;
+    };
+
     return (
-      <View style={styles.cell}>
-        <TouchableOpacity
-          style={[
-            styles.validCell,
-            isCellHighlighted(row, col) ? styles.highlightedCell : undefined,
-            isCellSelected(row, col) ? styles.selectedCell : undefined,
-          ]}
-          onPress={() => {
-            selectCell(row, col);
+      <View>
+        <TextInput
+          ref={textInput}
+          autoFocus={true}
+          style={styles.textInput}
+          onKeyPress={(event) => {
+            onInput(event.nativeEvent.key);
           }}
-        >
-          <Text style={styles.cellContent}>{value}</Text>
-        </TouchableOpacity>
+          autoCorrect={false}
+          autoCapitalize={"characters"}
+          keyboardAppearance="light"
+          keyboardType="ascii-capable"
+        />
+
+        {userGrid.map((row, rowIndex) => (
+          <View key={rowIndex} style={styles.row}>
+            {row.map((cell, colIndex) =>
+              cell !== null ? (
+                <ValidCell
+                  key={colIndex}
+                  row={rowIndex}
+                  col={colIndex}
+                  value={cell}
+                />
+              ) : (
+                <InvalidCell key={colIndex} />
+              )
+            )}
+          </View>
+        ))}
       </View>
     );
-  };
-
-  const InvalidCell = () => {
-    return <View style={[styles.cell]} />;
-  };
-
-  return (
-    <View>
-      <TextInput
-        ref={textInput}
-        autoFocus={true}
-        style={styles.textInput}
-        onKeyPress={(event) => {
-          onInput(event.nativeEvent.key);
-        }}
-        autoCorrect={false}
-        autoCapitalize={"characters"}
-        keyboardAppearance="light"
-        keyboardType="ascii-capable"
-      />
-
-      {userGrid.map((row, rowIndex) => (
-        <View key={rowIndex} style={styles.row}>
-          {row.map((cell, colIndex) =>
-            cell !== null ? (
-              <ValidCell
-                key={colIndex}
-                row={rowIndex}
-                col={colIndex}
-                value={cell}
-              />
-            ) : (
-              <InvalidCell key={colIndex} />
-            )
-          )}
-        </View>
-      ))}
-    </View>
-  );
-};
+  }
+);
 
 const styles = StyleSheet.create({
   textInput: {
