@@ -10,7 +10,7 @@ import CategoryCard from "@/components/CategoryCard";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { GameContext } from "@/context/GameContext";
 import { UserContext } from "@/context/UserContext";
-import { getAdjustedTextSize } from "@/utils/Text";
+import { getAdjustedTitleTextSize } from "@/utils/Text";
 import {
   getTabViewBottomPadding,
   getVisibleHeight,
@@ -41,7 +41,7 @@ export default function HomeScreen() {
 
   const Header = () => {
     // Dynamically adjust font size based on the length of the name
-    let textSize = getAdjustedTextSize(name, 64);
+    let textSize = getAdjustedTitleTextSize(name, 64);
     const fontStyle = {
       fontSize: textSize,
       lineHeight: textSize,

@@ -1,12 +1,17 @@
 import { useState, useContext, useRef, useEffect } from "react";
-import { Platform, StyleSheet, View, TouchableOpacity } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import { useLocalSearchParams, router, useNavigation } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { AutoSizeText, ResizeTextMode } from "react-native-auto-size-text";
 
 import { GameContext } from "@/context/GameContext";
 import ThemedView from "@/components/ThemedView";
@@ -16,6 +21,7 @@ import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
 import HelpMenu from "@/components/HelpMenu";
 import { getGamesInCategory } from "@/utils/Data";
+import { getAdjustedClueTextSize } from "@/utils/Text";
 
 enum CurrentView {
   GAME = "game",
@@ -139,14 +145,14 @@ export default function GameScreen() {
               <PrevButton />
             </TouchableOpacity>
             <View style={styles.textContainer}>
-              <AutoSizeText
-                fontSize={20}
-                numberOfLines={2}
-                mode={ResizeTextMode.max_lines}
-                style={styles.text}
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: getAdjustedClueTextSize(clue, 24) },
+                ]}
               >
                 {clue}
-              </AutoSizeText>
+              </Text>
             </View>
             <TouchableOpacity>
               <NextButton />
@@ -186,6 +192,5 @@ const styles = StyleSheet.create({
     fontFamily: "Hanken Grotesk",
     color: "#6E6E6E",
     textAlign: "center",
-    fontSize: 20,
   },
 });

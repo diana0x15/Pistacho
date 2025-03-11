@@ -1,4 +1,4 @@
-export function getAdjustedTextSize(text: string, baseSize: number) {
+export function getAdjustedTitleTextSize(text: string, baseSize: number) {
   let adjustment = 0;
   if (text.length > 5) {
     adjustment = 4;
@@ -17,6 +17,23 @@ export function getAdjustedTextSize(text: string, baseSize: number) {
   }
   if (text.length > 10) {
     adjustment = 0; // Return to default size for extremely long names.
+  }
+  return baseSize - adjustment;
+}
+
+export function getAdjustedClueTextSize(text: string, baseSize: number) {
+  let adjustment = 0;
+  if (text.length > 20) {
+    adjustment = 1;
+  }
+  if (text.length > 22) {
+    adjustment = 2;
+  }
+  if (text.length > 26) {
+    adjustment = 4;
+  }
+  if (text.length > 30) {
+    adjustment = 8;
   }
   return baseSize - adjustment;
 }
