@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Platform, StyleSheet, View, TouchableOpacity } from "react-native";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams, router } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
@@ -33,7 +33,7 @@ export default function GameScreen() {
   }>();
   const game = getGamesInCategory(categoryId).find((g) => g.id === gameId);
   if (game === undefined) {
-    useNavigation().goBack();
+    router.replace("/tabs/home");
     return;
   }
 

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { useNavigation } from "expo-router";
+import { router } from "expo-router";
 
 import ThemedText from "./ThemedText";
 import ThemedView from "./ThemedView";
@@ -12,8 +12,6 @@ interface Callbacks {
 }
 
 export default function GameCompleted(callbacks: Callbacks) {
-  const navigation = useNavigation();
-
   const circleSize = getWindowWidth() * 0.8;
   const pistachoSize = getWindowWidth() * 0.5;
 
@@ -54,13 +52,7 @@ export default function GameCompleted(callbacks: Callbacks) {
         <ThemedButton mode={"secondary"} onPress={callbacks.showWordList}>
           Revisa las palabras
         </ThemedButton>
-        <ThemedButton
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          Siguente
-        </ThemedButton>
+        <ThemedButton onPress={router.back}>Siguente</ThemedButton>
       </View>
     </ThemedView>
   );

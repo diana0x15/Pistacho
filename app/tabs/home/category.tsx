@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { GameContext } from "@/context/GameContext";
@@ -31,7 +31,7 @@ export default function CategoryScreen() {
   const { categoryId } = useLocalSearchParams();
   const category = categories.find((category) => category.id === categoryId);
   if (category === undefined) {
-    useNavigation().goBack();
+    router.replace("/tabs/home");
     return;
   }
 
