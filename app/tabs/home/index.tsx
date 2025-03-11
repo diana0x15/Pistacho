@@ -13,7 +13,6 @@ import { UserContext } from "@/context/UserContext";
 import { getAdjustedTextSize } from "@/utils/Text";
 import {
   getTabViewBottomPadding,
-  getBottomTabHeight,
   getVisibleHeight,
 } from "@/constants/Dimensions";
 import { getRandomGame } from "@/utils/Data";
@@ -26,7 +25,7 @@ export default function HomeScreen() {
 
   const SCREEN_HEIGHT = getVisibleHeight() - getTabViewBottomPadding();
   const PADDING_BOTTOM = getTabViewBottomPadding() + 20;
-  const HEADER_HEIGHT = SCREEN_HEIGHT * 0.5;
+  const HEADER_HEIGHT = SCREEN_HEIGHT * 0.6;
   const PISTACHO_SCALE = 0.33;
   const PISTACHO_WIDTH = 436 * PISTACHO_SCALE;
   const PISTACHO_HEIGHT = 900 * PISTACHO_SCALE;
