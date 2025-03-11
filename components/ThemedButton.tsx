@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, GestureResponderEvent } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, PaperProvider } from "react-native-paper";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 
@@ -36,16 +36,18 @@ export default function ThemedButton({
   const textColor = mode === "primary" ? onColor : color;
 
   return (
-    <Button
-      mode={buttonMode}
-      buttonColor={backgroundColor}
-      style={[{ borderColor: outlineColor }, styles.buttonStyle]}
-      labelStyle={[{ color: textColor }, styles.labelStyle]}
-      onPress={onPress}
-      disabled={isDisbaled}
-    >
-      {children}
-    </Button>
+    <PaperProvider>
+      <Button
+        mode={buttonMode}
+        buttonColor={backgroundColor}
+        style={[{ borderColor: outlineColor }, styles.buttonStyle]}
+        labelStyle={[{ color: textColor }, styles.labelStyle]}
+        onPress={onPress}
+        disabled={isDisbaled}
+      >
+        {children}
+      </Button>
+    </PaperProvider>
   );
 }
 

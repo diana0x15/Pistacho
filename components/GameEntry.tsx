@@ -5,7 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { createGrid } from "./CrosswordGrid";
 import { Game } from "@/constants/Game";
 
-export type GameEntryProps = {
+interface GameEntryProps {
   game: Game;
   categoryId: string;
   index: number;
@@ -15,7 +15,7 @@ export type GameEntryProps = {
   isLocked: boolean;
   size: number;
   onPress: () => void;
-};
+}
 
 export default function GameEntry(props: GameEntryProps) {
   const LockIcon = () => {

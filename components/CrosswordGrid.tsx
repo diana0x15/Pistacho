@@ -26,6 +26,7 @@ interface CrosswordGridProps {
 export interface GameControlRef {
   nextWord: () => void;
   prevWord: () => void;
+  showWord: () => void;
 }
 
 const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
@@ -73,6 +74,25 @@ const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
       },
       prevWord() {
         moveToPrevWord();
+      },
+      showWord() {
+        const currentWord = getWordAt(selectedCell.row, selectedCell.col);
+        const startRow = currentWord.row;
+        const startCol = currentWord.col;
+        let length = currentWord.word.length;
+        const newGrid = userGrid.map((row) => [...row]);
+
+        for (let i = 0; i < length; ++i) {
+          if (selectedCell.dir === HORIZONTAL) {
+            newGrid[startRow][startCol + i] =
+              solutionGrid[startRow][startCol + i];
+          } else {
+            newGrid[startRow + i][startCol] =
+              solutionGrid[startRow + i][startCol];
+          }
+        }
+
+        setUserGrid(newGrid);
       },
     }));
 

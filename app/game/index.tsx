@@ -1,6 +1,6 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { Platform, StyleSheet, View, TouchableOpacity } from "react-native";
-import { useLocalSearchParams, router } from "expo-router";
+import { useLocalSearchParams, router, useNavigation } from "expo-router";
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
@@ -14,6 +14,7 @@ import CrosswordGrid, { GameControlRef } from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
 import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
+import HelpMenu from "@/components/HelpMenu";
 import { getGamesInCategory } from "@/utils/Data";
 
 enum CurrentView {
@@ -100,6 +101,21 @@ export default function GameScreen() {
     addCompletedGame(gameId);
     setCurrentView(CurrentView.GAME_COMPLETE);
   };
+
+  const showCurrentWord = () => {};
+
+  // Create the help menu.
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HelpMenu
+          firstAction={() => gameRef.current?.showWord()}
+          secondAction={() => {}}
+        />
+      ),
+    });
+  }, [navigation]);
 
   return (
     <ThemedView style={styles.container}>

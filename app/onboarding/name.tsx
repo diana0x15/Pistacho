@@ -7,7 +7,7 @@ import {
   Platform,
 } from "react-native";
 import { router } from "expo-router";
-import { TextInput } from "react-native-paper";
+import { PaperProvider, TextInput } from "react-native-paper";
 
 import ThemedText from "@/components/ThemedText";
 import ThemedView from "@/components/ThemedView";
@@ -24,49 +24,51 @@ export default function NameScreen() {
   const imageSize = getWindowWidth() * 0.8;
 
   return (
-    <ThemedView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.keyboardAvoidingView}
-      >
-        <View style={styles.contentTop}>
-          <View style={styles.imageContainer}>
-            <Blackboard height={imageSize} width={imageSize} />
+    <PaperProvider>
+      <ThemedView style={styles.container}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.keyboardAvoidingView}
+        >
+          <View style={styles.contentTop}>
+            <View style={styles.imageContainer}>
+              <Blackboard height={imageSize} width={imageSize} />
+            </View>
           </View>
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>
-            <ThemedText type="large">¿Cómo te llamas?</ThemedText>
-          </Text>
-          <View style={styles.inputContainer}>
-            <TextInput
-              mode="outlined"
-              placeholder="Nombre..."
-              placeholderTextColor="#D9D9D9"
-              autoCapitalize="words"
-              theme={{ roundness: 100 }}
-              outlineColor="#8BAB52"
-              activeOutlineColor="#8BAB52"
-              textColor="#8BAB52"
-              style={styles.input}
-              onChangeText={(text) => setName(text)}
-            />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              <ThemedText type="large">¿Cómo te llamas?</ThemedText>
+            </Text>
+            <View style={styles.inputContainer}>
+              <TextInput
+                mode="outlined"
+                placeholder="Nombre..."
+                placeholderTextColor="#D9D9D9"
+                autoCapitalize="words"
+                theme={{ roundness: 100 }}
+                outlineColor="#8BAB52"
+                activeOutlineColor="#8BAB52"
+                textColor="#8BAB52"
+                style={styles.input}
+                onChangeText={(text) => setName(text)}
+              />
+            </View>
           </View>
-        </View>
 
-        <View style={styles.buttonContainer}>
-          <ThemedButton
-            isDisbaled={!isNameValid(name)}
-            onPress={async () => {
-              await setUserName(name.split(" ", 1)[0]);
-              router.replace("/onboarding/level");
-            }}
-          >
-            Siguente
-          </ThemedButton>
-        </View>
-      </KeyboardAvoidingView>
-    </ThemedView>
+          <View style={styles.buttonContainer}>
+            <ThemedButton
+              isDisbaled={!isNameValid(name)}
+              onPress={async () => {
+                await setUserName(name.split(" ", 1)[0]);
+                router.replace("/onboarding/level");
+              }}
+            >
+              Siguente
+            </ThemedButton>
+          </View>
+        </KeyboardAvoidingView>
+      </ThemedView>
+    </PaperProvider>
   );
 }
 
