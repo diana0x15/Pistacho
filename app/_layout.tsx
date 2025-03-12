@@ -10,6 +10,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useContext } from "react";
 import "react-native-reanimated";
 import { StatusBar } from "expo-status-bar";
+import { PaperProvider } from "react-native-paper";
 
 import { GameProvider } from "@/context/GameContext";
 import { UserProvider, UserContext } from "@/context/UserContext";
@@ -52,14 +53,16 @@ export default function RootLayout() {
 
   return (
     <UserProvider>
-      <GameProvider>
-        <StatusBar style="dark" />
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <AppNavigator />
-        </ThemeProvider>
-      </GameProvider>
+      <PaperProvider>
+        <GameProvider>
+          <StatusBar style="dark" />
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+          >
+            <AppNavigator />
+          </ThemeProvider>
+        </GameProvider>
+      </PaperProvider>
     </UserProvider>
   );
 }

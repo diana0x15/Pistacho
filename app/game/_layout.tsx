@@ -1,6 +1,5 @@
 import { TouchableOpacity } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import { PaperProvider } from "react-native-paper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function GameLayout() {
@@ -19,10 +18,8 @@ export default function GameLayout() {
   };
 
   return (
-    <PaperProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" options={headerOptions} />
-      </Stack>
-    </PaperProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" options={headerOptions} />
+    </Stack>
   );
 }
