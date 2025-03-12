@@ -27,6 +27,7 @@ export interface GameControlRef {
   nextWord: () => void;
   prevWord: () => void;
   showWord: () => void;
+  resetGame: () => void;
 }
 
 const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
@@ -92,6 +93,17 @@ const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
           }
         }
 
+        setUserGrid(newGrid);
+      },
+      resetGame() {
+        const newGrid = userGrid.map((row) => [...row]);
+        for (let i = 0; i < userGrid.length; ++i) {
+          for (let j = 0; j < userGrid.length; ++j) {
+            if (userGrid[i][j] !== null) {
+              newGrid[i][j] = "";
+            }
+          }
+        }
         setUserGrid(newGrid);
       },
     }));

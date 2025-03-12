@@ -36,12 +36,12 @@ export default function HelpMenu({ firstAction, secondAction }: HelpMenuProps) {
           title="Mostrar palabra"
         />
         <Menu.Item
-          leadingIcon={"flag-checkered"}
+          leadingIcon={"restore"}
           onPress={() => {
             secondAction();
             closeMenu();
           }}
-          title="Resolver crucigrama"
+          title="Reiniciar el juego"
         />
       </Menu>
     </View>

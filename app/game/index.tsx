@@ -117,7 +117,9 @@ export default function GameScreen() {
       headerRight: () => (
         <HelpMenu
           firstAction={() => gameRef.current?.showWord()}
-          secondAction={() => {}}
+          secondAction={() => {
+            gameRef.current?.resetGame();
+          }}
         />
       ),
     });
@@ -148,7 +150,7 @@ export default function GameScreen() {
               <Text
                 style={[
                   styles.text,
-                  { fontSize: getAdjustedClueTextSize(clue, 24) },
+                  { fontSize: getAdjustedClueTextSize(clue, 26) },
                 ]}
               >
                 {clue}
