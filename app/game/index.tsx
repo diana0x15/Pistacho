@@ -44,17 +44,6 @@ export default function GameScreen() {
     return;
   }
 
-  // Set up the current view (GAME, GAME_COMPLETE or WORDS).
-  const [currentView, setCurrentView] = useState(CurrentView.GAME);
-  if (currentView === CurrentView.GAME_COMPLETE) {
-    return (
-      <GameCompleted showWordList={() => setCurrentView(CurrentView.WORDS)} />
-    );
-  }
-  if (currentView === CurrentView.WORDS) {
-    return <ReviewWords categoryId={categoryId} words={game.words} />;
-  }
-
   // Set up the clue.
   const startIndex = 0;
   const [clue, setClue] = useState(game.words[startIndex].clue);
@@ -114,16 +103,28 @@ export default function GameScreen() {
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <HelpMenu
-          firstAction={() => gameRef.current?.showWord()}
-          secondAction={() => {
-            gameRef.current?.resetGame();
-          }}
-        />
-      ),
+      headerRight: () =>
+        currentView === CurrentView.GAME ? (
+          <HelpMenu
+            firstAction={() => gameRef.current?.showWord()}
+            secondAction={() => {
+              gameRef.current?.resetGame();
+            }}
+          />
+        ) : null,
     });
   }, [navigation]);
+
+  // Set up the current view (GAME, GAME_COMPLETE or WORDS).
+  const [currentView, setCurrentView] = useState(CurrentView.GAME);
+  if (currentView === CurrentView.GAME_COMPLETE) {
+    return (
+      <GameCompleted showWordList={() => setCurrentView(CurrentView.WORDS)} />
+    );
+  }
+  if (currentView === CurrentView.WORDS) {
+    return <ReviewWords categoryId={categoryId} words={game.words} />;
+  }
 
   return (
     <ThemedView style={styles.container}>

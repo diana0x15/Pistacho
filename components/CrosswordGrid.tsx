@@ -94,6 +94,10 @@ const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
         }
 
         setUserGrid(newGrid);
+        if (isGameCompleteAndCorrect(newGrid)) {
+          props.completeGame();
+          return;
+        }
       },
       resetGame() {
         const newGrid = userGrid.map((row) => [...row]);
@@ -131,6 +135,7 @@ const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
 
       if (isGameCompleteAndCorrect(newGrid)) {
         props.completeGame();
+        return;
       }
 
       if (value === "Backspace") {
