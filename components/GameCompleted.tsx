@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { router } from "expo-router";
 
@@ -6,14 +7,21 @@ import ThemedView from "./ThemedView";
 import ThemedButton from "./ThemedButton";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
+import { GameContext } from "@/context/GameContext";
 
 interface Callbacks {
   showWordList: () => void;
 }
 
 export default function GameCompleted(callbacks: Callbacks) {
+  const { completedGames } = useContext(GameContext);
+
   const circleSize = getWindowWidth() * 0.8;
   const pistachoSize = getWindowWidth() * 0.5;
+
+  const message = completedGames.length
+    ? "Has completado otro crucigrama."
+    : "Has completado tu primer crucigrama.";
 
   return (
     <ThemedView style={styles.container}>
@@ -42,7 +50,7 @@ export default function GameCompleted(callbacks: Callbacks) {
             </ThemedText>
             <ThemedText type="subtitle"> </ThemedText>
             <ThemedText style={{ color: "#585858" }} type="subtitle">
-              Has completado otro crucigrama.
+              {message}
             </ThemedText>
           </Text>
         </View>

@@ -103,15 +103,14 @@ export default function GameScreen() {
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () =>
-        currentView === CurrentView.GAME ? (
-          <HelpMenu
-            firstAction={() => gameRef.current?.showWord()}
-            secondAction={() => {
-              gameRef.current?.resetGame();
-            }}
-          />
-        ) : null,
+      headerRight: () => (
+        <HelpMenu
+          firstAction={() => gameRef.current?.showWord()}
+          secondAction={() => {
+            gameRef.current?.resetGame();
+          }}
+        />
+      ),
     });
   }, [navigation]);
 

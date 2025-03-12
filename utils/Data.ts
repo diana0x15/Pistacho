@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
-import * as FileSystem from "expo-file-system";
-
 import { GameWithCategory } from "@/constants/Game";
 
-const CATEGORY_COUNT = 3;
+const CATEGORY_COUNT = 5;
 import category1 from "@/data/games/1.json";
 import category2 from "@/data/games/2.json";
 import category3 from "@/data/games/3.json";
@@ -38,6 +34,17 @@ export function getRandomGame(completedGames: string[]): GameWithCategory {
       });
 
     availableGames.push(...games);
+  }
+
+  // If all games are completed, pick any game.
+  if (availableGames.length === 0) {
+    for (let category = 1; category <= CATEGORY_COUNT; ++category) {
+      const games = getGamesInCategory(category + "").map((g) => {
+        return { id: g.id, category };
+      });
+
+      availableGames.push(...games);
+    }
   }
 
   const randomIndex = Math.floor(Math.random() * availableGames.length);
