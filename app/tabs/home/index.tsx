@@ -88,7 +88,7 @@ export default function HomeScreen() {
   const Content = () => {
     return (
       <View style={[styles.listContainer, { paddingBottom: PADDING_BOTTOM }]}>
-        <ThemedText type="subtitle">Mi progreso:</ThemedText>
+        <ThemedText type="subtitle">Tu progreso:</ThemedText>
         <View style={styles.list}>
           {categories.map((category) => (
             <CategoryCard
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     maxWidth: 200,
     marginTop: "auto",
+    marginBottom: 40,
   },
   listContainer: {
     paddingInline: 20,
