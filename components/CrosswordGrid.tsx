@@ -348,6 +348,7 @@ const CrosswordGrid = forwardRef<GameControlRef, CrosswordGridProps>(
             onPress={() => {
               selectCell(row, col);
             }}
+            testID={`grid-cell-${row}-${col}`}
           >
             <Text style={styles.cellContent}>{value}</Text>
           </TouchableOpacity>
