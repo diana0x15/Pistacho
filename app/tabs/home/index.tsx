@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     maxWidth: 200,
     marginTop: "auto",
-    marginBottom: 40,
+    marginBottom: 10,
   },
   listContainer: {
     paddingInline: 20,
