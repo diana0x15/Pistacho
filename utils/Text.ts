@@ -36,7 +36,13 @@ export function getAdjustedClueTextSize(text: string, baseSize: number) {
     adjustment = 4;
   }
   if (text.length > 30) {
+    adjustment = 5;
+  }
+  if (text.length > 32) {
     adjustment = 6;
+  }
+  if (text.length > 34) {
+    adjustment = 7;
   }
   return baseSize - adjustment;
 }

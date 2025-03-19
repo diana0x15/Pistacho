@@ -150,7 +150,7 @@ export default function GameScreen() {
               <Text
                 style={[
                   styles.text,
-                  { fontSize: getAdjustedClueTextSize(clue, 22) },
+                  { fontSize: getAdjustedClueTextSize(clue, 24) },
                 ]}
               >
                 {clue}
