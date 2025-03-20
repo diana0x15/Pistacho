@@ -21,7 +21,6 @@ import GameCompleted from "@/components/GameCompleted";
 import ReviewWords from "@/components/ReviewWords";
 import HelpMenu from "@/components/HelpMenu";
 import { getGamesInCategory } from "@/utils/Data";
-import { getAdjustedClueTextSize } from "@/utils/Text";
 
 enum CurrentView {
   GAME = "game",
@@ -142,24 +141,13 @@ export default function GameScreen() {
       </View>
       <Animated.View style={clueTransformation}>
         <View style={styles.clueContainer}>
-          <View style={styles.clueContent}>
-            <TouchableOpacity>
-              <PrevButton />
-            </TouchableOpacity>
-            <View style={styles.textContainer}>
-              <Text
-                style={[
-                  styles.text,
-                  { fontSize: getAdjustedClueTextSize(clue, 24) },
-                ]}
-              >
-                {clue}
-              </Text>
-            </View>
-            <TouchableOpacity>
-              <NextButton />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.clueButton}>
+            <PrevButton />
+          </TouchableOpacity>
+          <Text style={styles.text}>{clue}</Text>
+          <TouchableOpacity style={styles.clueButton}>
+            <NextButton />
+          </TouchableOpacity>
         </View>
       </Animated.View>
     </ThemedView>
@@ -172,26 +160,27 @@ const styles = StyleSheet.create({
   },
   clueContainer: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    width: "100%",
     bottom: 0,
-    height: 80,
+    minHeight: 80,
+    maxHeight: 120,
     display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#D7DECC",
   },
-  clueContent: {
-    flexDirection: "row",
+  clueButton: {
+    height: "100%",
+    width: 42,
+    display: "flex",
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "space-between",
-    padding: 10,
-  },
-  textContainer: {
-    flex: 1,
-    paddingHorizontal: 10,
   },
   text: {
+    flex: 1,
     fontFamily: "Hanken Grotesk",
+    fontSize: 18,
     color: "#6E6E6E",
     textAlign: "center",
   },

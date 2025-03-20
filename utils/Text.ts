@@ -21,32 +21,6 @@ export function getAdjustedTitleTextSize(text: string, baseSize: number) {
   return baseSize - adjustment;
 }
 
-export function getAdjustedClueTextSize(text: string, baseSize: number) {
-  let adjustment = 0;
-  if (text.length > 20) {
-    adjustment = 1;
-  }
-  if (text.length > 24) {
-    adjustment = 2;
-  }
-  if (text.length > 26) {
-    adjustment = 3;
-  }
-  if (text.length > 28) {
-    adjustment = 4;
-  }
-  if (text.length > 30) {
-    adjustment = 5;
-  }
-  if (text.length > 32) {
-    adjustment = 6;
-  }
-  if (text.length > 34) {
-    adjustment = 7;
-  }
-  return baseSize - adjustment;
-}
-
 export function countWords(str: string | undefined) {
   if (!str) {
     return 0;
