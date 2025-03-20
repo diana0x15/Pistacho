@@ -17,16 +17,8 @@ import { GameContext } from "@/context/GameContext";
 import ThemedView from "@/components/ThemedView";
 import CrosswordGrid, { GameControlRef } from "@/components/CrosswordGrid";
 import GestureWrapper from "@/components/GestureWrapper";
-import GameCompleted from "@/components/GameCompleted";
-import ReviewWords from "@/components/ReviewWords";
 import HelpMenu from "@/components/HelpMenu";
 import { getGamesInCategory } from "@/utils/Data";
-
-enum CurrentView {
-  GAME = "game",
-  GAME_COMPLETE = "game_complete",
-  WORDS = "words",
-}
 
 // Route URL: /game?gameId=123&categoryId=456.
 export default function GameScreen() {
@@ -93,10 +85,11 @@ export default function GameScreen() {
 
   const completeGame = () => {
     addCompletedGame(gameId);
-    setCurrentView(CurrentView.GAME_COMPLETE);
+    router.replace(
+      `/game/celebration?gameId=${gameId}&categoryId=${categoryId}`
+    );
+    return;
   };
-
-  const showCurrentWord = () => {};
 
   // Create the help menu.
   const navigation = useNavigation();
@@ -112,17 +105,6 @@ export default function GameScreen() {
       ),
     });
   }, [navigation]);
-
-  // Set up the current view (GAME, GAME_COMPLETE or WORDS).
-  const [currentView, setCurrentView] = useState(CurrentView.GAME);
-  if (currentView === CurrentView.GAME_COMPLETE) {
-    return (
-      <GameCompleted showWordList={() => setCurrentView(CurrentView.WORDS)} />
-    );
-  }
-  if (currentView === CurrentView.WORDS) {
-    return <ReviewWords categoryId={categoryId} words={game.words} />;
-  }
 
   return (
     <ThemedView style={styles.container}>

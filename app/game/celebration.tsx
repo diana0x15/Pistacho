@@ -1,27 +1,37 @@
 import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { router } from "expo-router";
+import { useLocalSearchParams, router } from "expo-router";
 
-import ThemedText from "./ThemedText";
-import ThemedView from "./ThemedView";
-import ThemedButton from "./ThemedButton";
+import ThemedText from "@/components/ThemedText";
+import ThemedView from "@/components/ThemedView";
+import ThemedButton from "@/components/ThemedButton";
 import Pistacho from "@/assets/images/pistacho/pistacho.svg";
 import { getWindowWidth } from "@/constants/Dimensions";
 import { GameContext } from "@/context/GameContext";
+import { getGamesInCategory } from "@/utils/Data";
 
-interface Callbacks {
-  showWordList: () => void;
-}
-
-export default function GameCompleted(callbacks: Callbacks) {
+// Route URL: /game/celebration?gameId=123&categoryId=456.
+export default function CelebrationScreen() {
   const { completedGames } = useContext(GameContext);
+
+  // Get the current game data.
+  const { gameId, categoryId } = useLocalSearchParams<{
+    gameId: string;
+    categoryId: string;
+  }>();
+  const game = getGamesInCategory(categoryId).find((g) => g.id === gameId);
+  if (game === undefined) {
+    router.replace("/tabs/home");
+    return;
+  }
 
   const circleSize = getWindowWidth() * 0.8;
   const pistachoSize = getWindowWidth() * 0.5;
 
-  const message = completedGames.length
-    ? "Has completado otro crucigrama."
-    : "Has completado tu primer crucigrama.";
+  const message =
+    completedGames.length > 0
+      ? "Has completado otro crucigrama."
+      : "Has completado tu primer crucigrama.";
 
   return (
     <ThemedView style={styles.container}>
@@ -57,7 +67,14 @@ export default function GameCompleted(callbacks: Callbacks) {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <ThemedButton mode={"secondary"} onPress={callbacks.showWordList}>
+        <ThemedButton
+          mode={"secondary"}
+          onPress={() => {
+            router.replace(
+              `/game/words?gameId=${gameId}&categoryId=${categoryId}`
+            );
+          }}
+        >
           Revisa las palabras
         </ThemedButton>
         <ThemedButton onPress={router.back}>Siguente</ThemedButton>

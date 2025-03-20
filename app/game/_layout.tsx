@@ -20,6 +20,8 @@ export default function GameLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" options={headerOptions} />
+      <Stack.Screen name="celebration" />
+      <Stack.Screen name="words" options={headerOptions} />
     </Stack>
   );
 }

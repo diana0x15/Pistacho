@@ -2,26 +2,35 @@ import { useState, useContext } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import { useLocalSearchParams, router } from "expo-router";
 
 import { GameContext } from "@/context/GameContext";
-import ThemedView from "./ThemedView";
-import WordEntry from "./WordEntry";
+import ThemedView from "@/components/ThemedView";
+import WordEntry from "@/components/WordEntry";
 import { getAssetComponent } from "@/components/CategoryCard";
 import categories from "@/data/categories.json";
 import { countWords } from "@/utils/Text";
 import { Word } from "@/constants/Game";
 import { DefinitionType, VocabEntry } from "@/constants/Vocabulary";
 import WIP from "@/components/WIP";
+import { getGamesInCategory } from "@/utils/Data";
 
-type ReviewWordsProps = {
-  categoryId: string;
-  words: Word[];
-};
-
-export default function ReviewWords(props: ReviewWordsProps) {
+// Route URL: /game/words?gameId=123&categoryId=456.
+export default function WordsScreen() {
   const { savedWords } = useContext(GameContext);
 
-  const category = categories.find((c) => c.id === props.categoryId);
+  // Get the current game data.
+  const { gameId, categoryId } = useLocalSearchParams<{
+    gameId: string;
+    categoryId: string;
+  }>();
+  const game = getGamesInCategory(categoryId).find((g) => g.id === gameId);
+  if (game === undefined) {
+    router.replace("/tabs/home");
+    return;
+  }
+  const category = categories.find((c) => c.id === categoryId);
+  const words = game.words;
 
   const [currentView, setCurrentView] = useState(DefinitionType.CLUE);
 
@@ -61,7 +70,7 @@ export default function ReviewWords(props: ReviewWordsProps) {
           {currentView === DefinitionType.TRANSLATION ? (
             <WIP />
           ) : (
-            props.words.map((word, index) => {
+            words.map((word, index) => {
               const vocabEntry = {
                 word: word.word,
                 clue: word.clue,
